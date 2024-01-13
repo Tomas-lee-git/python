@@ -4,9 +4,15 @@
 
 X = int(input("What's X ? "))
 
-def isOdd(n):
-    return n % 2
+def isEven(n):
+    # if n % 2 == 0:
+    #     return True
+    # else:
+    #     return False
 
+    # return True if n % 2 == 0 else False
+    
+    return n % 2 == 0
 
 # 版本1
 if X  % 2 == 0:
@@ -23,7 +29,7 @@ else:
 #     print("0 is false")
 
 # 版本2
-if X % 2:
-    print("X is odd")
-else:
+if isEven(X):
     print("X is even")
+else:
+    print("X is odd")
