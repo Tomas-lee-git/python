@@ -1,8 +1,8 @@
 """
-    match, 也就是 js 中的 switch
+    match, 也就是 js 中的 switch；
     没有 break；
     没有 default；
-    用｜ 来连接“殊途同归”中的“殊途”
+    用 | 来连接“殊途同归”中的“殊途”；
 """
 
 name = input("What's your name? ")
