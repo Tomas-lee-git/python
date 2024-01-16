@@ -1,7 +1,7 @@
 """
     match, 也就是 js 中的 switch；
     没有 break；
-    没有 default；
+    没有 default，使用 case _ 来表示" catch-all "；
     用 | 来连接“殊途同归”中的“殊途”；
 """
 
