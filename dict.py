@@ -2,7 +2,7 @@
     dict => dictionaries
         associate one value with another literally
         keys、values
-        访问value的方法 => dict["key"]
+        访问value的方法 => dict[key]
 
 
 """
