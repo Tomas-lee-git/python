@@ -1,0 +1,43 @@
+"""
+    一、sys.argv:
+        用 list 的方式记录了运行 python3 时后面的内容：
+            1. sys.argv[0]: program name，也就是 *.py
+            2. sys.argv[1]: something else input
+            3. 字符串输入的，即使有空格，再长都算一个喽
+            4. 如果没有输入，或者输入的内容对应 list 的 index 不存在：
+            IndexError: list index out of range
+
+    二、如果加入了不必要的 indentation(缩进)，会报错：😄
+        IndentationError: unexpected indent
+    
+    三、if:
+        elif 可以有无限多个；
+        但 else 只能有一个，用来 catch-all（兜底）；
+"""
+
+import sys
+
+def main():
+    # sys_arg_version_1()
+    sys_arg_version_2()
+
+#　版本1，处理报错
+def sys_arg_version_1():
+    try:
+        print(f"hello, my name is {sys.argv[1]}")
+
+    except IndexError:
+        print("please add your name before hint Enter key")
+
+
+# 版本2，灵活应对
+def sys_arg_version_2():
+    argv_list = sys.argv
+    if len(argv_list) <= 1:
+        print("please add your name before hint Enter key")
+    elif len(argv_list) > 2:
+        print("too many arguments, please just input one")
+    else:
+        print(f"hello, my name is {sys.argv[1]}")
+
+main()
