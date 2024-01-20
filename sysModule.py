@@ -5,7 +5,7 @@
             2. sys.argv[1]: something else input
             3. 字符串输入的，即使有空格，再长都算一个喽
             4. 如果没有输入，或者输入的内容对应 list 的 index 不存在：
-            IndexError: list index out of range
+                IndexError: list index out of range
 
     二、如果加入了不必要的 indentation(缩进)，会报错：😄
         IndentationError: unexpected indent
@@ -27,17 +27,17 @@ def sys_arg_version_1():
         print(f"hello, my name is {sys.argv[1]}")
 
     except IndexError:
-        print("please add your name before hint Enter key")
+        print("please add your name before hit Enter key")
 
 
 # 版本2，灵活应对
 def sys_arg_version_2():
     argv_list = sys.argv
-    if len(argv_list) <= 1:
-        print("please add your name before hint Enter key")
-    elif len(argv_list) > 2:
-        print("too many arguments, please just input one")
-    else:
+    if len(argv_list) == 2:
         print(f"hello, my name is {sys.argv[1]}")
+    elif len(argv_list) < 2:
+        print("please add your name before hit Enter key")
+    else:
+        print("too many arguments, please just input one")
 
 main()
