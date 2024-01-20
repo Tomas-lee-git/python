@@ -18,6 +18,16 @@
     三、if:
         elif 可以有无限多个；
         但 else 只能有一个，用来 catch-all（兜底）；
+
+    四、slice 操作:
+        1. 注意到了 python 的 stir 也就是 string 类型的数据也是 iterable 的
+            所以可以使用 for in 来处理 stir 哦🤔
+        2. list[start:end]
+            start 和 end 指 slice 操作时的 list index；
+            截取的元素包含 start 但不包含 end；
+            可以只指定 start 但忽略 end ：list[start:] 来表示从start 位置开始的剩余全部；
+            如果 start 和 end 是 native int，代表：从后往前数，其它规则不变；
+            如果 end 超过了实际 index 的最大值，效果等同于 list[start:]；
 """
 
 import sys
@@ -25,7 +35,8 @@ import sys
 def main():
     # sys_arg_version_1()
     # sys_arg_version_2()
-    sys_arg_version_3()
+    # sys_arg_version_3()
+    sys_arg_version_4()
 
 #　版本1，处理报错
 def sys_arg_version_1():
@@ -56,5 +67,22 @@ def sys_arg_version_3():
 
     # 主要目的应该和 exception 处理区分开来
     print(f"hello, my name is {sys.argv[1]}")
+
+
+# 版本4，遍历输出
+def sys_arg_version_4():
+    argv_list = sys.argv
+    
+    # argv_list 最少有一个 element：*.py
+    if len(argv_list) <= 1:
+        sys.exit("please add your name before hit Enter key")
+
+    """
+        argv_list 的第一个元素是 *.py，并不是需要 print 的 name data ，
+            所以需要对 argv_list 进行 slice 操作
+
+    """
+    for arg in argv_list[1:10]:
+        print(f"hello, my name is {arg}")
 
 main()
