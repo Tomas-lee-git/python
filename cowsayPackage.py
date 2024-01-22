@@ -21,9 +21,45 @@
 
         [dev-sidecar](https://github.com/docmirror/dev-sidecar)
         
+    4. getattr(x, 'foobar') is equivalent to x.foobar：
+        这个是我看到 cowsay 有很多方法，可以打印不同的动物，就想着把这些方法遍历一遍把动物打印出来看看
+        所以我需要实现 cowsay.[type] 这样的逻辑，查找之后发现可以这样实现：
+            getattr(cowsay, type)
+        这样就相当于是 cowsay.type 而 type 可以是我typeList中的每一个动态的元素，🎉，这是我自己实现的嗷😄
 """
 
 
-import cowsay
+import cowsay # import third-party package
+import sys # import python built-in module
 
-cowsay.cow("hello, world".title())
+# cowsay.cow("hello, world".title())
+
+# if len(sys.argv) == 2:
+#     cowsay.cow(f"hello, world, I'm {sys.argv[1]}")
+# else:
+#     cowsay.trex(f"hello, world, I'm {sys.argv[1]}")
+
+my_fish = r'''
+\
+ \  
+        /`·.¸
+     /¸...¸`:·
+ ¸.·´  ¸   `·.¸.·´)
+: © ):´;      ¸  {
+ `·.¸ `·  ¸.·´\`·¸)
+     `\\´´\¸.·´
+'''
+
+# cowsay.draw('Sharks are my best friend', my_fish)
+
+
+
+typeList = [
+    'beavis', 'cheese', 'cow', 'daemon', 'dragon', 
+    'fox', 'ghostbusters', 'kitty','meow', 'miki',
+    'milk', 'octopus', 'pig', 'stegosaurus', 'stimpy', 
+    'trex', 'turkey', 'turtle', 'tux'
+    ]
+
+for type in typeList:
+    getattr(cowsay, type)(f"hello, world, I'm {type}")
