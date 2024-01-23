@@ -23,7 +23,7 @@
         
     4. getattr(x, 'foobar') is equivalent to x.foobar：
         这个是我看到 cowsay 有很多方法，可以打印不同的动物，就想着把这些方法遍历一遍把动物打印出来看看
-        所以我需要实现 cowsay.[type] 这样的逻辑，查找之后发现可以这样实现：
+        所以我需要实现 cowsay[type] 这样的逻辑，查找之后发现可以这样实现：
             getattr(cowsay, type)
         这样就相当于是 cowsay.type 而 type 可以是我 typeList 中的每一个动态的元素，这是我自己实现的嗷😄
     
