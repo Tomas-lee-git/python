@@ -56,11 +56,11 @@ response = requests.get(url)
 results = response.json()["results"]
 
 # 指定一个我感兴趣的 key list 😚
-needInfoList = ["artistId", "artistName", "trackName"]
+need_info_list = ["artistId", "artistName", "trackName"]
 n = 1 # 设置一个计数器
 for result in results:
     print(f"=== 第{n}首歌的信息如下：===")
     for key in result:
-        if key in needInfoList: # check if a value exists in a list => element in list
+        if key in need_info_list: # check if a value exists in a list => element in list
             print(f"{key}: {result[key]}")
     n += 1 # 更新计数器

@@ -49,6 +49,6 @@ print(input("what's your name? ").strip().title())
 # name = input("What's your name? ").strip().title()
 
 # str.split(), return substring with sequence
-firstName, lastName = name.split(" ")
+first_name, last_name = name.split(" ")
 
-# print(f"hello, {firstName}")
+# print(f"hello, {first_name}")

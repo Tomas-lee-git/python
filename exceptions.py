@@ -63,16 +63,16 @@
 # 不断提示，直到用户输入数字，然后打印出来
 
 # 版本一：递归实现
-def inputAndPrintInt():
+def input_and_print_int():
     try:
         x = int(input("What's x ? "))
     except ValueError:
         print("please input an integer number")
-        inputAndPrintInt()
+        input_and_print_int()
     else:
         print(f"x is {x}")
 
-# inputAndPrintInt()
+# input_and_print_int()
 
 #版本二：while:True 实现
 # while True:

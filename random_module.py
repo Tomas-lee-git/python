@@ -10,11 +10,11 @@
         
 """
 def main():
-    # importWholeModule()
-    importSpecifyFunctionFromModule()
+    # import_whole_module()
+    import_specify_function_from_module()
 
 # 用法一
-def importWholeModule():
+def import_whole_module():
     import random
 
     for _ in range(5):
@@ -24,7 +24,7 @@ def importWholeModule():
         # <module 'random' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/random.py'>
 
 # 用法二
-def importSpecifyFunctionFromModule():
+def import_specify_function_from_module():
     # from random import choice
 
     # for _ in range(5):
@@ -50,9 +50,9 @@ def importSpecifyFunctionFromModule():
     cards = ["jack","queen","king","4","pink"]
 
     for _ in range(10):
-        var = shuffle(cards)
+        card = shuffle(cards)
         #❕ shuffle will change the parameter, and no return value
         print(cards)
-        # print(var) None
+        # print(card) None
 
 main()
