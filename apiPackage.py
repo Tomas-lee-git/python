@@ -15,8 +15,9 @@
             使用 pip3 install requests 时，及时开了 dev-sidecar 的 pip 加速，还是遇到了超时的问题
         解决方法：
             打开 dev-sidecar 的 pip 加速中配置，选” aliyun 镜像“；
+
     4. JSON: 
-        JavaScript Object notation（JavaScript 对象表示法）；
+        JavaScript Object Notation（JavaScript 对象表示法）；
         可以跨语言实现 exchanging data；
     
     5. json: python built-in module
