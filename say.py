@@ -10,8 +10,8 @@
                 if you execute: "python3 a.py", in a.py,  __name__ == "__main__";
                 if a.py is imported by other files such as b.py, in a.py, __name__ == "a";
             简单地理解：
-            在内部 __name__ 是自家小名：__main__；
-            出门在外，就是文件名这个大名喽；
+                在内部 __name__ 是自家小名：__main__；
+                出门在外，就是文件名这个大名喽；
         
         5. import multiple function from same packages/modules:
             from package/module import a, b, c, d, ……
