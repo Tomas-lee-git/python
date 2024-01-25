@@ -13,7 +13,7 @@ def input_number():
 
 def square(n):
     # return n * n
-    return pow(n, 3)
+    return pow(n, 2)
 
 """
     👇这行代码的意思：只有在直接执行这个文件的时候，main() 才会被调用；

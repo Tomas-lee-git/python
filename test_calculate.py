@@ -10,6 +10,14 @@
         3. AssertionError:
             display Traceback, detail but not friendly to read
             use except to enhance readable
+    
+    三、pytest: https://docs.pytest.org/en/latest/
+        1. third-party unit testing: pip3 install pytest;
+        2. handled the try、except、print all of standardization of actually running these tests;
+        3. execute "pytest", the implementation will be automatically added: try, except, print, etc.;
+        4. unit tests are typically tests for functions that you have written;
+
+
 
 
 """
@@ -22,26 +30,12 @@ def main():
     test_square()
 
 def test_square():
-    try:
-        assert square(2) == 4
-    except AssertionError:
-        print("2 squared wasn't 4")
-    try:
-        assert square(3) == 9
-    except AssertionError:
-        print("3 squared wasn't 9")
-    try:
-        assert square(-2) == 4
-    except AssertionError:
-        print("-2 squared wasn't 4")
-    try:
-        assert square(-3) == 9
-    except AssertionError:
-        print("-3 squared wasn't 9")
-    try:
-        assert square(0) == 0
-    except AssertionError:
-        print("0 squared wasn't 0")
+    assert square(2) == 4
+    assert square(3) == 9
+    assert square(-2) == 4
+    assert square(-3) == 9
+    assert square(0) == 0
+
 if __name__ == "__main__":
     main()
 
