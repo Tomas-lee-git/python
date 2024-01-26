@@ -30,12 +30,6 @@ import sys
 
 from calculate import square
 
-def main():
-    test_square_positive()
-    test_square_negative()
-    test_square_zero()
-    test_square_input()
-
 def test_square_positive():
     assert square(2) == 4
     assert square(3) == 9
@@ -50,9 +44,5 @@ def test_square_zero():
 def test_square_input():
     with pytest.raises(TypeError):
         square("cat")
-
-if __name__ == "__main__":
-    main()
-
 
 
