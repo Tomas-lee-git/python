@@ -20,6 +20,9 @@
             f(n)
            在执行f(n)时，预期某种特定类型的错误，这样可以确保所有会发生的 error 都已经被考虑到且已经用 try、catch 处理到位了
 
+    四、test folder:
+        1. use "mkdir folder_name" to create a new folder;
+        2. 
 
 
 
