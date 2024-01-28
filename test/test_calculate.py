@@ -22,7 +22,8 @@
 
     四、test folder:
         1. use "mkdir folder_name" to create a new folder;
-        2. 
+        2. move "test_*".py files to test folder;
+        3. in test folder, add the __init__.py file ;
 
 
 
