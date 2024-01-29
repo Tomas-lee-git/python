@@ -53,15 +53,8 @@
         3): rm c, delete a file named c;
         4): rm -r d, delete a file named d(not empty);
 
-    8. Output:
-
-
-
-
-
-
-
 """
+
 n = int(input("How many names do you want to collect? "))
 names = [] # empty list, can add things
 
