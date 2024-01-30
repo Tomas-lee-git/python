@@ -63,20 +63,18 @@ for _ in range(n): # range(len), return a list of specific length
 
 
 """
-input 版本1
+input version  1
 for name in sorted(names): # sorted(list) will return sorted list
     print(f"hello, {name}")
 """
 
-"""
-input 版本2
-file = open("names.txt", "a") # write to names.txt file, if the file doesn't exist yet it's going to create the file
-
+# input version  2
 # file.write(names) # TypeError: write() argument must be str, not list
 
 for name in sorted(names):
     # file.write() without newline, should manually use "/n"
-    file.write(f"{name}\n") # write information to file 
-file.close() # close and effectively save the file
-"""
+    # write to names.txt file, if the file doesn't exist yet it's going to create the file
+    with open("names.txt", "a") as file:
+        file.write(f"{name}\n") # write information to file 
+        # file.close() # close and effectively save the file
 
