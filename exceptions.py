@@ -62,7 +62,7 @@
 """
 # 不断提示，直到用户输入数字，然后打印出来
 
-# 版本一：递归实现
+# version 1：递归实现
 def input_and_print_int():
     try:
         x = int(input("What's x ? "))
@@ -74,7 +74,7 @@ def input_and_print_int():
 
 # input_and_print_int()
 
-#版本二：while:True 实现
+# version 2：while:True 实现
 # while True:
 #     try:
 #         x = int(input("What's x ? "))
@@ -85,7 +85,7 @@ def input_and_print_int():
 #         print(f"x is {x}")
 #         break
 
-# 版本三： while: True 实现优化
+# version 3： while: True 实现优化
 # while True:
 #     try:
 #         x = int(input("What's x ? "))

@@ -14,7 +14,7 @@ def is_even(n):
     
     return n % 2 == 0
 
-# 版本1
+# version 1
 if x  % 2 == 0:
     print("x is even")
 else:
@@ -28,7 +28,7 @@ else:
 # else:
 #     print("0 is false")
 
-# 版本2
+# version 2
 if is_even(x):
     print("x is even")
 else:

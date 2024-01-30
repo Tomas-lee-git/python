@@ -8,7 +8,7 @@
 name = input("What's your name? ")
 
 """
-    版本1
+    version 1
 
     if name == "Tom":
         print("It's a cat")
@@ -23,7 +23,7 @@ name = input("What's your name? ")
 """
 
 """
-版本2
+version 2
     if name == "Tom" or name == "老皮" or name == "蓝猫":
         print("It's a cat")
     elif name == "Jimmy":
@@ -33,7 +33,7 @@ name = input("What's your name? ")
 """
 
 """
- 版本3
+ version 3
     match name:
         case "Tom":
             print("It's a cat")
@@ -47,7 +47,7 @@ name = input("What's your name? ")
             print("What ?")
 """
 
-# 版本4
+# version 4
 
 match name:
     case "Tom" | "老皮" | "蓝猫":

@@ -38,7 +38,7 @@ def main():
     # sys_arg_version_3()
     sys_arg_version_4()
 
-#　版本1，处理报错
+#　version 1，处理报错
 def sys_arg_version_1():
     try:
         print(f"hello, my name is {sys.argv[1]}")
@@ -47,7 +47,7 @@ def sys_arg_version_1():
         print("please add your name before hit Enter key")
 
 
-# 版本2，灵活应对
+# version 2，灵活应对
 def sys_arg_version_2():
     argv_list = sys.argv
     if len(argv_list) == 2:
@@ -57,7 +57,7 @@ def sys_arg_version_2():
     else:
         print("too many arguments, please just input one")
 
-# 版本3，及时退出
+# version 3，及时退出
 def sys_arg_version_3():
     argv_list = sys.argv
     if len(argv_list) > 2:
@@ -69,7 +69,7 @@ def sys_arg_version_3():
     print(f"hello, my name is {sys.argv[1]}")
 
 
-# 版本4，遍历输出
+# version 4，遍历输出
 def sys_arg_version_4():
     argv_list = sys.argv
     

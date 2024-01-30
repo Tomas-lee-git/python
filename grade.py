@@ -6,7 +6,7 @@
 
 score = int(input("What's your score? "))
 
-# 版本1
+# version 1
 
 # 90-100, A
 if score <= 100 and score >= 90:
@@ -24,7 +24,7 @@ elif score < 70 and score >= 60:
 else :
     print("Score: E")
 
-# 版本2
+# version 2
 
 # 90-100, A
 if 90 <= score <=100:
@@ -43,7 +43,7 @@ else :
     print("Score: E")
 
 
-# 版本3
+# version 3
 
 # 90-100, A
 if 90 <= score:
