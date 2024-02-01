@@ -29,8 +29,6 @@
     
     5. .csv file:
         1). can put quotes("") around any English string that itself contains a comma(,);
-        
-
 
 """
 # step 1 ,use split(",") to get specific values
@@ -48,7 +46,7 @@ with open("colleagues.csv") as file:
         }
         colleagues.append(colleague)
 
-# print(f"colleagues dictionary is {colleagues}")
+# print(f"colleagues list is {colleagues}")
 
 
 # step 2, sort a list of dictionaries by dictionaries's key
