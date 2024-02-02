@@ -1,5 +1,7 @@
-Dowson,dog,23,"abc,def"
-Eric,cat,34,"ha"
-Lee,tiger,45,"ha"
-Tomas,lion,27,"ha"
-Pony,pig,54,"ha"
+name,breed,age,evaluate
+Dowson,dog,60,"bad chief"
+Eric,cat,34,"nice guy"
+Lee,tiger,45,"self"
+Tomas,lion,27,"self 2"
+Pony,pig,54,"bad boss"
+osborn,wolf,38,"mean guy"
