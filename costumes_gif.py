@@ -10,8 +10,6 @@
     3. gif: 
         enough images it creates the illusion of Animation;
 
-    4. 
-
 """
 import sys
 

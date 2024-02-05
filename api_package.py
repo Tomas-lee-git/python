@@ -23,8 +23,8 @@
     5. json: python built-in module
         json.dumps(JSON, ident=2) => dump string nicely (按指定样式，转储 JSON 内容，增强 JSON 内容的可读性)；
 
-    6. in 
-        check if a value exists in a list => element in list
+    6. in:
+        check if a element exists in a list => element in list
 
     7. break vs sys.exit()
         break: break loop, such as: while、for in
