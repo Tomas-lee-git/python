@@ -25,7 +25,7 @@
         1). re.search(pattern, string, flags=0)
     
     7. pattern:
-        1). r"regular expression"
+        1). r"regular expression";
         2). any thing:
             ., any character except a newline;
         3). receptions:
@@ -46,9 +46,6 @@
             f"stir{variable}";
         1). row string:
             r"regular expression \.";
-
-            
-        
 """
 
 # version 1
