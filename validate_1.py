@@ -32,6 +32,28 @@
             [0-9]: all numbers;
             [-]: underscore symbol;
 
+        6). short symbol:
+            \d, [0-9]:
+                decimal digit;
+            \D, [^0-9]:
+                not a decimal digit;
+
+            \s, [   ]:
+                whitespace character, space、tab and other white spaces;
+            \S, [^   ]:
+                not a whitespace character;
+
+            \w, [a-zA-Z0-9_]:
+                word characters, as well as numbers and the underscore;
+            \W, [^a-zA-Z0-9_]:
+                not a word character;
+        
+        7). [] vs () specific:
+            []: one character
+                [abcdef], select only one character;
+            (): group
+                (edu|com|cn), more characters can be selected, such as domains;
+
 
 
 
@@ -44,7 +66,7 @@ while True:
     # mul@gmail.com
     # if re.search(r".+@.+\.edu", email): No limit on start and end
         # Yes, you input a valid email address: my email address is abc@def.edu
-    if re.search(r"^[a-zA-z0-9_]+@[a-zA-z0-9_]+\.[edu,gmail]$", email): # add ^ and $ to limit start and end
+    if re.search(r"^\w+@\w+\.(edu|com|cn|gov|net|org)$", email): # add ^ and $ to limit start and end
         print(f"Yes, you input a valid email address: {email}")
         break
     else:
