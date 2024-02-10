@@ -1,5 +1,9 @@
 """
-    regular expression:
+    1. stir:
+        1). stir.lower();
+        2). stir.upper();
+
+    2. regular expression:
         1). r"regular expression";
 
         2). any thing:
@@ -32,7 +36,7 @@
             [0-9]: all numbers;
             [-]: underscore symbol;
 
-        6). short symbol:
+        6). short notation:
             \d, [0-9]:
                 decimal digit;
             \D, [^0-9]:
@@ -54,6 +58,11 @@
             (): group
                 (edu|com|cn), more characters can be selected, such as domains;
 
+        8). re.search(pattern, string, flags = 0):
+            flags:
+                re.IGNORECASE, ignore case, uppercase or lowercase;
+                re.MULTILINE, match different lines of that text;
+                re.DOTALL, match any characters including a newline;
 
 
 
