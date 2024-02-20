@@ -34,7 +34,7 @@
             [A-Z]: 26 uppercase alphabet;
             [a-zA-Z]: 26 alphabet, no matter lowercase or uppercase;
             [0-9]: all numbers;
-            [-]: underscore symbol;
+            [_]: underscore symbol;
 
         6). short notation:
             \d, [0-9]:
@@ -62,9 +62,18 @@
             flags:
                 re.IGNORECASE, ignore case, uppercase or lowercase;
                 re.MULTILINE, match different lines of that text;
-                re.DOTALL, match any characters including a newline;
+                re.DOTALL, match any characters(.) including a newline;
 
+        9). group ideas:
+            A|B:
+            (...):
+            (?:...):
 
+        10.validate email address by regular expression:
+            https://stackoverflow.com/questions/201323/how-can-i-validate-an-email-address-using-a-regular-expression?page=1&tab=createdasc#tab-top
+
+        11. re.match(pattern, string, flag):
+            1. very similar to re.search except don't have to specify the carrot symbol at the begin(^);
 
 
 """
@@ -75,7 +84,14 @@ while True:
     # mul@gmail.com
     # if re.search(r".+@.+\.edu", email): No limit on start and end
         # Yes, you input a valid email address: my email address is abc@def.edu
-    if re.search(r"^\w+@\w+\.(edu|com|cn|gov|net|org)$", email): # add ^ and $ to limit start and end
+
+    pattern = r"^\w+@\w+\.(edu|com|cn|gov|net|org)$"
+    pattern1 = r"^\w+@[\w\.]+\.(edu|com|cn|gov|net|org)$"
+    pattern2 = r"^\w+@(\w|\.)+\.(edu|com|cn|gov|net|org)$"
+
+
+
+    if re.search(pattern2, email, re.IGNORECASE): # add ^ and $ to limit start and end
         print(f"Yes, you input a valid email address: {email}")
         break
     else:
