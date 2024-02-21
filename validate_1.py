@@ -65,9 +65,10 @@
                 re.DOTALL, match any characters(.) including a newline;
 
         9). group ideas:
-            A|B:
-            (...):
-            (?:...):
+            A|B: A or B;
+            (...): a group, as capture
+            (?:...), non-capturing:
+                ?: use the parentheses but don't capture the result;
 
         10.validate email address by regular expression:
             https://stackoverflow.com/questions/201323/how-can-i-validate-an-email-address-using-a-regular-expression?page=1&tab=createdasc#tab-top

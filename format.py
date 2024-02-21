@@ -4,9 +4,10 @@
             don't support regular express;
 
         2. group ideas:
-            A|B: either A or B;
-            (...): a group;
-            (?:...): non-capturing version;
+            (): either A or B;
+            (...): a group, as capture;
+            (?:...), non-capturing:
+                ?: use the parentheses but don't capture the result;
 
         3. (), capturing purpose:
             1). re.search() return matches;
