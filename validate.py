@@ -10,15 +10,15 @@
 
     3. in:
         1). check if a element exists in a list => element in list;
-        2). check if a sub stir exists in a stir => stir in stir;
+        2). check if a sub str exists in a str => str in str;
 
     4. connect bool expression:
         1). or  连接多个条件，符合其中一个条件，都会进入相关的逻辑;
         2). and 连接多个条件，符合其中所有的条件，才会进入相关的逻辑;
 
-    5. stir:
-        1). stir.startswith();
-        2). stir.endswith();
+    5. str:
+        1). str.startswith();
+        2). str.endswith();
         3). ❕ s;
     
     6. re: https://docs.python.org/3/library/re.html
@@ -41,9 +41,9 @@
                     SyntaxWarning: invalid escape sequence '\.'
             ✅ right: r"\."
 
-    8. special stir:
+    8. special str:
         1). format string:
-            f"stir{variable}";
+            f"str{variable}";
         1). row string:
             r"regular expression \.";
 """

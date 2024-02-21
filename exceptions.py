@@ -53,7 +53,7 @@
     except ValueError:
         print("please input an integer number")
     
-    # 如果用户输入了 stir 如 cat ，那在 int()函数调用这一步就出错了，
+    # 如果用户输入了 str 如 cat ，那在 int()函数调用这一步就出错了，
     # 在这种情况下 x = ？ 的定义和赋值操作就没有实现，
     # 所以 x 是 not defined；
 

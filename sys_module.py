@@ -20,8 +20,8 @@
         但 else 只能有一个，用来 catch-all（兜底）；
 
     四、slice 操作:
-        1. 注意到了 python 的 stir 也就是 string 类型的数据也是 iterable 的
-            所以可以使用 for in 来处理 stir 哦🤔
+        1. 注意到了 python 的 str 也就是 string 类型的数据也是 iterable 的
+            所以可以使用 for in 来处理 str 哦🤔
         2. list[start:end]
             start 和 end 指 slice 操作时的 list index；
             截取的元素包含 start 但不包含 end；

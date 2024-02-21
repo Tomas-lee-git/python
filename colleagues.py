@@ -4,7 +4,7 @@
     
     2. split():
         1). return list;
-        2). use a,b,c,…… = stir.split() to get the variable that refers to the order
+        2). use a,b,c,…… = str.split() to get the variable that refers to the order
     
     3. sorted(iterable, /, *, key=None, reverse=False)
         1). ❌ sorted([{},{}]):

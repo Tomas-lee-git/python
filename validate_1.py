@@ -1,7 +1,7 @@
 """
-    1. stir:
-        1). stir.lower();
-        2). stir.upper();
+    1. str:
+        1). str.lower();
+        2). str.upper();
 
     2. regular expression:
         1). r"regular expression";

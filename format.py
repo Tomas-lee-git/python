@@ -1,6 +1,6 @@
 """
     format data:
-        1. stir.split:
+        1. str.split:
             don't support regular express;
 
         2. group ideas:
