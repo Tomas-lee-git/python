@@ -15,6 +15,9 @@
             4). matches.group(index), index is the () sequence, start with 1;
             5). ❕ groups() vs group();
 
+        4. := operator:
+            1): if a := 1+1;
+            2): := allow to assign a value from right to left and ask a boolean question about it;
         
 
 """
@@ -30,9 +33,11 @@ name = input("What's your name? ").strip()
 
 #version 2 , replace ", "、","
 pattern = r"^(.+),\s*(.+)$"
-matches = re.search(pattern, name) # matches will be none(False) or Match object(True)
+# matches = re.search(pattern, name) # matches will be none(False) or Match object(True)
 # print(f"matches is {matches}")
-if matches:
+# if matches:
+
+if matches := re.search(pattern, name):
     # firstname, lastname = matches.groups()
     # print(f"firstname is {firstname}, lastname is {lastname}")
     # name = f"{firstname} {lastname}"
