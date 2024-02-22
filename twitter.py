@@ -11,6 +11,9 @@
     4. (?:...), non-capturing:
             ?: use the parentheses but don't capture the result;
 
+    5. re.split(pattern, string, maxsplit=0, flags=0):
+
+    6. re.findall(pattern, string, flags=0):
 
 """
 
@@ -34,7 +37,7 @@ url = input("What's your Twitter profile url? ").strip()
 # print(f"username is {username}")
 
 # version 4 use re.search()
-pattern = r".*/(.+)"
+pattern = r".*/(\w+)"
 # [username] = matches.groups()
 if matches := re.search(pattern, url, re.IGNORECASE):
     username = matches.group(1)
