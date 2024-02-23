@@ -17,8 +17,27 @@
         3). list's element can be changed, but tuple's element can't to be changed;
         4). list must have square bracket [], but tuple can ignore parentheses ();
 
+    4. classes:
+        1). create own data types and actually give them names;
+        2). a class is kind of like a blueprint or mold: designed exactly as self want;
+        3). doc url: https://docs.python.org/3/tutorial/classes.html;
+        4). keyword Class and use . to add attribute:
+            class Student;
+            student =  Student();
+            student.name = "小野";
+
+    5. ... :
+        ... is a valid placeholder, wait to implement logic;
+
+    6. class instance vs dict:
+        1). class instance use . to add/get attribute, but dict use ["key"] to add/get values;
+        2). 
+
 
 """
+class Student:
+    ...
+
 def main():
     # student = get_student()
     # student[1] = "America" # TypeError: 'tuple' object does not support item assignment
@@ -28,13 +47,16 @@ def main():
 
     # print(f"{student[0]} from {student[1]}") 
 
+    # """
+    #     ❕two things:
+    #         1). python dict's value must use square bracket;
+    #         2). pay attention to the matching of single quotes and double quotes, do not nest the same quotes;
+    # """
+    # student = get_student()
+    # print(f'{student["name"]} from {student["house"]}')
+
     student = get_student()
-    """
-        ❕two things:
-            1). python dict's value must use square bracket;
-            2). pay attention to the matching of single quotes and double quotes, do not nest the same quotes;
-    """
-    print(f'{student["name"]} from {student["house"]}')
+    print(f"{student.name} from {student.house}")
 
     
 
@@ -51,11 +73,15 @@ def get_student():
     # house = get_house()
     # return (name, house)
     
-    return { # python dict's key must be "str" literally
-        'name' : get_name(),
-        'house' : get_house()
-    }
+    # return { # python dict's key must be "str" literally
+    #     'name' : get_name(),
+    #     'house' : get_house()
+    # }
 
+    student = Student()
+    student.name = get_name()
+    student.house = get_house()
+    return student
 
 
 
