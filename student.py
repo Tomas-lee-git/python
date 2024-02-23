@@ -8,6 +8,14 @@
         3). (A,B,C) is equal A,B,C but more readable and verbosely;
         4). tuple is similar to a list but it's indeed just immutable;
         5). tuple can use [index] to get element;
+        6). ❕ TypeError: 'tuple' object does not support item assignment,
+                it can be used to protect variables from being changed;
+    
+    3. [](list) vs ()(tuple):
+        1). has sequence;
+        2). use [index] to get element;
+        3). list's element can be changed, but tuple's element can't to be changed;
+        4). list must have square bracket [], but tuple can ignore parentheses ();
 
 
 """
@@ -19,6 +27,7 @@ def main():
     # print(f"{name} from {house}") 
 
     student = get_student()
+    # student[1] = "America" # TypeError: 'tuple' object does not support item assignment
     print(f"{student[0]} from {student[1]}") 
 
 
@@ -35,7 +44,7 @@ def get_student():
     # }
     name = get_name()
     house = get_house()
-    return name, house
+    return (name, house)
     
 """
     👇这行代码的意思：只有在直接执行这个文件的时候，main() 才会被调用；
