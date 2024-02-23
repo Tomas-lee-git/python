@@ -21,14 +21,23 @@
 """
 def main():
     # student = get_student()
-    # print(f"{student["name"]} from {student["house"]}") # python dict's value must use square bracket
+    # student[1] = "America" # TypeError: 'tuple' object does not support item assignment
 
     # name, house = get_student()
     # print(f"{name} from {house}") 
 
+    # print(f"{student[0]} from {student[1]}") 
+
     student = get_student()
-    # student[1] = "America" # TypeError: 'tuple' object does not support item assignment
-    print(f"{student[0]} from {student[1]}") 
+    """
+        ❕two things:
+            1). python dict's value must use square bracket;
+            2). pay attention to the matching of single quotes and double quotes, do not nest the same quotes;
+    """
+    print(f'{student["name"]} from {student["house"]}')
+
+    
+
 
 
 def get_name():
@@ -38,14 +47,18 @@ def get_house():
    return input("Where are you from ? ").title()
 
 def get_student():
-    # return { # python dict's key must be "str" literally
-    #     'name' : get_name(),
-    #     'house' : get_house()
-    # }
-    name = get_name()
-    house = get_house()
-    return (name, house)
+    # name = get_name()
+    # house = get_house()
+    # return (name, house)
     
+    return { # python dict's key must be "str" literally
+        'name' : get_name(),
+        'house' : get_house()
+    }
+
+
+
+
 """
     👇这行代码的意思：只有在直接执行这个文件的时候，main() 才会被调用；
     想要避免的情况是：当本文件被其它文件作为 module/package import时，main() 不会“意外地”被执行；
