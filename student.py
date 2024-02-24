@@ -1,6 +1,7 @@
 """
     1. oop: 
-        object oriented programming;
+        1). object oriented programming;
+        2). oop more generally encourages to encapsulate inside of a class all functionality related to that class;
 
     2. tuple: use tuple to return multiple values:
         1): return A,B,C is return one data, the data's type is tuple;
@@ -41,22 +42,50 @@
         2). class create object and object can only add specific attributes, while dict can add any key;
         3). class can ensure the correctness of data, error check, designed more complicated software;
 
+    7. if not variable:
+        if name not : equal if name == "": , if not "", will return True, else will return False;
+
+    8. if not in str/list:
+        if element or substr is not in list or str, not in will return True, else will return False;
+    
+    9. raise:
+        1). programer can create own exceptions when something just really goes wrong:
+            not wrong enough that want to quit and exit the whole program(sys.exit(msg)),
+            but enough that need to somehow alert the programer that there has been an error something exceptional and let them to use try to catch that exception;
+        2). raise errorType(alert message):
+            raise ValueError("Missing name")
+
+    10. Exception handling: Differentiating between instances of the same error in Python:
+            a = 'hello'
+        try:
+           a.append(2)
+        except AttributeError as e:
+           if 'str' in e.args[0]:
+               print('Need to handle string')
+           elif 'float' in e.args[0]:
+               print('Need to handle float')
+
 
 
 """
 class Student:
-    def __init__(self, name, house):
+    def __init__(self, name, country):
         # print(f"self is {self}") # self is <__main__.Student object at 0x101efe690>
+        if not name: # if name == ""
+            raise ValueError("Missing name")
+        if country not in ["China","Japan","America","Canada"]:
+            raise ValueError("Invalid country and region")
+
         self.name = name
-        self.house = house
+        self.country = country
         # print(f"self is {self}") # self is <__main__.Student object at 0x103a866c0>
 
 def main():
     # student = get_student()
     # student[1] = "America" # TypeError: 'tuple' object does not support item assignment
 
-    # name, house = get_student()
-    # print(f"{name} from {house}") 
+    # name, country = get_student()
+    # print(f"{name} from {country}") 
 
     # print(f"{student[0]} from {student[1]}") 
 
@@ -66,40 +95,43 @@ def main():
     #         2). pay attention to the matching of single quotes and double quotes, do not nest the same quotes;
     # """
     # student = get_student()
-    # print(f'{student["name"]} from {student["house"]}')
+    # print(f'{student["name"]} from {student["country"]}')
 
     student = get_student()
-    print(f"{student.name} from {student.house}")
-
-    
-
+    print(f"{student.name} from {student.country}")
 
 
 def get_name():
     return input("What's your name ? ").title()
 
-def get_house():
+def get_country():
    return input("Where are you from ? ").title()
 
 def get_student():
     # name = get_name()
-    # house = get_house()
-    # return (name, house)
+    # country = get_country()
+    # return (name, country)
     
     # return { # python dict's key must be "str" literally
     #     'name' : get_name(),
-    #     'house' : get_house()
+    #     'country' : get_country()
     # }
 
     # student = Student()
     # student.name = get_name()
-    # student.house = get_house()
+    # student.country = get_country()
 
     name = get_name()
-    house = get_house()
-    student = Student(name, house)
+    country = get_country()
 
-    return student
+    try:
+        return Student(name, country)
+    except ValueError:
+        print("please input name")
+        name = get_name()
+        return Student(name, country)
+    else:
+        print("everything is ok")
 
 
 
