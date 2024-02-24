@@ -22,21 +22,34 @@
         2). a class is kind of like a blueprint or mold: designed exactly as self want;
         3). doc url: https://docs.python.org/3/tutorial/classes.html;
         4). keyword Class and use . to add attribute:
-            class Student;
+            class Student(capital letter);
             student =  Student();
             student.name = "小野";
+        5). use classes will create an object;
+        6). Student generally known as a Constructor that is going to constructor a student object;
+        7). when Student() is called:
+            1. the __init__ function in the Student class will be called;
+            2. __init__ function will initializes the contents of the object;
+            3. __init__ function accept parameters(self, other external parameters passed in);
+            4. parameter "self" is a link to access the current object(an instance of a class);
 
     5. ... :
         ... is a valid placeholder, wait to implement logic;
 
     6. class instance vs dict:
-        1). class instance use . to add/get attribute, but dict use ["key"] to add/get values;
-        2). 
+        1). class instance use . to add/get attribute, while dict use ["key"] to add/get values;
+        2). class create object and object can only add specific attributes, while dict can add any key;
+        3). class can ensure the correctness of data, error check, designed more complicated software;
+
 
 
 """
 class Student:
-    ...
+    def __init__(self, name, house):
+        # print(f"self is {self}") # self is <__main__.Student object at 0x101efe690>
+        self.name = name
+        self.house = house
+        # print(f"self is {self}") # self is <__main__.Student object at 0x103a866c0>
 
 def main():
     # student = get_student()
@@ -78,9 +91,14 @@ def get_student():
     #     'house' : get_house()
     # }
 
-    student = Student()
-    student.name = get_name()
-    student.house = get_house()
+    # student = Student()
+    # student.name = get_name()
+    # student.house = get_house()
+
+    name = get_name()
+    house = get_house()
+    student = Student(name, house)
+
     return student
 
 
