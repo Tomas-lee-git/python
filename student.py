@@ -126,10 +126,17 @@ def get_student():
 
     try:
         return Student(name, country)
-    except ValueError:
-        print("please input name")
-        name = get_name()
-        return Student(name, country)
+    except ValueError as e:
+        print(f"e is {e}, { e == "Invalid country and region"}")
+        if e.args[0] == "Missing name":
+            print("please input name")
+            name = get_name()
+            return Student(name, country)
+
+        elif e.args[0] == "Invalid country and region":
+            print("please input country and region")
+            country = get_country()
+            return Student(name, country)
     else:
         print("everything is ok")
 
