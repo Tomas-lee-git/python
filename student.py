@@ -49,6 +49,30 @@
                 iiii. __init__ and __str__ will be called automatically but custom methods must be called manually;
                 iiiii. python will automatically pass in at least one argument to every method in a class, 
                     and the special argument is "self", reference to the current object;
+        11). properties: 
+            a. the object's attributes;
+            b. can add, remove, change properties after construct;
+        12). keywords:  @property and @property_name.setter:
+            a. decorate symbol @;
+            b. getter: is a function in class that gets some attribute,
+                @property
+                get_attribute_name(self):
+                    return self._attribute_name
+            b. setter: is a function in class that sets some attribute,
+                @attribute_name.setter
+                set_attribute_name(self, new_value):
+                    self._attribute_name = new_value
+            d. can use getters and setters to manage change to properties;
+            e. if write property setter and getter:
+                when get property, will call property's corresponding getter function;
+                when set property(either create or override), will call property's corresponding setter function;
+            f. ❕❕❕When getting or setting up a property:
+                    must rename the attribute locally,
+                    the convention is to prefix it with an underscore _;
+                RecursionError: maximum recursion depth exceeded while calling a Python object
+                
+
+                
 
     5. ... :
         ... is a valid placeholder, wait to implement logic;
@@ -87,10 +111,6 @@
 class Student:
     def __init__(self, name, country, patronus):
         # print(f"self is {self}") # self is <__main__.Student object at 0x101efe690>
-        if not name: # if name == ""
-            raise ValueError("Missing name")
-        if country not in ["China","Japan","America","Canada"]:
-            raise ValueError("Invalid country and region")
 
         self.name = name
         self.country = country
@@ -125,6 +145,31 @@ class Student:
         # }
         # print(f"I'm good at {skills[self.country]}")
 
+    # name Getter
+    @property
+    def name(self):
+        return self._name #_
+
+    # name Setter
+    @name.setter
+    def name(self, name):
+        if not name:
+            raise ValueError("Missing name")
+        self._name = name #_
+    
+    # country Getter
+    @property
+    def country(self):
+        return self._country # _
+
+    # country Setter
+    @country.setter
+    def country(self, country):
+        print(f"set country with {country}")
+        if country not in ["China","Japan","America","Canada"]:
+            raise ValueError("Invalid country and region")
+        self._country = country # _
+
 def main():
     # student = get_student()
     # student[1] = "America" # TypeError: 'tuple' object does not support item assignment
@@ -145,11 +190,13 @@ def main():
     # student = get_student()
     # print(f"{student.name} from {student.country}")
 
-    # print(get_student())
+    # student = get_student()
+    # student.show_skill()
+    # print(student.__str__())
 
     student = get_student()
-    student.show_skill()
-    print(student.__str__())
+    # student.country = "None" # can use Setter function to stop this operate
+    print(student)
 
 
 def get_name():
