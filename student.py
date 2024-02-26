@@ -29,7 +29,7 @@
         5). use classes will create an object;
         6). Student generally known as a Constructor that is going to constructor a student object;
         7). when Student() is called, __init__ function will be called automatically;
-        8). __init__(self,parameters):
+        8). __init__(self, parameters):
             a. initializes the contents of the object;
             b. accept parameters(self, other external parameters passed in);
             c. the parameter "self" is a link to access the current object(an instance of class);
@@ -39,6 +39,16 @@
             b. if this function is not to be defined, will see the object as string with:
                 <__main__.Student object at 0x101efe690(memory id)
             c. "self" is a link to access the current object(an instance of class);
+        10). built in function:
+            a. create functions built in class, AKA methods;
+            b. default methods such as: __init__, __str__;
+            c. method(self, parameters):
+                i. method take at least one argument called self to access the current object;
+                ii. other arguments is passed in by the programer;
+                iii. this method can be called directly by object outside the class;
+                iiii. __init__ and __str__ will be called automatically but custom methods must be called manually;
+                iiiii. python will automatically pass in at least one argument to every method in a class, 
+                    and the special argument is "self", reference to the current object;
 
     5. ... :
         ... is a valid placeholder, wait to implement logic;
@@ -75,7 +85,7 @@
 
 """
 class Student:
-    def __init__(self, name, country):
+    def __init__(self, name, country, patronus):
         # print(f"self is {self}") # self is <__main__.Student object at 0x101efe690>
         if not name: # if name == ""
             raise ValueError("Missing name")
@@ -84,10 +94,36 @@ class Student:
 
         self.name = name
         self.country = country
+        self.patronus = patronus
+
         # print(f"self is {self}") # self is <__main__.Student object at 0x103a866c0>
 
     def __str__(self):
-        return f"{self.name} from {self.country}"
+        return f"{self.name} from {self.country}, and patronus is {self.patronus}"
+
+    def show_skill(self):
+        skill = ""
+        match self.country:
+            case "China":
+                skill = "study"
+            case "Japan":
+                skill = "comics"
+            case "America":
+                skill = "play computer games"
+            case "Canada":
+                skill = "ski"
+            case _:
+                skill = "/"
+
+        print(f"I'm good at {skill}")
+
+        # skills = {
+        #     "China": "study",
+        #     "Japan": "comics",
+        #     "America": "play computer games",
+        #     "Canada": "ski"
+        # }
+        # print(f"I'm good at {skills[self.country]}")
 
 def main():
     # student = get_student()
@@ -109,7 +145,11 @@ def main():
     # student = get_student()
     # print(f"{student.name} from {student.country}")
 
-    print(get_student())
+    # print(get_student())
+
+    student = get_student()
+    student.show_skill()
+    print(student.__str__())
 
 
 def get_name():
@@ -117,6 +157,12 @@ def get_name():
 
 def get_country():
    return input("Where are you from ? ").title()
+
+def get_student_information():
+    name = input("What's your name ? ").title()
+    country = input("Where are you from ? ").title()
+    patronus =  input("What's your patronus ? ").title()
+    return (name, country, patronus)
 
 def get_student():
     # name = get_name()
@@ -132,22 +178,24 @@ def get_student():
     # student.name = get_name()
     # student.country = get_country()
 
-    name = get_name()
-    country = get_country()
+    # name = get_name()
+    # country = get_country()
+
+    name, country, patronus = get_student_information()
 
     try:
-        return Student(name, country)
+        return Student(name, country, patronus)
     except ValueError as e:
         print(f"e is {e}, { e == "Invalid country and region"}")
         if e.args[0] == "Missing name":
             print("please input name")
             name = get_name()
-            return Student(name, country)
+            return Student(name, country, patronus)
 
         elif e.args[0] == "Invalid country and region":
             print("please input country and region")
             country = get_country()
-            return Student(name, country)
+            return Student(name, country, patronus)
     else:
         print("everything is ok")
 
