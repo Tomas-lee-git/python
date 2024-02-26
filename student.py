@@ -28,11 +28,17 @@
             student.name = "小野";
         5). use classes will create an object;
         6). Student generally known as a Constructor that is going to constructor a student object;
-        7). when Student() is called:
-            1. the __init__ function in the Student class will be called;
-            2. __init__ function will initializes the contents of the object;
-            3. __init__ function accept parameters(self, other external parameters passed in);
-            4. parameter "self" is a link to access the current object(an instance of a class);
+        7). when Student() is called, __init__ function will be called automatically;
+        8). __init__(self,parameters):
+            a. initializes the contents of the object;
+            b. accept parameters(self, other external parameters passed in);
+            c. the parameter "self" is a link to access the current object(an instance of class);
+            d. can check parameter and raise custom error alert;
+        9). __str__(self):
+            a. python will automatically call this function when the object(an instance of class) as a string ;
+            b. if this function is not to be defined, will see the object as string with:
+                <__main__.Student object at 0x101efe690(memory id)
+            c. "self" is a link to access the current object(an instance of class);
 
     5. ... :
         ... is a valid placeholder, wait to implement logic;
@@ -65,7 +71,7 @@
            elif 'float' in e.args[0]:
                print('Need to handle float')
 
-
+    11.
 
 """
 class Student:
@@ -79,6 +85,9 @@ class Student:
         self.name = name
         self.country = country
         # print(f"self is {self}") # self is <__main__.Student object at 0x103a866c0>
+
+    def __str__(self):
+        return f"{self.name} from {self.country}"
 
 def main():
     # student = get_student()
@@ -97,8 +106,10 @@ def main():
     # student = get_student()
     # print(f'{student["name"]} from {student["country"]}')
 
-    student = get_student()
-    print(f"{student.name} from {student.country}")
+    # student = get_student()
+    # print(f"{student.name} from {student.country}")
+
+    print(get_student())
 
 
 def get_name():
