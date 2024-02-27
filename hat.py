@@ -8,6 +8,7 @@
             iii. call class method by Student.sort();
         3). class variable, can be used in any of methods by cls.variable;
         4). instance object can call classmethod succeed;
+        5). can call cls(parameters) to instantiate a object, same as call Class(parameters)
 """
 # import random
 from random import choice

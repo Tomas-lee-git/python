@@ -70,6 +70,9 @@
                     must rename the attribute locally,
                     the convention is to prefix it with an underscore _;
                 RecursionError: maximum recursion depth exceeded while calling a Python object
+        13). generally classes are defined at the top of the file(before the main function),
+                however it would be even maybe cleaner to move classes definition to its own file,
+                and then import it;
 
     5. ... :
         ... is a valid placeholder, wait to implement logic;
@@ -123,29 +126,36 @@ class Student:
     def __str__(self):
         return f"{self.name} from {self.country}, and patronus is {self.patronus}"
 
-    def show_skill(self):
-        skill = ""
-        match self.country:
-            case "China":
-                skill = "study"
-            case "Japan":
-                skill = "comics"
-            case "America":
-                skill = "play computer games"
-            case "Canada":
-                skill = "ski"
-            case _:
-                skill = "/"
+    skills = {
+        "China": "study",
+        "Japan": "comics",
+        "America": "play computer games",
+        "Canada": "ski"
+    }
 
-        print(f"I'm good at {skill}")
+    @classmethod
+    def show_skill(cls, country):
+        # skill = ""
+        # match self.country:
+        #     case "China":
+        #         skill = "study"
+        #     case "Japan":
+        #         skill = "comics"
+        #     case "America":
+        #         skill = "play computer games"
+        #     case "Canada":
+        #         skill = "ski"
+        #     case _:
+        #         skill = "/"
 
-        # skills = {
-        #     "China": "study",
-        #     "Japan": "comics",
-        #     "America": "play computer games",
-        #     "Canada": "ski"
-        # }
-        # print(f"I'm good at {skills[self.country]}")
+        print(f"I'm good at {cls.skills[country]}")
+
+    @classmethod
+    def get(cls):
+        name = input("What's your name? ").title()
+        house = input("What's your house? ").title()
+        patronus =  input("What's your patronus ? ").title()
+        return cls(name, house, patronus) # remember keyword return
 
     # name Getter
     @property
@@ -196,8 +206,13 @@ def main():
     # student.show_skill()
     # print(student.__str__())
 
-    student = get_student()
+    # student = get_student()
     # student.country = "None" # can use Setter function to stop this operate
+    # print(student)
+
+    # Student.show_skill("China")
+
+    student = Student.get()
     print(student)
 
 
