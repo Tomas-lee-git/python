@@ -70,9 +70,6 @@
                     must rename the attribute locally,
                     the convention is to prefix it with an underscore _;
                 RecursionError: maximum recursion depth exceeded while calling a Python object
-                
-
-                
 
     5. ... :
         ... is a valid placeholder, wait to implement logic;
@@ -105,7 +102,12 @@
            elif 'float' in e.args[0]:
                print('Need to handle float')
 
-    11.
+    11. _variable:
+        1). if a instance variable starts with an underscore(_),
+            the convention generally is: please don't touch it, this is meant to be private;
+        2). if there's two underscore(__), it's meant really don't touch this;
+        3). on the honor system, there's nothing stopping us from doing that(circumventing), but it's a convention, just follow it;
+
 
 """
 class Student:
