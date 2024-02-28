@@ -13,7 +13,6 @@
 
     3. python error has been inherited: valueError <= Exception <= BaseException;
 
-    4. 
 """
 # extract common logic as a class to be inherited
 class Wizard:
