@@ -9,6 +9,7 @@
     2. list vs set:
         1). [] or list() vs set();
         2). [].append(element) vs set().add(element);
+
     3. sorted(list):
         1). sorted list by alphabetically;
 """

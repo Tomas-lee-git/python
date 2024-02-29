@@ -1,6 +1,6 @@
 """
     1. inheritance, for reuse same logic:
-        1). extract common logic as a class to be inherited: superclass class;
+        1). extract common logic as a class to be inherited: superclass;
         2). def subclass(superclass): ...
         3). super() is reference to superclass;
         4). if superclass and subclass define same method such as __init__:
@@ -9,7 +9,7 @@
             ii. otherwise, will only call the subclass's method and override superclass's same method:
                 AttributeError: 'Student' object has no attribute 'name'
 
-    2. hasattr(object, attribute_name): check if the object has attribute_name;
+    2. hasattr(object, attribute): check if the object has attribute;
 
     3. python error has been inherited: valueError <= Exception <= BaseException;
 
