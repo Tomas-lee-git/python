@@ -21,7 +21,9 @@
     2. if global is not a variable but a dict:
         1). when you pass it in function, pass a reference with this dict, so we can change it's value;
 
-    3. class:
+    3. sparingly use global variables:
+        1). use global variables can get messy quickly and become less obvious quickly;
+        2). should use global variables sparingly;
 
 """
 
