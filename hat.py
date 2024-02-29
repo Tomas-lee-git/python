@@ -6,7 +6,7 @@
             i. don't pass self any more (reference to instance object);
             ii. pass in the reference to the class itself: cls;
             iii. call class method by Student.sort();
-        3). class variable, can be used in any of methods by cls.variable;
+        3). class variable, can be used in any of methods by cls.variable or Class_name.variable;
         4). instance object can call classmethod succeed;
         5). can call cls(parameters) to instantiate a object, same as call Class(parameters)
 """

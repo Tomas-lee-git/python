@@ -3,6 +3,7 @@
         1). Python doesn't actually make variables constant;
         2). it's indeed a convention in Python and some other languages at least capitalize variables name;
         3). there is nothing preventing programer from changing constant variables's value;
+        4). in class, can define constant too, and use it in any method by Class_name.constant_name;
 
     2. range(n)函数:
         1). n: 数字 n，指定 list 的长度为0，内容为：0-n，不包括 n;
@@ -17,3 +18,12 @@
 MEOWS = 3
 for _ in range(MEOWS):
     print("meow")
+
+class Cat:
+    MEOWS = 3
+    def meow(self):
+        for _ in range(Cat.MEOWS):
+            print("meow")
+
+cat = Cat()
+cat.meow()
