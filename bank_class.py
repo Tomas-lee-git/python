@@ -3,7 +3,8 @@
         1). ❕ notice the keyword is __init__ , not __int__;
         2). instance variables are by definition accessible to all of the methods in that class,
             because the parameter "self" is a inference link to the instance object;
-
+        3). @property(getter) and @attribute_name.setter(setter) allow programer some finer grain can control;
+        
 """
 class Bank:
     def __init__(self):
