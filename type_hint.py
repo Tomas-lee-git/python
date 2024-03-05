@@ -32,10 +32,13 @@
         1). str + str => long str concatenated together;
         2). str * number => long str that is a multiple of number str concatenated together;
 """
+
+
 def main():
     # number: int =  int(input("Number:"))
     # meow(number)
     ...
+
 
 def meow(n: int) -> str:
     # meows = ""
@@ -50,7 +53,7 @@ def meow(n: int) -> str:
 
 number: int = int(input("Number:"))
 meows: str = meow(number)
-print(meows, end = "")
+print(meows, end="")
 
 
 if __name__ == "__main__":

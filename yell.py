@@ -32,12 +32,15 @@
                 d. will generate a new list with every element.action()'s return value;
 """
 
+
 def main():
     yell("This is cs 50")
     # yell(["This", "is", "cs50"])
 
+
 def upper_func(v):
     return v.upper()
+
 
 def yell(*words):
     # print(phrase.upper())
@@ -53,8 +56,11 @@ def yell(*words):
     # uppercased = map(str.upper, words)
 
     uppercased = [word.upper() for word in words]
-    print(uppercased) # ['THIS', 'IS', 'CS50']
-    print(*uppercased) # print(*uppercased) => print("This", "is", "cs50") => THIS IS CS50
+    print(uppercased)  # ['THIS', 'IS', 'CS50']
+    print(
+        *uppercased
+    )  # print(*uppercased) => print("This", "is", "cs50") => THIS IS CS50
+
 
 if __name__ == "__main__":
     main()

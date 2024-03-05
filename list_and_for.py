@@ -11,14 +11,13 @@
 """
 
 # for i in  [0, 1, 2]:
-for i in  range(3):
+for i in range(3):
     print(i, "wow")
 
 # 在 python 中，如果定义的参数不需要直接使用，习惯使用 _ 来表示
-for _ in  range(3):
-    print(_ , "wow")
+for _ in range(3):
+    print(_, "wow")
 
-for i in  range(3):
+for i in range(3):
     if i < 2:
         print(i, "wow")
-

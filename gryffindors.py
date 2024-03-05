@@ -20,23 +20,29 @@
 """
 
 students = [
-    {"name":"Hermione", "house":"Gryffindor"},
-    {"name":"Harry", "house":"Gryffindor"},
-    {"name":"Ron", "house":"Gryffindor"},
-    {"name":"Draco", "house":"Slytherin"},
-    {"name":"Padma", "house":"Ravenclaw"},
+    {"name": "Hermione", "house": "Gryffindor"},
+    {"name": "Harry", "house": "Gryffindor"},
+    {"name": "Ron", "house": "Gryffindor"},
+    {"name": "Draco", "house": "Slytherin"},
+    {"name": "Padma", "house": "Ravenclaw"},
 ]
 
-gryffindors = [student["name"] for student in students if student["house"] == "Gryffindor"]
-slytherins = [ student["name"] for student in students if student["house"] == "Slytherin" ]
-houses = [ student["house"] for student in students]
+gryffindors = [
+    student["name"] for student in students if student["house"] == "Gryffindor"
+]
+slytherins = [
+    student["name"] for student in students if student["house"] == "Slytherin"
+]
+houses = [student["house"] for student in students]
 
 # print(gryffindors)
 # print(slytherins)
 # print(houses)
 
+
 def gryffindor(student):
     return student["house"] == "Gryffindor"
+
 
 gryffindors_2 = filter(gryffindor, students)
 
@@ -45,8 +51,10 @@ gryffindors_3 = filter(lambda student: student["house"] == "Gryffindor", student
 # print(gryffindors_2) # <filter object at 0x1039eb010>
 # print(gryffindors_3) # <filter object at 0x1039eb160>
 
+
 def print_student(students):
     for student in students:
         print(student["name"])
+
 
 print_student(gryffindors_3)

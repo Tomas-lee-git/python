@@ -13,15 +13,19 @@
             出门在外，就是文件名这个大名喽；
 """
 
+
 def main():
     hello("lee")
     goodbye("lee")
 
+
 def hello(name):
     print(f"hello, {name}")
 
+
 def goodbye(name):
     print(f"goodbye, {name}")
+
 
 # print(f"__name__ is {__name__}")
 

@@ -78,21 +78,20 @@
 
 
 """
+
 import re
 
-while True: 
+while True:
     email = input("What's your email? ").strip()
     # mul@gmail.com
     # if re.search(r".+@.+\.edu", email): No limit on start and end
-        # Yes, you input a valid email address: my email address is abc@def.edu
+    # Yes, you input a valid email address: my email address is abc@def.edu
 
     pattern = r"^\w+@\w+\.(edu|com|cn|gov|net|org)$"
     pattern1 = r"^\w+@[\w\.]+\.(edu|com|cn|gov|net|org)$"
     pattern2 = r"^\w+@(\w|\.)+\.(edu|com|cn|gov|net|org)$"
 
-
-
-    if re.search(pattern2, email, re.IGNORECASE): # add ^ and $ to limit start and end
+    if re.search(pattern2, email, re.IGNORECASE):  # add ^ and $ to limit start and end
         print(f"Yes, you input a valid email address: {email}")
         break
     else:

@@ -27,7 +27,7 @@
 """
 
 # 太多的嵌套会导致难以阅读，增加错误的风险，难以 debug
-#print(int(input("What's x1? ")) + int(input("What's y1? ")))
+# print(int(input("What's x1? ")) + int(input("What's y1? ")))
 
 # float
 

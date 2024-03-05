@@ -9,10 +9,12 @@
             ii. if condition == False, expression select B;
 
 """
+
 from sys import argv
 
 DEFAULT_TIMES = 1
 LEAST_ARGV_LENGTH = 2
+
 
 def meow(n: int = DEFAULT_TIMES) -> str:
     try:
@@ -20,9 +22,11 @@ def meow(n: int = DEFAULT_TIMES) -> str:
     except ValueError:
         print("n must be an int number")
         return ""
-    
+
+
 def get_number():
-     return int(argv[1] if len(argv) >= LEAST_ARGV_LENGTH else DEFAULT_TIMES)
+    return int(argv[1] if len(argv) >= LEAST_ARGV_LENGTH else DEFAULT_TIMES)
+
 
 while True:
     try:
@@ -31,9 +35,9 @@ while True:
         print("Number must be an int number")
         number: int = int(input("Please input number to continue: "))
         meows: str = meow(number)
-        print(meows, end = "")
+        print(meows, end="")
         break
     else:
         meows: str = meow(number)
-        print(meows, end = "")
+        print(meows, end="")
         break

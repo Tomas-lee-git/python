@@ -15,14 +15,17 @@
 
 
 """
+
 from hello_2 import hello
 
-def test_hello_default(): # test default
+
+def test_hello_default():  # test default
     # print function will return None
     # assert hello("lee") == None
     assert hello() == "hello, world"
 
-def test_hello_argument(): # test argument
-    names = ["Lee","Tomas","Harry","Eric"]
+
+def test_hello_argument():  # test argument
+    names = ["Lee", "Tomas", "Harry", "Eric"]
     for name in names:  # use loop to test more cases
         assert hello(name) == f"hello, {name}"

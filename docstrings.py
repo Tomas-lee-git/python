@@ -11,8 +11,10 @@
                 b. extract all of these document strings;
                 c. generate web pages or PDFs of documentation for own functions without manually;
 """
+
+
 def meow(n: int) -> str:
-    """ 
+    """
     Meow n times
     :param n: Number of times to meow
     :type n: int
@@ -24,11 +26,12 @@ def meow(n: int) -> str:
         return "meow\n" * n
     except ValueError:
         print("n must be an int number")
-    
+
+
 try:
     number: int = int(input("Number:"))
 except ValueError:
     print("Number must be an int number")
 else:
     meows: str = meow(number)
-    print(meows, end = "")
+    print(meows, end="")

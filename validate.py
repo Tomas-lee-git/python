@@ -64,10 +64,10 @@ while True: # continue asking for input from the user until get a valid email ad
 # version 2
 import re
 
-while True: 
+while True:
     email = input("What's your email? ").strip()
     # mul@gmail.com
-    if re.search(r".+@.+\.edu", email): 
+    if re.search(r".+@.+\.edu", email):
         print(f"Yes, you input a valid email address: {email}")
         break
     else:

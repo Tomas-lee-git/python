@@ -4,6 +4,7 @@
 
 x = int(input("What's x ? "))
 
+
 def is_even(n):
     # if n % 2 == 0:
     #     return True
@@ -11,16 +12,15 @@ def is_even(n):
     #     return False
 
     # return True if n % 2 == 0 else False
-    
+
     return n % 2 == 0
 
+
 # version 1
-if x  % 2 == 0:
+if x % 2 == 0:
     print("x is even")
 else:
     print("x is odd")
-
-
 
 
 # if 0:

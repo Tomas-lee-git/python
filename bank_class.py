@@ -6,6 +6,8 @@
         3). @property(getter) and @attribute_name.setter(setter) allow programer some finer grain can control;
         
 """
+
+
 class Bank:
     def __init__(self):
         self._balance = 0
@@ -13,7 +15,7 @@ class Bank:
     def __str__(self):
         return f"Your account balance is {self._balance}"
 
-    @property # getter
+    @property  # getter
     def balance(self):
         return self._balance
 
@@ -23,10 +25,11 @@ class Bank:
     def withdraw(self, n):
         self._balance -= n
 
+
 def main():
     lee_account = Bank()
     print(lee_account.balance)
-    
+
     lee_account.deposit(100)
     lee_account.withdraw(50)
 

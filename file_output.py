@@ -44,11 +44,14 @@ with open("names.txt","r") as file:
 #         print(f"hello, {line.rstrip()}") # print names by sorted order
 
 # output version 3 sorted and modify the file
-with open("names.txt", ) as file:
+with open(
+    "names.txt",
+) as file:
     # sorted can reverse by "reverse = True"
-    sorted_lines = sorted(file.readlines(), reverse = True) # use variable store sorted lines
+    sorted_lines = sorted(
+        file.readlines(), reverse=True
+    )  # use variable store sorted lines
 
-with open("names.txt","w") as file: # use "w" parameter to rewrite names.txt file
+with open("names.txt", "w") as file:  # use "w" parameter to rewrite names.txt file
     for line in sorted_lines:
         file.write(line)
-

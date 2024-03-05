@@ -14,6 +14,8 @@
     3. python error has been inherited: valueError <= Exception <= BaseException;
 
 """
+
+
 # extract common logic as a class to be inherited
 class Wizard:
     def __init__(self, name):
@@ -28,6 +30,7 @@ class Wizard:
             return f"hello, my name is {self.name}, my subject is {self.subject}"
         else:
             return f"hello, my name is {self.name}"
+
 
 class Student(Wizard):
     def __init__(self, name, house):

@@ -6,7 +6,7 @@ name = "what's your name? "
 print("hello, " + name)
 
 # sep=> separator
-print("hi, ","hey, ", name, sep="\"", end="!!!")
+print("hi, ", "hey, ", name, sep='"', end="!!!")
 print(name)
 
 """
@@ -37,7 +37,7 @@ print("          昂哈哈哈哈       ".strip())
 # str.capitalize(), capitalizing the first letter(only fist word)
 print("   abc   ".strip().capitalize())
 
-#str.title(), start with an uppercase character and the remaining characters are lowercase
+# str.title(), start with an uppercase character and the remaining characters are lowercase
 
 print("         hello,woRld  ".strip().title())
 

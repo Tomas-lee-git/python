@@ -22,17 +22,18 @@
         
 
 """
+
 import re
 
 name = input("What's your name? ").strip()
 
-# version 1, replace ", " 
+# version 1, replace ", "
 # if "," in name:
 #     # [firstname, lastname] = name.split(", ") # right too
 #     firstname, lastname = name.split(", ") # right and simple 😊
 #     name = f"{firstname} {lastname}"
 
-#version 2 , replace ", "、","
+# version 2 , replace ", "、","
 pattern = r"^(.+),\s*(.+)$"
 # matches = re.search(pattern, name) # matches will be none(False) or Match object(True)
 # print(f"matches is {matches}")

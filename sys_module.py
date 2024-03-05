@@ -32,13 +32,15 @@
 
 import sys
 
+
 def main():
     # sys_arg_version_1()
     # sys_arg_version_2()
     # sys_arg_version_3()
     sys_arg_version_4()
 
-#　version 1，处理报错
+
+# 　version 1，处理报错
 def sys_arg_version_1():
     try:
         print(f"hello, my name is {sys.argv[1]}")
@@ -57,6 +59,7 @@ def sys_arg_version_2():
     else:
         print("too many arguments, please just input one")
 
+
 # version 3，及时退出
 def sys_arg_version_3():
     argv_list = sys.argv
@@ -72,7 +75,7 @@ def sys_arg_version_3():
 # version 4，遍历输出
 def sys_arg_version_4():
     argv_list = sys.argv
-    
+
     # argv_list 最少有一个 element：*.py
     if len(argv_list) <= 1:
         sys.exit("please add your name before hit Enter key")
@@ -84,5 +87,6 @@ def sys_arg_version_4():
     """
     for arg in argv_list[1:10]:
         print(f"hello, my name is {arg}")
+
 
 main()

@@ -10,8 +10,10 @@
         4). instance object can call classmethod succeed;
         5). can call cls(parameters) to instantiate a object, same as call Class(parameters)
 """
+
 # import random
 from random import choice
+
 
 class Hat:
     # class variable
@@ -20,6 +22,7 @@ class Hat:
     @classmethod
     def sort(cls, name):
         print(f"{name} is in {choice(cls.house)}")
+
 
 hat = Hat()
 hat.sort("Harry")

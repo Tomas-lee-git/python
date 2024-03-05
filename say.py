@@ -25,7 +25,7 @@ import sys
 # import sayings
 from sayings import hello, goodbye
 
-if(len(sys.argv) != 2):
+if len(sys.argv) != 2:
     sys.exit()
 
 hello(sys.argv[1])

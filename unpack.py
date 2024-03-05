@@ -32,6 +32,7 @@
     5. 
 
 """
+
 # unpack list
 
 # first_name, second_name =  input("What's your name? ").split()
@@ -40,7 +41,8 @@
 
 
 def total(galleons, sickles, knuts):
-    return(galleons * 17 + sickles) * 29 + knuts
+    return (galleons * 17 + sickles) * 29 + knuts
+
 
 # unpack list parameter
 
@@ -55,21 +57,24 @@ def total(galleons, sickles, knuts):
 # unpack dict
 
 # wallet = {
-#     "sickles": 50, 
-#     "galleons": 100, 
+#     "sickles": 50,
+#     "galleons": 100,
 #     "knuts": 25
 # }
 # print(f"{total(**wallet)} knuts")
 
 # *args and *kwargs
 
-def f(*args, **kwargs):
-    print(f"Positional arguments is {args}") # (1, 2, 3)
-    print(f"Positional arguments's type is {type(args)}") # <class 'tuple'>
-    print(f"Keyword arguments is {kwargs}") # {'key1': 'ha', 'key2': 'xi'}
-    print(f"Keyword arguments's type is {type(kwargs)}") # <class 'dict'>
 
-f(1, 2, 3, key1 = "ha", key2="xi")
+def f(*args, **kwargs):
+    print(f"Positional arguments is {args}")  # (1, 2, 3)
+    print(f"Positional arguments's type is {type(args)}")  # <class 'tuple'>
+    print(f"Keyword arguments is {kwargs}")  # {'key1': 'ha', 'key2': 'xi'}
+    print(f"Keyword arguments's type is {type(kwargs)}")  # <class 'dict'>
+
+
+f(1, 2, 3, key1="ha", key2="xi")
+
 
 def count(*args, **kwargs):
     add = 0
@@ -77,4 +82,5 @@ def count(*args, **kwargs):
         add += v
     return (add * kwargs["multiple"]) / kwargs["divide"]
 
-print(count(1,2,3,4,5,multiple = 5, divide = 15))
+
+print(count(1, 2, 3, 4, 5, multiple=5, divide=15))

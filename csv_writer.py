@@ -26,12 +26,12 @@ import csv
 
 # with open("colleagues.csv","a") as file:
 #     writer = csv.writer(file)
-#     writer.writerow(answers_list) 
+#     writer.writerow(answers_list)
 
 
 # option2: add row data by dict {key1: value1;key2: value2……}
 
-questions = ["name","breed","age","evaluate"]
+questions = ["name", "breed", "age", "evaluate"]
 answers_dict = {}
 
 for question in questions:
@@ -39,6 +39,6 @@ for question in questions:
 
 print(f"answers_dict is {answers_dict}")
 
-with open("colleagues.csv","a") as file:
+with open("colleagues.csv", "a") as file:
     writer = csv.DictWriter(file, questions)
-    writer.writerow(answers_dict) 
+    writer.writerow(answers_dict)

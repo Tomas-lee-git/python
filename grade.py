@@ -21,13 +21,13 @@ elif score < 80 and score >= 70:
 elif score < 70 and score >= 60:
     print("Score: D")
 # 60 以下, E
-else :
+else:
     print("Score: E")
 
 # version 2
 
 # 90-100, A
-if 90 <= score <=100:
+if 90 <= score <= 100:
     print("Score: A")
 # 80-89, B
 elif 80 <= score < 90:
@@ -39,7 +39,7 @@ elif 70 <= score < 80:
 elif 60 <= score < 70:
     print("Score: D")
 # 60 以下, E
-else :
+else:
     print("Score: E")
 
 
@@ -58,5 +58,5 @@ elif 70 <= score:
 elif 60 <= score:
     print("Score: D")
 # 60 以下, E
-else :
+else:
     print("Score: E")

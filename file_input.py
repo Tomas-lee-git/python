@@ -56,10 +56,12 @@
 """
 
 n = int(input("How many names do you want to collect? "))
-names = [] # empty list, can add things
+names = []  # empty list, can add things
 
-for _ in range(n): # range(len), return a list of specific length 
-    names.append(input("What's your name ? ").title()) # add an element into a list with last element
+for _ in range(n):  # range(len), return a list of specific length
+    names.append(
+        input("What's your name ? ").title()
+    )  # add an element into a list with last element
 
 
 """
@@ -75,6 +77,5 @@ for name in sorted(names):
     # file.write() without newline, should manually use "/n"
     # write to names.txt file, if the file doesn't exist yet it's going to create the file
     with open("names.txt", "a") as file:
-        file.write(f"{name}\n") # write information to file 
+        file.write(f"{name}\n")  # write information to file
         # file.close() # close and effectively save the file
-

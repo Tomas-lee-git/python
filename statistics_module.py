@@ -12,10 +12,13 @@
 def main():
     get_average([1, 2, 3])
 
+
 def get_average(list):
     from statistics import mean
+
     average = mean(list)
     print(average)
     return average
+
 
 main()

@@ -4,10 +4,10 @@
     
     i+=1 => i = i +1；
 """
- 
+
 time = 0
 
 while time < 3:
     print("meow")
     # time += time + 1
-    time +=  1
+    time += 1

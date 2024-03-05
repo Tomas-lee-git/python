@@ -1,4 +1,3 @@
-
 """
     recursion，递归：
         执行过程中，在特定情况下，需要从头开始重复整段逻辑；
@@ -25,6 +24,8 @@
         1. 这样可以更加清晰明确地控制流程；
         2. 把main()放在最后，可以避免“函数总需要被放置在它的调用位置之前的限制”；
 """
+
+
 def main():
     print_wow_1()
     print_wow_2()
@@ -41,13 +42,15 @@ def print_wow_1():
         wow(n, 1)
 
 
-#方案2 用 while 实现
+# 方案2 用 while 实现
 
 """
     思路和递归是相反的：
         递归是：符合条件时进入，重复执行；
         while是：默认重复执行，直到符合条件时退出；
 """
+
+
 def print_wow_2():
     flag = True
     while flag:
@@ -56,7 +59,9 @@ def print_wow_2():
             flag = False
             wow(n, 2)
 
+
 # 方案3，方案2的优化版本，使用自带的 break 来替代自己手动控制的 flag ，从而跳出循环
+
 
 def print_wow_3():
     while True:
@@ -66,13 +71,16 @@ def print_wow_3():
 
     wow(n, 3)
 
+
 # 抽取多次用到的逻辑，写成函数来复用
 def wow(n, flag):
     for _ in range(n):
-            print(f"Wow{flag}")
-            
+        print(f"Wow{flag}")
+
+
 # 抽取多次用到的逻辑，写成函数来复用
 def ask_user():
     return int(input("What's n? （只能输入正整数嗷，不然让你重新输入😄 ）\n"))
+
 
 main()

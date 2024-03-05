@@ -31,18 +31,19 @@
         1). can put quotes("") around any English string that itself contains a comma(,);
 
 """
+
 # step 1 ,use split(",") to get specific values
 colleagues = []
 with open("colleagues.csv") as file:
     for line in sorted(file):
-        name, breed = line.rstrip().split(",") # unpack
+        name, breed = line.rstrip().split(",")  # unpack
         # print(f"split return value is {line.rstrip().split(",")}")
         # print(f"His name is {name} and his breed is {breed}.")
 
         # to sort csv information by specific column name
-        colleague = { # 注意：key 应该被明显地写成 str 类型，也就是说，需要加"key"，否则就是变量了
+        colleague = {  # 注意：key 应该被明显地写成 str 类型，也就是说，需要加"key"，否则就是变量了
             "name": name,
-            "breed": breed
+            "breed": breed,
         }
         colleagues.append(colleague)
 
@@ -57,20 +58,21 @@ with open("colleagues.csv") as file:
 # def sort_breed(colleague):
 #     return colleague["breed"]
 
+
 # create function to return a specific function 😊
 # sort_by("breed")
 # sort_by("name")
 def sort_by(key):
     def sort(dict):
         return dict[key]
+
     return sort
+
 
 # lambda [parameter] : expression:
 
-for colleague in sorted(colleagues, key = lambda colleague : colleague["breed"], reverse="True"): # key specifics a function of one argument that is used to extract a comparison key from each element in iterable
+for colleague in sorted(
+    colleagues, key=lambda colleague: colleague["breed"], reverse="True"
+):  # key specifics a function of one argument that is used to extract a comparison key from each element in iterable
     # print(f"sorted(colleagues) is {sorted(colleagues)}") # TypeError: '<' not supported between instances of 'dict' and 'dict'
-    print(f"{colleague['name']} is a {colleague['breed']}") #注意：在""中需要使用''
-
-
-
-    
+    print(f"{colleague['name']} is a {colleague['breed']}")  # 注意：在""中需要使用''

@@ -15,11 +15,11 @@
 """
 
 students = [
-    {"names":"Hermione", "house":"Gryffindor"},
-    {"names":"Harry", "house":"Gryffindor"},
-    {"names":"Ron", "house":"Gryffindor"},
-    {"names":"Draco", "house":"Slytherin"},
-    {"names":"Padma", "house":"Ravenclaw"},
+    {"names": "Hermione", "house": "Gryffindor"},
+    {"names": "Harry", "house": "Gryffindor"},
+    {"names": "Ron", "house": "Gryffindor"},
+    {"names": "Draco", "house": "Slytherin"},
+    {"names": "Padma", "house": "Ravenclaw"},
 ]
 
 # collect unique house name

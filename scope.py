@@ -1,9 +1,10 @@
-
 x = 123
+
 
 def main():
     # name = input("What's your name? ")
     hello()
+
 
 """
     NameError: name 'name' is not defined
@@ -14,7 +15,9 @@ def main():
         但如果一个变量是在全局被定义的，如 x ，那它在任何位置都可以被引用
 """
 
+
 def hello():
     print(f"hello, {x}")
+
 
 main()

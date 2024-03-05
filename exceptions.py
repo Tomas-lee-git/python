@@ -62,6 +62,7 @@
 """
 # 不断提示，直到用户输入数字，然后打印出来
 
+
 # version 1：递归实现
 def input_and_print_int():
     try:
@@ -71,6 +72,7 @@ def input_and_print_int():
         input_and_print_int()
     else:
         print(f"x is {x}")
+
 
 # input_and_print_int()
 
@@ -95,7 +97,8 @@ def input_and_print_int():
 
 # print(f"x is {x}")
 
-def get_int_1(): # 7行
+
+def get_int_1():  # 7行
     while True:
         try:
             x = int(input("What's x ? "))
@@ -103,12 +106,14 @@ def get_int_1(): # 7行
             print("please input an integer number")
         else:
             # break
-            # return 可以替代 break 来跳出 loop 
+            # return 可以替代 break 来跳出 loop
             return x
+
 
 # print(f"x is {get_int_1()}")
 
-def get_int_2(): # 6行
+
+def get_int_2():  # 6行
     while True:
         try:
             x = int(input("What's x ? "))
@@ -116,7 +121,9 @@ def get_int_2(): # 6行
         except ValueError:
             print("please input an integer number")
 
+
 # print(f"x is {get_int_2()}")
+
 
 def get_int_3():  # 5行
     while True:
@@ -124,5 +131,6 @@ def get_int_3():  # 5行
             return int(input("What's x ? "))
         except ValueError:
             print("please input an integer number")
+
 
 # 心得：❕优化是没有终止的，最重要的是先写出来可用的代码，优化值得投入，但终究只是锦上添花

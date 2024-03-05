@@ -11,6 +11,7 @@
             ii. can use dot to access argument value;
         
 """
+
 # from sys import argv
 
 # def print_meow(n):
@@ -33,22 +34,22 @@ import argparse
 parse = argparse.ArgumentParser(description="Meow like a cat")
 
 # self code
-parse.add_argument( # how to parse argument
+parse.add_argument(  # how to parse argument
     "-n",  # argument's name
-    type = int, # specify argument's data type and convert it automatically
-                # meow_cls_simple.py: error: argument -n: invalid int value: 's'
-    default = 99999999, # argument's default value when it's without value
-    help = "specify how many times to print 'meow'"
+    type=int,  # specify argument's data type and convert it automatically
+    # meow_cls_simple.py: error: argument -n: invalid int value: 's'
+    default=99999999,  # argument's default value when it's without value
+    help="specify how many times to print 'meow'",
 )
-# parse.add_argument("-d") 
-# parse.add_argument("-e") 
-# parse.add_argument("-f") 
+# parse.add_argument("-d")
+# parse.add_argument("-e")
+# parse.add_argument("-f")
 
 # common public code
 args = parse.parse_args()
 
-print(f"args is {args}") # args is Namespace(n=3)
-print(f"args.n is {args.n}") # args.n is 3
+print(f"args is {args}")  # args is Namespace(n=3)
+print(f"args.n is {args.n}")  # args.n is 3
 
 for _ in range(args.n):
     print("meow")

@@ -31,9 +31,8 @@
         总是有各种各样的情况，需要区别的运行同一个文件，而 sys.argv 给我们提供了一个更快捷的方式来指定运行 program 的方式
 """
 
-
-import cowsay # import third-party package
-import sys # import python built-in module
+import cowsay  # import third-party package
+import sys  # import python built-in module
 
 # cowsay.cow("hello, world".title())
 
@@ -42,7 +41,7 @@ import sys # import python built-in module
 # else:
 #     cowsay.trex(f"hello, world, I'm {sys.argv[1]}")
 
-my_fish = r'''
+my_fish = r"""
 \
  \  
         /`·.¸
@@ -51,18 +50,32 @@ my_fish = r'''
 : © ):´;      ¸  {
  `·.¸ `·  ¸.·´\`·¸)
      `\\´´\¸.·´
-'''
+"""
 
 # cowsay.draw('Sharks are my best friend', my_fish)
 
 
-
 type_list = [
-    'beavis', 'cheese', 'cow', 'daemon', 'dragon', 
-    'fox', 'ghostbusters', 'kitty','meow', 'miki',
-    'milk', 'octopus', 'pig', 'stegosaurus', 'stimpy', 
-    'trex', 'turkey', 'turtle', 'tux'
-    ]
+    "beavis",
+    "cheese",
+    "cow",
+    "daemon",
+    "dragon",
+    "fox",
+    "ghostbusters",
+    "kitty",
+    "meow",
+    "miki",
+    "milk",
+    "octopus",
+    "pig",
+    "stegosaurus",
+    "stimpy",
+    "trex",
+    "turkey",
+    "turtle",
+    "tux",
+]
 
 for type in type_list:
     getattr(cowsay, type)(f"hello, world, I'm {type}")

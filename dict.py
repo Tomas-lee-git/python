@@ -7,16 +7,11 @@
 
 """
 
-students = {
-    "Tom": "Cat",
-    "Jimmy": "Mouse",
-    "Bob": "Cat",
-    "Down": "Dog"
-}
+students = {"Tom": "Cat", "Jimmy": "Mouse", "Bob": "Cat", "Down": "Dog"}
 
 print(students["Tom"])
 
-#❕ for in 循环，在dict 中拿到的是 key，在 list 中拿到的 value
+# ❕ for in 循环，在dict 中拿到的是 key，在 list 中拿到的 value
 for student in students:
     match students[student]:
         case "Cat":
