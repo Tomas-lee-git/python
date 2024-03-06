@@ -23,7 +23,7 @@
             i. map(function, iterable,...):
                 a. make an iterator that computes the function using arguments from each of the iterables. 
                     stops when the shortest iterable is exhausted;
-                b. function is action for iterable;
+                b. function is action for iterable, need return new element;
                 c. iterable is contain many children need to be actioned;
             ii. create a new list more simply:
                 a. [element.action() for element in list];
