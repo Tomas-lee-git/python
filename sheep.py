@@ -10,16 +10,23 @@
             ii. use yield, can generate a little bit of data at a time not all at once;
             iii. return vs yield:
                 a. in loop logic, return will do something once and quit logic;
-                b. in loop logic, yield will not quit, repeat do something again and again;
+                b. in loop logic, yield will not quit, do one iteration and yield a result;
             iii. yield is asynchronous;
+    
+    3. for in loop:
+        1). for element in list;
+        2). for key in dict;
+        3). for single_str in str;
 """
 def main():
     n = int(input("What's n? "))
 
-    for s in sheep(n):
+    for s in sheep(n): # yield will make this line be execute again and again
+        print("==start==")
         print(s)
+        print("==end==")
 
-def sheep(n):
+def sheep(n): # if function inside has keyword "yield", this function will execute many times, not once;
     # flock = []
     # for i in range(n):
     #     flock.append("🐑" * (i + 1))
@@ -27,6 +34,7 @@ def sheep(n):
         
      for i in range(n):
         yield "🐑" * (i + 1)
+        print ("hello")
 
 if __name__ == "__main__":
     main()
