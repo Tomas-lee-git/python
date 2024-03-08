@@ -18,23 +18,29 @@
         2). for key in dict;
         3). for single_str in str;
 """
+
+
 def main():
     n = int(input("What's n? "))
 
-    for s in sheep(n): # yield will make this line be execute again and again
+    for s in sheep(n):  # yield will make this line be execute again and again
         print("==start==")
         print(s)
         print("==end==")
 
-def sheep(n): # if function inside has keyword "yield", this function will execute many times, not once;
+
+def sheep(
+    n,
+):  # if function inside has keyword "yield", this function will execute many times, not once;
     # flock = []
     # for i in range(n):
     #     flock.append("🐑" * (i + 1))
     # return flock
-        
-     for i in range(n):
+
+    for i in range(n):
         yield "🐑" * (i + 1)
-        print ("hello")
+        print("hello")
+
 
 if __name__ == "__main__":
     main()

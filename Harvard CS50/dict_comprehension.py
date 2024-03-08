@@ -24,26 +24,25 @@ students = [
 gryffindors = [{"name": student, "house": "Gryffindor"} for student in students]
 # print(f"gryffindors is {gryffindors}")
 
-gryffindors_dict = { student: "Gryffindor" for student in students}
+gryffindors_dict = {student: "Gryffindor" for student in students}
 # print(f"gryffindors_dict is {gryffindors_dict}")
 
 for i in range(len(students)):
     # print(f"{i + 1} {students[i]}")
     ...
 
-for index,val in enumerate(students, start = 1):
+for index, val in enumerate(students, start=1):
     # print(f"{index} {val}")
     ...
 
+    # for key,val in enumerate(gryffindors_dict, start = 1):
+    #     print(f"{key} {val}")
 
-# for key,val in enumerate(gryffindors_dict, start = 1):
-#     print(f"{key} {val}")
-    
-# for key, val in gryffindors_dict:
-#     # print(f"{key} {val}")
+    # for key, val in gryffindors_dict:
+    #     # print(f"{key} {val}")
     ...
 print(f"gryffindors_dict {gryffindors_dict}")
 
-d = {k:k+"123" for k in gryffindors_dict}
+d = {k: k + "123" for k in gryffindors_dict}
 
 print(f"d is {d}")
