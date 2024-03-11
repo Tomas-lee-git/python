@@ -7,12 +7,12 @@
     python 的字符串过长时，处理方法：
         1. 把长字符串分为多个字符串，换行写；
         2. 每一行短的字符串都需要单独添加"";
-        3. 除了末尾一行外，每一行的末尾（"之外)需要添加 backslash(\);
+        3. 除了末尾一行外，每一行的末尾（"之外)需要添加 backslash;
 """
-print(
-    "Hello Python world!Hello Python world!Hello Python world!"\
-    "Hello Python world!Hello Python world!Hello Python world!"
-)
+# print(
+#     "Hello Python world!Hello Python world!Hello Python world!"\
+#     "Hello Python world!Hello Python world!Hello Python world!"
+# )
 
 """
     vscode 快捷键（附录B）：
@@ -42,3 +42,13 @@ print(
             g. Discord: Python Discord;
             h. Slack: PySlackers;
 """
+
+message = "Hello Python world!"
+print(message)
+
+message = "Hello Python Crash Course world!"
+print(message)
+
+message = "Hello Python Crash Course reader!"
+# NameError: name 'mesage' is not defined. Did you mean: 'message'?
+# print(mesage)
