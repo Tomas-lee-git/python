@@ -1,5 +1,5 @@
 # + - * / **
-n = 2 ** 3
+n = 2**3
 
 # print(n) # 8
 # print(0.1 + 0.2) # 0.30000000000000004
@@ -25,11 +25,13 @@ a, b, c = 1, "🐮", 3
 """
 CONSTANT_NAME = "constant name"
 
-print(4+4)
-print(12-4)
-print(2*4)
-print(32/4)
+print(4 + 4)
+print(12 - 4)
+print(2 * 4)
+print(32 / 4)
 print(2**3)
 
 favorite_number = 689
-print(f"my favorite number is {favorite_number}:\n\t 6 represents success;\n\t 8 represents wealth;\n\t 9 represents health;")
+print(
+    f"my favorite number is {favorite_number}:\n\t 6 represents success;\n\t 8 represents wealth;\n\t 9 represents health;"
+)

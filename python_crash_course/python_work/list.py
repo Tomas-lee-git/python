@@ -47,20 +47,20 @@ motorcycles.remove(too_expensive)
 # print(f"motorcycles is {motorcycles}")
 # print(f"I remove {too_expensive} because its too expensive for me")
 
-motorcycles = ['ducati', 'bmw', 'yamaha', 'suzuki', 'honda']
+motorcycles = ["ducati", "bmw", "yamaha", "suzuki", "honda"]
 
 # Sort the list in ascending order and return None.
-sort_motorcycles = motorcycles.sort(reverse=True) 
+sort_motorcycles = motorcycles.sort(reverse=True)
 # print(f"motorcycles is {motorcycles}")
 # print(f"sort_motorcycles is {sort_motorcycles}") # None
 
 # Return a new list containing all items from the iterable in ascending order.
-sorted_motorcycles = sorted(motorcycles, reverse=True) 
+sorted_motorcycles = sorted(motorcycles, reverse=True)
 # print(f"motorcycles is {motorcycles}")
 # print(f"sorted_motorcycles is {sorted_motorcycles}") # None
 
 # reverse original list and return none
-reverse_motorcycles = motorcycles.reverse() 
+reverse_motorcycles = motorcycles.reverse()
 # print(f"motorcycles is {motorcycles}")
 # print(f"reverse_motorcycles is {reverse_motorcycles}") # None
 
@@ -74,7 +74,7 @@ length = len(motorcycles)
 magicians = ["alice", "david", "carolina"]
 
 # print("\t=== start cycle ===")
-for magician in magicians: # magician is a dynamic variable
+for magician in magicians:  # magician is a dynamic variable
     # print(f"{magician.title()}, that was a great trick!")
     # print(f"I cant't wait to see your next trick, {magician.title()}.\n")
     ...
@@ -110,9 +110,9 @@ even_numbers = list(range(0, 11, 2))
 pow_2_even_numbers = []
 
 for number in range(1, 11):
-    pow_2_even_numbers.append(number ** 2)
+    pow_2_even_numbers.append(number**2)
 
-# [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]    
+# [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 # print(f"pow_2_even_numbers is {pow_2_even_numbers}")
 
 
@@ -126,7 +126,7 @@ sum_total = sum(pow_2_even_numbers)
 # print(f"the sum of pow_2_even_numbers is {sum_total}")
 
 # list comprehension, create new list in one line code
-pow_2_even_numbers_ = [number ** 2 for number in range(1, 11)]
+pow_2_even_numbers_ = [number**2 for number in range(1, 11)]
 # print(f"pow_2_even_numbers_ is {pow_2_even_numbers_}")
 
 # slice => list[start:stop:step]
