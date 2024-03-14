@@ -25,7 +25,7 @@ elif alien_color == "yellow":
 elif alien_color == "red":
     # print("You got 15 points")
     ...
-    
+
 age = 18
 if age < 2:
     # print("You are a baby!")
@@ -45,8 +45,8 @@ elif age < 65:
 else:
     # print("You are an old man!")
     ...
- 
-fruit = "watermelon"   
+
+fruit = "watermelon"
 favorite_fruits = ["apple", "banana", "strawberry", "grape", "orange", "watermelon"]
 if fruit in favorite_fruits:
     # print(f"You really like {fruit}")
@@ -56,7 +56,7 @@ if fruit in favorite_fruits:
 names = ["ada", "bill", "dowson", "admin", "collie"]
 
 if names:
-    for name  in names:
+    for name in names:
         if name == "admin":
             # print(f"Hello {name}, would you like to see a status report?")
             ...
@@ -66,10 +66,10 @@ if names:
 else:
     # print("we need to find some users!")
     ...
-    
+
 current_users = ["Ada", "bill", "dowsOn", "admIn", "collie"]
 new_users = ["Dowson", "adMin", "toms", "CollIe", "eric"]
-current_users_lower = [user.lower() for  user in current_users]
+current_users_lower = [user.lower() for user in current_users]
 for new_user in new_users:
     if new_user.lower() in current_users_lower:
         # print(f"{new_user} is exist, please set a new username")
@@ -77,7 +77,7 @@ for new_user in new_users:
     else:
         # print(f"{new_user} is ok to be use")
         ...
-        
+
 number_list = list(range(1, 10))
 # print(number_list)
 

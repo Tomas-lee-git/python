@@ -4,7 +4,7 @@ for car in cars:
         print(car.upper())
     else:
         print(car.title())
-        
+
 # 条件测试即布尔值（bool）：值为 True 或 False 的表达式；
 
 # = assign, == equal;
@@ -38,10 +38,10 @@ elif age <= 100:
 else:
     # print(f"OMG, you are {age} years old, you are so lucky!")
     ...
-    
-    
+
+
 # False => 0, '', "", None, [], (), {}
 if 0 and '' and "" and None and [] and () and {}:
     print("Those are False")
 else:
-    print("False => 0, '', "", None, [], (), {}")
+    print("False => 0, '', " ", None, [], (), {}")
