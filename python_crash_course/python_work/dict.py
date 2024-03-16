@@ -32,7 +32,7 @@ print(alien_0)
 
 # delete key-value pair
 del alien_0["points"]
-print(alien_0.get("points", "Sorry, points is not exist")) # dict(key, default)
+print(alien_0.get("points", "Sorry, points is not exist"))  # dict(key, default)
 # print(alien_0["points"]) # KeyError: 'points'
 print(alien_0)
 
@@ -62,38 +62,44 @@ print(f"{keys} type is {type(keys)}")
 # dict_values(['python', 'python']) type is <class 'dict_values'>
 print(f"{values} type is {type(values)}")
 
-# sorted 
+# sorted
 # sorted() # Return a new list containing all items from the iterable in ascending order.
 
 # set
-set() # set() -> new empty set object set(iterable) -> new set object
+set()  # set() -> new empty set object set(iterable) -> new set object
 
-print(set(favorite_languages.values())) # {'python'} <= 花括号里面没有键值对，只有元素，称之为“集合”
+print(
+    set(favorite_languages.values())
+)  # {'python'} <= 花括号里面没有键值对，只有元素，称之为“集合”
 
 
 aliens = []
 for i in range(5):
     if i % 2 == 0:
-        aliens.append({
-            "color": "green", 
-            "speed": "slow",
-            "points": 5,
-        })
+        aliens.append(
+            {
+                "color": "green",
+                "speed": "slow",
+                "points": 5,
+            }
+        )
     else:
-        aliens.append({
-            "color": "yellow", 
-            "speed": "medium",
-            "points": 10,
-        })
+        aliens.append(
+            {
+                "color": "yellow",
+                "speed": "medium",
+                "points": 10,
+            }
+        )
 print(aliens)
-for alien in aliens[:3]: 
+for alien in aliens[:3]:
     if alien["color"] == "green":
         alien["color"] = "yellow"
         alien["speed"] = "medium"
         alien["points"] = 10
         # 必须得用 dict 的引用，通过 key 来修改 value，直接替换 dict 引用不会生效
         # alien = {
-        #     "color": "yellow", 
+        #     "color": "yellow",
         #     "speed": "medium",
         #     "points": 10,
         # }
@@ -103,7 +109,7 @@ for alien in aliens[:3]:
         alien["points"] = 15
         # 必须得用 dict 的引用，通过 key 来修改 value，直接替换 dict 引用不会生效
         # alien = {
-        #     "color": "red", 
+        #     "color": "red",
         #     "speed": "fast",
         #     "points": 15,
         # }
@@ -117,8 +123,10 @@ print(aliens)
         3. 这样，Python 将自动合并括号内的所有字符串；
 """
 word = "hello"
-print(f"{word} it's too long {word} it's too long"
-      f" {word} it's too long {word} it's too long")
+print(
+    f"{word} it's too long {word} it's too long"
+    f" {word} it's too long {word} it's too long"
+)
 
 # A if condition == True else B
 string = "hello" if 3 < 2 else "hi"
