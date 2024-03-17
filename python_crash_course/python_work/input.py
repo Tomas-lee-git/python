@@ -24,4 +24,3 @@ number = int(input("Enter a number, and I will tell you if it's even or odd: "))
 message = "Odd" if number % 2 else "Even"
 # message = "Even" if number % 2  == 0 else "Odd"
 print(f"You entered {number} is {message}")
-

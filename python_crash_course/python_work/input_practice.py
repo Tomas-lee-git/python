@@ -8,7 +8,7 @@
 #     print("There are empty tables.")
 
 number = int(input("Enter a number, I will tell you if it's a multiple of 10: "))
-if number % 10 == 0 :
+if number % 10 == 0:
     message = "Yes, it is a multiple of 10"
 else:
     message = "No, it is not a multiple of 10"
