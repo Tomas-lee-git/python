@@ -51,6 +51,20 @@ japanese_food = Restaurant("大阪の御飯", "japanese food")
 # chinese_food.increment_number_served(50)
 # chinese_food.print_number_severed()
 
+class IceCreamStand(Restaurant):
+    def __init__(self, restaurant_name, cuisine_type, flavors):
+        super().__init__(restaurant_name, cuisine_type)
+        self.flavors = flavors
+    
+    def describe_iceCream_flavors(self):
+        print("We have those flavors: ")
+        for flavor in self.flavors:
+            print(f"\t{flavor}")
+            
+ice = IceCreamStand("cold land", "iceCream", ["blueberry", "banana", "strawberry"]) 
+
+# ice.describe_restaurant()  
+# ice.describe_iceCream_flavors()
 
 class User:
     """用户信息相关"""
@@ -87,12 +101,34 @@ lily = User("ken", "lily", 20, "female", "USA")
 # lily.describe_user()
 # lily.greet_user()
 
-lee.print_login_attempts()
+# lee.print_login_attempts()
 
-lee.increment_login_attempt()
-lee.increment_login_attempt()
-lee.increment_login_attempt()
-lee.print_login_attempts()
+# lee.increment_login_attempt()
+# lee.increment_login_attempt()
+# lee.increment_login_attempt()
+# lee.print_login_attempts()
 
-lee.reset_login_attempt()
-lee.print_login_attempts()
+# lee.reset_login_attempt()
+# lee.print_login_attempts()
+
+class Privileges:
+    def __init__(self, privileges):
+        self.privileges = privileges
+    
+    def show_privileges(self):
+        print("Admin has those privileges: ")
+        for privilege in self.privileges:
+            print(f"\t{privilege}")
+    
+class Admin(User):
+    def __init__(self, first_name, last_name, age, gender, country, privileges):
+        super().__init__(first_name, last_name, age, gender, country)
+        self.privileges = Privileges(privileges)
+
+privileges = ["can add list", "can delete list","can ban user"]
+admin_lee = Admin("tom", "aden", 40, "female", "Japan", privileges)
+
+admin_lee.describe_user()
+# admin_lee.show_privileges()
+admin_lee.privileges.show_privileges() # 把管理员特权部分提取为 Privileges 类，进行组合
+
