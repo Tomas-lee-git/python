@@ -1,5 +1,7 @@
 # composition 组合
 """一个描述电车电池的属性和方法的类"""
+
+
 class Battery:
     """把电车电池相关的属性和方法提出来做一个 Battery 类"""
 

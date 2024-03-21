@@ -1,6 +1,8 @@
 """继承自 Car 类的电车的类，使用了 Battery 类的组合"""
-from car import Car # 导入类和导入函数的方式一致
+
+from car import Car  # 导入类和导入函数的方式一致
 from battery import Battery
+
 
 # inheritance 类的继承
 class ElectricCar(Car):

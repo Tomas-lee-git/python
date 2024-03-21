@@ -1,6 +1,9 @@
 """一个描述狗狗属性和方法的类"""
+
+
 class Dog:  # 在 Python 中，首字母大写的名称指的是：类
     """一次模拟小狗的简单尝试"""
+
     def __init__(self, name, age):  # 使用类来创建实例时，会自动调用这个方法
         """初始化属性 name 和 age"""
         # 与实例相关的方法，会自动传入实参 self（指向实例本身的引用），让实例访问类的属性和方法
@@ -16,6 +19,7 @@ class Dog:  # 在 Python 中，首字母大写的名称指的是：类
     def roll_over(self):
         """模拟小狗收到命令时打滚"""
         print(f"{self.name} rolled over!")
+
 
 def check_dog_instance(instance):
     print(instance)  # <__main__.Dog object at 0x10ed9b110>

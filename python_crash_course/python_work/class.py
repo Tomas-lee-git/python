@@ -2,9 +2,9 @@
 # 类中的函数称为：方法
 # 给属性和方法指定合适的描述性名称
 
-from dog import Dog, check_dog_instance # 导入类和导入函数的方式一致
-from car import Car # 导入类和导入函数的方式一致
-from electric_car import ElectricCar as EC # 注意，如果使用了别名，那原名称就不能使用了
+from dog import Dog, check_dog_instance  # 导入类和导入函数的方式一致
+from car import Car  # 导入类和导入函数的方式一致
+from electric_car import ElectricCar as EC  # 注意，如果使用了别名，那原名称就不能使用了
 
 my_dog = Dog("旺财", 1)
 check_dog_instance(my_dog)

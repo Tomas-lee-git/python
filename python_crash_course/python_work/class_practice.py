@@ -23,8 +23,8 @@ chinese_food.describe_restaurant()
 # chinese_food.increment_number_served(-500) # Are you kidding me?
 # chinese_food.increment_number_served(50)
 # chinese_food.print_number_severed()
-            
-ice = ICS("cold land", "iceCream", ["blueberry", "banana", "strawberry"]) 
+
+ice = ICS("cold land", "iceCream", ["blueberry", "banana", "strawberry"])
 
 ice.describe_restaurant()
 # ice.describe_iceCream_flavors()
@@ -47,10 +47,9 @@ lily = User("ken", "lily", 20, "female", "USA")
 # lee.reset_login_attempt()
 # lee.print_login_attempts()
 
-privileges = ["can add list", "can delete list","can ban user"]
+privileges = ["can add list", "can delete list", "can ban user"]
 admin_lee = Admin("tom", "aden", 40, "female", "Japan", privileges)
 
 admin_lee.describe_user()
 # admin_lee.show_privileges()
-admin_lee.privileges.show_privileges() # 把管理员特权部分提取为 Privileges 类，进行组合
-
+admin_lee.privileges.show_privileges()  # 把管理员特权部分提取为 Privileges 类，进行组合
