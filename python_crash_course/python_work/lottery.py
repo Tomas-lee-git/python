@@ -1,4 +1,5 @@
 from random import choice
+
 lucky_number = 996
 ticket_number = list(range(1, 999999))
 n = 0

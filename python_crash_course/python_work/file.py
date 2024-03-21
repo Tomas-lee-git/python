@@ -17,19 +17,19 @@
 # in 操作符，既可以用来判断元素是否在列表或者元祖中，也可以用来查找 substr 字符串是否存在
 
 
+from pathlib import Path  # 从 pathlib 库导入 Path 类
 
-
-from pathlib import Path # 从 pathlib 库导入 Path 类
-
-path = Path("txt_files/pi_digits.txt") # 使用 Path 类来创造实例 path，需要属性：文件相对路径
+path = Path(
+    "txt_files/pi_digits.txt"
+)  # 使用 Path 类来创造实例 path，需要属性：文件相对路径
 
 # Open the file in text mode, read it, and close the file.
-contents = path.read_text().rstrip() # 访问文件的所有内容并删除末尾空格
+contents = path.read_text().rstrip()  # 访问文件的所有内容并删除末尾空格
 # print(f"pi_digits.txt contents is {contents}")
 
 # 将获取到的（整个文件的内容）切分为（由行组成的列表）
 lines = contents.splitlines()
-print(f"lines type is {type(lines)}") # lines type is <class 'list'>
+print(f"lines type is {type(lines)}")  # lines type is <class 'list'>
 pi_string = ""
 
 for line in lines:
