@@ -1,0 +1,5 @@
+In Python you can use function
+In Python you can use class
+In Python you can operate file
+In Python you can have string, number, float, list, tuple, dict, bool, None
+In Python you can get False with: "",'',0,[],(),{},None
