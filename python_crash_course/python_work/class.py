@@ -1,6 +1,19 @@
+"""
+    类的编程风格：
+        1. 类名应该采用大驼峰命名法，每个单词的首字母大写，并且不使用下划线；
+        2. 实例和模块名应该采用全小写格式，并在单词之间加上下划线；
+        3. 对于每个类，都应在类定义后面紧跟一个文档字符串，简要的描述类的功能；
+        4. 可以使用空行来组织代码：
+            4.1 在类中使用一个空行来分隔方法；
+            4.2 在模块中使用两个空行来分隔类；
+        5. 先导入标准库中的模块，添加一个空行，再导入自己编写的模块；
+"""
+
 # 可以将类视为：有关如何创建实例的说明
 # 类中的函数称为：方法
 # 给属性和方法指定合适的描述性名称
+
+from random import randint, choice # 引入 Python 标准库
 
 from dog import Dog, check_dog_instance  # 导入类和导入函数的方式一致
 from car import Car  # 导入类和导入函数的方式一致
@@ -51,3 +64,8 @@ my_tesla_2.battery.range()
 my_tesla_2.battery.upgrade_battery()
 my_tesla_2.battery.describe_battery()
 my_tesla_2.battery.range()
+
+print("==== Python 标准库 ====")
+print(randint(1, 20)) # 随机返回 start 和 end之间的一个整数，包含 a 和 b
+print(choice([1, 2, 3, 4, 5])) # 随机返回 list 或 tuple 中的一个元素
+print(choice((1, 2, 3, 4, 5)))
