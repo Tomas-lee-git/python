@@ -4,7 +4,7 @@
 
 from dog import Dog, check_dog_instance # 导入类和导入函数的方式一致
 from car import Car # 导入类和导入函数的方式一致
-from electric_car import ElectricCar # 导入类和导入函数的方式一致
+from electric_car import ElectricCar as EC # 注意，如果使用了别名，那原名称就不能使用了
 
 my_dog = Dog("旺财", 1)
 check_dog_instance(my_dog)
@@ -30,7 +30,7 @@ my_new_car.odometer_reading = 2000
 # my_new_car.increment_odometer(5000)
 # my_new_car.get_odometer_reading()
 
-my_tesla = ElectricCar("tesla", "model3", 2024, 65)
+my_tesla = EC("tesla", "model3", 2024, 65)
 print(my_tesla.get_descriptive_name())
 # my_tesla.get_odometer_reading()
 # my_tesla.describe_battery()
@@ -44,7 +44,7 @@ my_tesla.battery.describe_battery()
 my_tesla.battery.range()
 
 print("===============")
-my_tesla_2 = ElectricCar("tesla", "model666", 2024)
+my_tesla_2 = EC("tesla", "model666", 2024)
 print(my_tesla_2.get_descriptive_name())
 my_tesla_2.battery.describe_battery()
 my_tesla_2.battery.range()
