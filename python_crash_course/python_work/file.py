@@ -47,11 +47,11 @@ else:
     ...
 
 # 如果指向的文件不存在，会新建指定路径的这个文件
-path = Path("./txt_files/programming.txt") 
+path = Path("./txt_files/programming.txt")
 path.write_text("I love programming!")
 path.write_text("I love programming!")
 path.write_text("I love programming!")
-path.write_text("asdf") # 会完全替换原有内容，也就是只保留最新的一次写入的内容
+path.write_text("asdf")  # 会完全替换原有内容，也就是只保留最新的一次写入的内容
 # path.write_text(2342) # TypeError: data must be str, not int
 
 # 写入多行内容的方式, 使用 += 追加字符串
@@ -60,4 +60,3 @@ contents += "I love Python!\n"
 contents += "I love Javascript!\n"
 contents += "I love Swift!\n"
 path.write_text(contents)
-
