@@ -29,17 +29,35 @@ contents = path.read_text().rstrip()  # 访问文件的所有内容并删除末�
 
 # 将获取到的（整个文件的内容）切分为（由行组成的列表）
 lines = contents.splitlines()
-print(f"lines type is {type(lines)}")  # lines type is <class 'list'>
+# print(f"lines type is {type(lines)}")  # lines type is <class 'list'>
 pi_string = ""
 
 for line in lines:
     # print(f"lin content is {line}")
     pi_string += line.lstrip()
-print(f"pi_string(first fifty-two letters) is {pi_string[:52]}")
-print(f"pi_string length is {len(pi_string)}, file lens is {len(lines)}")
+# print(f"pi_string(first fifty-two letters) is {pi_string[:52]}")
+# print(f"pi_string length is {len(pi_string)}, file lens is {len(lines)}")
 
 birthday_date = "930918"
 if birthday_date in pi_string:
-    print(f"Your birthday {birthday_date} appears in the first million digits of pi!")
+    # print(f"Your birthday {birthday_date} appears in the first million digits of pi!")
+    ...
 else:
-    print("Your birthday does not appear in the first million digits of pi!")
+    # print("Your birthday does not appear in the first million digits of pi!")
+    ...
+
+# 如果指向的文件不存在，会新建指定路径的这个文件
+path = Path("./txt_files/programming.txt") 
+path.write_text("I love programming!")
+path.write_text("I love programming!")
+path.write_text("I love programming!")
+path.write_text("asdf") # 会完全替换原有内容，也就是只保留最新的一次写入的内容
+# path.write_text(2342) # TypeError: data must be str, not int
+
+# 写入多行内容的方式, 使用 += 追加字符串
+contents = "I love programming!\n"
+contents += "I love Python!\n"
+contents += "I love Javascript!\n"
+contents += "I love Swift!\n"
+path.write_text(contents)
+
