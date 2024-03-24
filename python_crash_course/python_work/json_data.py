@@ -11,7 +11,7 @@ numbers = [2, 3, 5, 7, 11, 13]
 contents = json.dumps(numbers)
 # print(type(contents)) # <class 'str'> json str
 path = Path("./json_files/data.json")
-path.write_text(contents) # 文件的读取和写入，数据的格式都只能是 str
+path.write_text(contents)  # 文件的读取和写入，数据的格式都只能是 str
 
 
 contents = path.read_text()
@@ -20,4 +20,3 @@ contents = path.read_text()
 numbers = json.loads(contents)
 # print(type(numbers)) # <class 'list'>
 # print(numbers)
-
