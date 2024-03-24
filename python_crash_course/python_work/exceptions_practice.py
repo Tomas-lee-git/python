@@ -18,8 +18,13 @@ from word_count import count_number as cn
 #     else:
 #         print(f"{first_number} + {second_number} = {answer}")
 
-file_names = ["alice.txt", "moby_dick.txt", "siddhartha.txt", 
-            "little_women.txt", "old_homeless.txt"]
+file_names = [
+    "alice.txt",
+    "moby_dick.txt",
+    "siddhartha.txt",
+    "little_women.txt",
+    "old_homeless.txt",
+]
 
 for file_name in file_names:
     cn(f"./txt_files/{file_name}", "bullshit")

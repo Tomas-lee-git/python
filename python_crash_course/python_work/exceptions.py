@@ -12,6 +12,7 @@
 """
 
 from word_count import count_words as cw
+
 # from pathlib import Path
 
 # n = print("Give me two numbers, and I will divide them.")
@@ -29,7 +30,7 @@ while False:
         break
     try:
         answer = int(first_number) / int(second_number)
-    except ZeroDivisionError: # ZeroDivisionError: division by zero
+    except ZeroDivisionError:  # ZeroDivisionError: division by zero
         print("You can't divide by zero!")
     else:
         print(f"{first_number} / {second_number} = {answer}")
@@ -40,7 +41,12 @@ while False:
 # FileNotFoundError: [Errno 2] No such file or directory: 'alice.txt'
 # contents = path.read_text(encoding="utf-8")
 
-file_names = ["alice.txt", "moby_dick.txt", "siddhartha.txt", 
-            "little_women.txt", "old_homeless.txt"]
+file_names = [
+    "alice.txt",
+    "moby_dick.txt",
+    "siddhartha.txt",
+    "little_women.txt",
+    "old_homeless.txt",
+]
 for file_name in file_names:
     cw(f"./txt_files/{file_name}")
