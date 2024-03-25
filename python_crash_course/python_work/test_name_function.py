@@ -25,17 +25,19 @@
 """
     如何将形参设置为可选的：
         1. 把这个形参移到末尾；
-        2. 给它一个 符合预期类型，但bool 为 False 的默认值（'',"",0,{},(),[],None)；
+        2. 给它一个 符合预期类型，但bool 为 False 的默认值（"",0,{},(),[],None)；
         3. 在函数内部对这个形参用 if 进行判断，根据是否存在，进行不同的处理；
 """
 
 from name_function import get_formatted_name
 
+
 def test_first_last_name():
     """能够正确处理像 Tomas Lee 这样的姓名吗？"""
     formatted_name = get_formatted_name("tomas", "lee")
     assert formatted_name == "Tomas Lee"
-    
+
+
 def test_first_last_middle_name():
     """能够正确处理像 Tomas A Lee 这样的姓名吗？"""
     formatted_name = get_formatted_name("tomas", "lee", "A")

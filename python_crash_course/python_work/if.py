@@ -41,7 +41,7 @@ else:
 
 
 # False => 0, '', "", None, [], (), {}
-if 0 and '' and "" and None and [] and () and {}:
+if 0 and "" and None and [] and () and {}:
     print("Those are False")
 else:
     print("False => 0, '', " ", None, [], (), {}")

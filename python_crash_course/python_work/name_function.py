@@ -13,6 +13,7 @@
         3. 使用 pip 更新第三方包的命令： pip3 install --upgrade package_name；
 """
 
+
 def get_formatted_name(first, second, middle=None):
     """接收名、姓、中间名，返回格式规范的姓名"""
     if middle:
@@ -20,10 +21,3 @@ def get_formatted_name(first, second, middle=None):
     else:
         full_name = f"{first} {second}"
     return full_name.title()
-
-
-
-
-
-
-
