@@ -3,11 +3,13 @@
 
 from survey import AnonymousSurvey as As
 
+
 def test_survey_instance_object_attribute():
     """测试实例对象的属性是否正常"""
     question = "What language did you first learn to speak?"
     language_survey = As(question)
     assert language_survey.question == question
+
 
 def test_store_single_response():
     """测试单个答案会被妥善地存储"""
@@ -17,6 +19,7 @@ def test_store_single_response():
     # 有，且只有这一个答案
     assert "Chinese" in language_survey.responses
     assert len(language_survey.responses) == 1
+
 
 def test_store_three_responses():
     """测试三个答案会被妥善地存储"""

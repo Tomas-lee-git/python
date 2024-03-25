@@ -8,8 +8,11 @@
         6. element not in list/str 断言元素不在列表、字符串中；
     测试能包含任意可用条件语句表示的断言
 """
+
+
 class AnonymousSurvey:
     """收集匿名调查问卷的答案"""
+
     def __init__(self, question):
         """存储一个问题，并为存储答案做准备"""
         self.question = question
