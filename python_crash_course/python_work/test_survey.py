@@ -26,12 +26,14 @@
 import pytest
 from survey import AnonymousSurvey as As
 
+
 @pytest.fixture
 def language_survey():
     """可供所有测试函数共同使用的 As 实例"""
     question = "What language did you first learn to speak?"
     language_survey = As(question)
     return language_survey
+
 
 def test_store_single_response(language_survey):
     """测试单个答案会被妥善地存储"""
