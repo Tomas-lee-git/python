@@ -1,7 +1,10 @@
+# 重构：先编写尽量简单、可运行的代码，再在代码越来越复杂时进行重构
+
 import pygame  # 包含游戏开发所需的功能
 
 import sys  # 使用 sys 模块的工具来退出游戏
 from settings import Settings
+from ship import Ship
 
 
 class AlienInvasion:
@@ -15,21 +18,59 @@ class AlienInvasion:
         # 把游戏窗口赋给 self.screen，让类的所有方法都能使用它
         self.screen = pygame.display.set_mode(self.setting.screen)
         pygame.display.set_caption(self.setting.display_caption)
+        self.ship = Ship(self)
+
+    def _check_down(self, event):
+        """响应按下"""
+        if event.key == pygame.K_RIGHT: # 按右箭头，激活向右移动标识
+            self.ship.moving_right = True 
+        elif event.key == pygame.K_LEFT: # 按左箭头，激活向左移动标识
+            self.ship.moving_left = True
+        elif event.key == pygame.K_DOWN: # 按下箭头，激活向下移动标识
+            self.ship.moving_down = True
+        elif event.key == pygame.K_UP: # 按上箭头，激活向上移动标识
+            self.ship.moving_up = True
+        elif event.key == pygame.K_q: # 按 Q 退出游戏
+            sys.exit()
+        
+    def _check_up(self, event):
+        """响应释放"""
+        if event.key == pygame.K_RIGHT: # 按右箭头，关闭向右移动标识
+            self.ship.moving_right = False
+        elif event.key == pygame.K_LEFT: # 按下箭头，关闭向下移动标识
+            self.ship.moving_left = False
+        elif event.key == pygame.K_DOWN:
+            self.ship.moving_down = False # 按上箭头，关闭向上移动标识
+        elif event.key == pygame.K_UP:
+            self.ship.moving_up = False # 按左箭头，关闭向左移动标识
+
+    # 拆分为辅助方法：1. 以_开头；2. 只会在类的内部使用；
+    def _check_events(self):
+        """侦听键盘和鼠标事件"""
+        for event in pygame.event.get():  # 访问 Pygame 检测到的，包含所有事件的列表
+            print(f"event is {event}")
+            # 检测并响应特定的事件
+            if event.type == pygame.QUIT:
+                sys.exit()  # while True 的退出条件，退出游戏程序
+            elif event.type == pygame.KEYDOWN: # 侦听“键盘按键按下”事件
+                self._check_down(event)
+            elif event.type == pygame.KEYUP: # 侦听“键盘按键释放”事件
+                self._check_up(event)
+
+    def _update_screen(self):
+        """更新屏幕的相关操作"""
+        self.screen.fill(self.setting.bg_color)  # 每次循环时都重绘屏幕
+        self.ship.blitme()
+
+        # 根据用户操作不断地更新屏幕显示
+        pygame.display.flip()
 
     def run_game(self):
         """开始游戏的主循环"""
         while True:  # 持续不断地侦听，直到退出游戏
-            # 侦听键盘和鼠标事件
-            for event in pygame.event.get():  # 访问 Pygame 检测到的，包含所有事件的列表
-                # print(f"event is {event}")
-                if event.type == pygame.QUIT:
-                    sys.exit()  # while True 的退出条件，退出游戏程序
-                # 编写一系列的 if 语句来检测并响应特定的事件
-
-            self.screen.fill(self.setting.bg_color)  # 每次循环时都重绘屏幕
-
-            # 根据用户操作不断地更新屏幕显示
-            pygame.display.flip()
+            self._check_events() # 类中定义的属性和方法都可以通过 self 来访问和调用
+            self._update_screen()
+            self.ship.update() # 移动飞船，起点在左上角(0,0)
             self.clock.tick(self.setting.frame_rate)
 
 
