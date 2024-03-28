@@ -25,9 +25,10 @@ class AlienInvasion:
 
     def _into_full_screen(self, event):
         """进入全屏模式"""
-        self.screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
-        self.setting.screen_width = self.screen.get_rect().width
-        self.setting.screen_height = self.screen.get_rect().height
+        pygame.display.toggle_fullscreen()
+        # self.screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+        # self.setting.screen_width = self.screen.get_rect().width
+        # self.setting.screen_height = self.screen.get_rect().height
         
         # 目前有个问题，切换为全屏后，飞船位置没有在底部中间位置
         # self.ship.rect.midbottom = self.ship.screen_rect.midbottom
@@ -35,9 +36,10 @@ class AlienInvasion:
             
     def _exit_full_screen(self, event):
         """退出全屏模式"""
-        self.screen = pygame.display.set_mode(
-            (self.setting.default_screen_width, self.setting.default_screen_height)
-        )
+        pygame.display.toggle_fullscreen()
+        # self.screen = pygame.display.set_mode(
+        #     (self.setting.default_screen_width, self.setting.default_screen_height)
+        # )
     
     def _check_down(self, event):
         """响应按下"""
