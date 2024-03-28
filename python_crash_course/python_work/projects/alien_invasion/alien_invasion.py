@@ -16,10 +16,29 @@ class AlienInvasion:
         self.clock = pygame.time.Clock()  # 通过self.clock 控制游戏的帧率
         self.setting = Settings()
         # 把游戏窗口赋给 self.screen，让类的所有方法都能使用它
-        self.screen = pygame.display.set_mode(self.setting.screen)
+        self.screen = pygame.display.set_mode(
+            (self.setting.default_screen_width, self.setting.default_screen_height)
+        )
+
         pygame.display.set_caption(self.setting.display_caption)
         self.ship = Ship(self)
 
+    def _into_full_screen(self, event):
+        """进入全屏模式"""
+        self.screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+        self.setting.screen_width = self.screen.get_rect().width
+        self.setting.screen_height = self.screen.get_rect().height
+        
+        # 目前有个问题，切换为全屏后，飞船位置没有在底部中间位置
+        # self.ship.rect.midbottom = self.ship.screen_rect.midbottom
+        # self.ship.blitme()
+            
+    def _exit_full_screen(self, event):
+        """退出全屏模式"""
+        self.screen = pygame.display.set_mode(
+            (self.setting.default_screen_width, self.setting.default_screen_height)
+        )
+    
     def _check_down(self, event):
         """响应按下"""
         if event.key == pygame.K_RIGHT: # 按右箭头，激活向右移动标识
@@ -32,6 +51,12 @@ class AlienInvasion:
             self.ship.moving_up = True
         elif event.key == pygame.K_q: # 按 Q 退出游戏
             sys.exit()
+        elif event.key == pygame.K_F12: # f12 进入全屏
+            self._into_full_screen(event)
+        elif event.key == pygame.K_ESCAPE: # esc 退出全屏
+            self._exit_full_screen(event)
+        
+        
         
     def _check_up(self, event):
         """响应释放"""
