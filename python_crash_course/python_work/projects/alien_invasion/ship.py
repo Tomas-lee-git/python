@@ -5,7 +5,7 @@ import pygame
 class Ship:
     """管理飞船的类"""
 
-    def __init__(self, ai_game): # ai_game是 AlienInvasion 实例的引用
+    def __init__(self, ai_game):  # ai_game是 AlienInvasion 实例的引用
         "初始化飞船并设置其初始位置"
         self.screen = ai_game.screen
         self.screen_rect = ai_game.screen.get_rect()
@@ -58,15 +58,15 @@ class Ship:
             self.x += self.setting.ship_speed
         if self.moving_left and self.rect.left > self.screen_rect.left:
             self.x -= self.setting.ship_speed
-        if self.moving_down and self.rect.bottom < self.screen_rect.bottom :
+        if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
             self.y += self.setting.ship_speed
-        if self.moving_up  and self.rect.top > self.screen_rect.top:
+        if self.moving_up and self.rect.top > self.screen_rect.top:
             self.y -= self.setting.ship_speed
 
         # 实际更新飞船的位置
         self.rect.x = self.x
         self.rect.y = self.y
-        
+
     def blitme(self):
         """在指定位置绘制飞船"""
         self.screen.blit(self.image, self.rect)

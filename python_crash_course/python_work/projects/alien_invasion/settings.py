@@ -12,5 +12,4 @@ class Settings:
         self.screen_height = 900
         # 设置游戏屏幕背景色，RGB，red, green, blue, 0~255
         self.bg_color = (230, 230, 230)  # 浅灰色
-        self.ship_speed = 1.5 # 控制飞船移动速度
-        
+        self.ship_speed = 1.5  # 控制飞船移动速度
