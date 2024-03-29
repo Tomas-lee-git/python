@@ -28,7 +28,7 @@ class AlienInvasion:
         # 创建存储子弹的编组（类似列表，但提供了有助于开发游戏的额外功能）
         self.bullets = pygame.sprite.Group()
 
-    def _into_full_screen(self, event):
+    def _into_full_screen(self, event): # TODO: 全屏切换功能
         """进入全屏模式"""
         pygame.display.toggle_fullscreen()
         # self.screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
@@ -39,7 +39,7 @@ class AlienInvasion:
         # self.ship.rect.midbottom = self.ship.screen_rect.midbottom
         # self.ship.blitme()
 
-    def _exit_full_screen(self, event):
+    def _exit_full_screen(self, event): # TODO: 全屏切换功能
         """退出全屏模式"""
         pygame.display.toggle_fullscreen()
         # self.screen = pygame.display.set_mode(
