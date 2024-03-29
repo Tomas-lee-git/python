@@ -14,9 +14,9 @@ class Settings:
         self.bg_color = (230, 230, 230)  # 浅灰色
         self.ship_speed = 1.5  # 控制飞船移动速度
         # 子弹设置
-        self.bullet_speed = 2.0 # 子弹速度比飞船稍快
+        self.bullet_speed = 2.0  # 子弹速度比飞船稍快
         self.bullet_width = 15
         self.bullet_height = 3
-        self.bullet_color = (60, 60, 60) # 深灰色
+        self.bullet_color = (60, 60, 60)  # 深灰色
         # TODO: 持续开火功能
         # self.is_firing = False # 开火状态

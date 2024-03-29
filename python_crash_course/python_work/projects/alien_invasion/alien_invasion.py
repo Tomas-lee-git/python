@@ -55,27 +55,27 @@ class AlienInvasion:
         """创建一颗子弹，并将其加入编组 bullets"""
         new_bullet = Bullet(self)
         self.bullets.add(new_bullet)
-        
+
         # TODO: 持续开火功能
         # if self.settings.is_firing:
-            # my_scheduler = sched.scheduler(time.time, time.sleep) # 设置定时器
-            # my_scheduler.enter(60, 1, self._add_bullet, (my_scheduler,))
-            # my_scheduler.run()
-        
+        # my_scheduler = sched.scheduler(time.time, time.sleep) # 设置定时器
+        # my_scheduler.enter(60, 1, self._add_bullet, (my_scheduler,))
+        # my_scheduler.run()
+
     def _remove_bullet(self):
         """删除飞出屏幕外的子弹"""
-        for bullet in self.bullets.copy(): # 使用列表的 copy 来完成对列表元素的删除
-            if bullet.rect.y <= 0: # y 轴位置低于0，就是飞出了屏幕，需要删除
+        for bullet in self.bullets.copy():  # 使用列表的 copy 来完成对列表元素的删除
+            if bullet.rect.y <= 0:  # y 轴位置低于0，就是飞出了屏幕，需要删除
                 self.bullets.remove(bullet)
         # print(f"bullets length is {len(self.bullets)}")
-            
+
     def _update_bullets(self):
         """更新子弹位置并删除已消失的子弹"""
         # 在对编组调用 update()时，编组会自动对其中的每个 sprite 调用 update()
         # 也就是更新子弹编组中的每一颗子弹的位置
         self.bullets.update()
         self._remove_bullet()
-        
+
     def _check_down(self, event):
         """响应按下"""
         if event.key == pygame.K_RIGHT:  # 按右箭头，激活向右移动标识
