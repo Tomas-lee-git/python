@@ -8,6 +8,7 @@ import sched, time
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
+from alien import Alien
 
 
 class AlienInvasion:
@@ -22,11 +23,14 @@ class AlienInvasion:
         self.screen = pygame.display.set_mode(
             (self.settings.default_screen_width, self.settings.default_screen_height)
         )
-
+        self.screen_rect = self.screen.get_rect()
         pygame.display.set_caption(self.settings.display_caption)
         self.ship = Ship(self)
         # 创建存储子弹的编组（类似列表，但提供了有助于开发游戏的额外功能）
         self.bullets = pygame.sprite.Group()
+        self.aliens = pygame.sprite.Group()
+        # 和子弹不同，外星人的出现是自动的，不依赖用户的按键操作，所以在__init__中直接调用
+        self._create_fleet() 
 
     def _into_full_screen(self, event): # TODO: 全屏切换功能
         """进入全屏模式"""
@@ -121,12 +125,36 @@ class AlienInvasion:
             elif event.type == pygame.KEYUP:  # 侦听“键盘按键释放”事件
                 self._check_up(event)
 
+    def _create_fleet(self):
+        """创建一个外星舰队"""
+        alien = Alien(self)
+        alien_width = alien.rect.width # 外星人的间距为外星人的宽度
+        current_x = alien_width # 用一个变量记录外星人x值的变化 
+        """
+            添加一行外星人心得：
+                1. 如果有一个任务，需要不断地做，直到触发某种停止机制，那应该本能地想到用
+                    while condition 来实现；
+                2. 原本的条件写的是：x_position < self.screen_rect.width，但这样会
+                    有一个问题，没有留冗余量，会导致末尾的外星人超出屏幕；
+                3. 因为第一个外星人留了自身宽度的左边距，那最后一个也需要留同样的右边距，
+                    所以安全距离需要的冗余量为： 2 * 外星人自身宽度
+        """
+        while current_x < self.screen_rect.width - 2 * alien_width:
+            new_alien = Alien(self)
+            new_alien.x = current_x
+            new_alien.rect.x = new_alien.x
+            self.aliens.add(new_alien)
+            current_x += 2 * alien_width # 更新下一个新增外星人 x 位置的变量
+        
+    
     def _update_screen(self):
         """更新屏幕上的图像，并且换到新屏幕"""
         self.screen.fill(self.settings.bg_color)  # 每次循环时都重绘屏幕
         for bullet in self.bullets:
             bullet.draw_bullet()
         self.ship.blitme()
+        # draw all sprites onto the surface
+        self.aliens.draw(self.screen)
 
         # 根据用户操作不断地更新屏幕显示
         pygame.display.flip()
