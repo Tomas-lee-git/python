@@ -125,11 +125,17 @@ class AlienInvasion:
             elif event.type == pygame.KEYUP:  # 侦听“键盘按键释放”事件
                 self._check_up(event)
 
+    def _create_alien(self, x_position, y_position):
+        """根据 x, y 位置，实例化创建一个外星人"""
+        # 做两件事：1. 创建外星人实例；2. 计算并赋值外星人位置
+        new_alien = Alien(self) # 生成外星人实例
+        new_alien.x,  new_alien.y = x_position, y_position # 外星人 x 轴， y 轴位置
+         # 更新外星人 x 轴,  y 轴位置
+        new_alien.rect.x, new_alien.rect.y = new_alien.x, new_alien.y
+        self.aliens.add(new_alien) # 添加到外星人组中
+    
     def _create_fleet(self):
         """创建一个外星舰队"""
-        alien = Alien(self)
-        alien_width = alien.rect.width # 外星人的间距为外星人的宽度
-        current_x = alien_width # 用一个变量记录外星人x值的变化 
         """
             添加一行外星人心得：
                 1. 如果有一个任务，需要不断地做，直到触发某种停止机制，那应该本能地想到用
@@ -139,14 +145,20 @@ class AlienInvasion:
                 3. 因为第一个外星人留了自身宽度的左边距，那最后一个也需要留同样的右边距，
                     所以安全距离需要的冗余量为： 2 * 外星人自身宽度
         """
-        while current_x < self.screen_rect.width - 2 * alien_width:
-            new_alien = Alien(self)
-            new_alien.x = current_x
-            new_alien.rect.x = new_alien.x
-            self.aliens.add(new_alien)
-            current_x += 2 * alien_width # 更新下一个新增外星人 x 位置的变量
+        alien = Alien(self) # 先创建一个外星人实例，记录外星人的宽度
+        alien_width, alien_height = alien.rect.size # return tuple (width, size)
+         # 动态存储每一个外星人 x, 每一行外星人 y 轴的位置
+        current_x, current_y = alien_width, alien_height
+        # while 循环创建多行外星人，留出飞船操作空间，不然上来就把飞船碰死了😅
+        while current_y < self.screen_rect.height - 3 * alien_height:
+            # while 循环创建一行外星人；
+            while current_x < (self.screen_rect.width - 2 * alien_width): # 留出两边间距的位置
+                self._create_alien(current_x, current_y)
+                current_x += 2 * alien_width # 间隔[一个外星人的宽度]放置另一个外星人
+            # ❕ 重置 current_x，否则current_x停留在最大值，无法在下一行开启内部 while 循环
+            current_x = alien_width
+            current_y += 2 * alien_height # 间隔[一个外星人的高度]放置另一行外星人
         
-    
     def _update_screen(self):
         """更新屏幕上的图像，并且换到新屏幕"""
         self.screen.fill(self.settings.bg_color)  # 每次循环时都重绘屏幕
