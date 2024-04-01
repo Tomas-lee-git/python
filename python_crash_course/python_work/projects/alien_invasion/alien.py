@@ -8,12 +8,15 @@
         5. 如果有外星人撞到飞船或抵达屏幕的下边缘，销毁飞船并再创建一个外星舰队；
         6. 限制玩家可用的飞船数量，分配的飞船被用完后，游戏将结束；
 """
+
 import pygame
 
 from pygame.sprite import Sprite
 
+
 class Alien(Sprite):
     """表示单个外星人的类"""
+
     def __init__(self, ai_game):
         """初始化外星人并设置其起始位置"""
         super().__init__()
@@ -25,9 +28,7 @@ class Alien(Sprite):
         # # 每个外星人最初都在屏幕的左上角附近，(x, y)代表图像左上角的位置
         self.rect.x = self.rect.width
         self.rect.y = self.rect.height
-        
+
         # 存储外星人的精确水平位置
         self.x = float(self.rect.x)
         self.y = float(self.rect.y)
-        
-        

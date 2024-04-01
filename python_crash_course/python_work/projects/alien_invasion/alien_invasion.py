@@ -30,9 +30,9 @@ class AlienInvasion:
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
         # 和子弹不同，外星人的出现是自动的，不依赖用户的按键操作，所以在__init__中直接调用
-        self._create_fleet() 
+        self._create_fleet()
 
-    def _into_full_screen(self, event): # TODO: 全屏切换功能
+    def _into_full_screen(self, event):  # TODO: 全屏切换功能
         """进入全屏模式"""
         pygame.display.toggle_fullscreen()
         # self.screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
@@ -43,7 +43,7 @@ class AlienInvasion:
         # self.ship.rect.midbottom = self.ship.screen_rect.midbottom
         # self.ship.blitme()
 
-    def _exit_full_screen(self, event): # TODO: 全屏切换功能
+    def _exit_full_screen(self, event):  # TODO: 全屏切换功能
         """退出全屏模式"""
         pygame.display.toggle_fullscreen()
         # self.screen = pygame.display.set_mode(
@@ -128,12 +128,12 @@ class AlienInvasion:
     def _create_alien(self, x_position, y_position):
         """根据 x, y 位置，实例化创建一个外星人"""
         # 做两件事：1. 创建外星人实例；2. 计算并赋值外星人位置
-        new_alien = Alien(self) # 生成外星人实例
-        new_alien.x,  new_alien.y = x_position, y_position # 外星人 x 轴， y 轴位置
-         # 更新外星人 x 轴,  y 轴位置
+        new_alien = Alien(self)  # 生成外星人实例
+        new_alien.x, new_alien.y = x_position, y_position  # 外星人 x 轴， y 轴位置
+        # 更新外星人 x 轴,  y 轴位置
         new_alien.rect.x, new_alien.rect.y = new_alien.x, new_alien.y
-        self.aliens.add(new_alien) # 添加到外星人组中
-    
+        self.aliens.add(new_alien)  # 添加到外星人组中
+
     def _create_fleet(self):
         """创建一个外星舰队"""
         """
@@ -145,20 +145,22 @@ class AlienInvasion:
                 3. 因为第一个外星人留了自身宽度的左边距，那最后一个也需要留同样的右边距，
                     所以安全距离需要的冗余量为： 2 * 外星人自身宽度
         """
-        alien = Alien(self) # 先创建一个外星人实例，记录外星人的宽度
-        alien_width, alien_height = alien.rect.size # return tuple (width, size)
-         # 动态存储每一个外星人 x, 每一行外星人 y 轴的位置
+        alien = Alien(self)  # 先创建一个外星人实例，记录外星人的宽度
+        alien_width, alien_height = alien.rect.size  # return tuple (width, size)
+        # 动态存储每一个外星人 x, 每一行外星人 y 轴的位置
         current_x, current_y = alien_width, alien_height
         # while 循环创建多行外星人，留出飞船操作空间，不然上来就把飞船碰死了😅
         while current_y < self.screen_rect.height - 3 * alien_height:
             # while 循环创建一行外星人；
-            while current_x < (self.screen_rect.width - 2 * alien_width): # 留出两边间距的位置
+            while current_x < (
+                self.screen_rect.width - 2 * alien_width
+            ):  # 留出两边间距的位置
                 self._create_alien(current_x, current_y)
-                current_x += 2 * alien_width # 间隔[一个外星人的宽度]放置另一个外星人
+                current_x += 2 * alien_width  # 间隔[一个外星人的宽度]放置另一个外星人
             # ❕ 重置 current_x，否则current_x停留在最大值，无法在下一行开启内部 while 循环
             current_x = alien_width
-            current_y += 2 * alien_height # 间隔[一个外星人的高度]放置另一行外星人
-        
+            current_y += 2 * alien_height  # 间隔[一个外星人的高度]放置另一行外星人
+
     def _update_screen(self):
         """更新屏幕上的图像，并且换到新屏幕"""
         self.screen.fill(self.settings.bg_color)  # 每次循环时都重绘屏幕
