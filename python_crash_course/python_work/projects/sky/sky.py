@@ -3,10 +3,12 @@
         1. 渲染一颗星星；
         2. 渲染一排星星；
         3. 渲染多行，直到铺满屏幕的星星；
-        4. 整个屏幕随机渲染星星，达到更逼真的效果；
+        4. 按下鼠标左键，随机渲染一颗星星；
+        4. 按下鼠标右键，恢复所有星星；
 """
 import pygame
 import sys
+from random import choice
 
 from star import Star
 
@@ -19,9 +21,7 @@ class Sky:
         self.screen = pygame.display.set_mode((1200, 900)) # 设置游戏窗口大小
         self.screen_rect = self.screen.get_rect() # 获取游戏窗口 rect
         pygame.display.set_caption("Sky full of stars")
-        # # 启用游戏编组来管理众多星星✨，生成[可以被编组的实例]的类需要继承 Sprite 类
-        self.stars = pygame.sprite.Group()
-        self._create_all_stars() # 生成星空中的所有星星
+        self._full_sky_stars()
     
     def _create_star(self, x_position, y_position):
         """生成一个星星"""
@@ -47,7 +47,19 @@ class Sky:
             current_y += 1.5 * star_height # 动态调整最新一行中星星的 y 轴位置
             # 绘制完一行之后，需要重置 current_x，以便开始绘制新的一行
             current_x = 0.3 * star_width
-        
+
+    def _full_sky_stars(self):
+        #启用游戏编组来管理众多星星✨，生成[可以被编组的实例]的类需要继承 Sprite 类
+        self.stars = pygame.sprite.Group()
+        self._create_all_stars() # 生成星空中的所有星星
+    
+    def _randint_stars(self):
+        """在漫天繁星中随机选中一个星星来展示"""
+        # Group 没有 choice 方法，先把 Group 转换成list，再使用 choice
+        star_list = self.stars.sprites()
+        special_star = choice(star_list) # 挑选一个
+        self.stars = pygame.sprite.Group() # 清空屏幕上的所有星星
+        self.stars.add(special_star) # 渲染挑选出来的那颗星星
 
     def _check_event(self):
         """检查事件"""
@@ -58,7 +70,11 @@ class Sky:
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q: # 按 Q 退出游戏
                     sys.exit()
-                
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if pygame.mouse.get_pressed()[0]: # 按下鼠标左键，随机挑选一个星星
+                    self._randint_stars()
+                elif pygame.mouse.get_pressed()[2]: # 按下鼠标右键，恢复显示所有星星
+                    self._full_sky_stars()
         
     def run_game(self):
         """开始游戏的主循环"""
