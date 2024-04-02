@@ -80,6 +80,10 @@ class AlienInvasion:
         self.bullets.update()
         self._remove_bullet()
 
+    def _update_aliens(self):
+        """更新每一艘飞船的位置"""
+        self.aliens.update() # 对编组调用方法，会调用每一个飞船的 update 方法
+    
     def _check_down(self, event):
         """响应按下"""
         if event.key == pygame.K_RIGHT:  # 按右箭头，激活向右移动标识
@@ -150,7 +154,7 @@ class AlienInvasion:
         # 动态存储每一个外星人 x, 每一行外星人 y 轴的位置
         current_x, current_y = alien_width, alien_height
         # while 循环创建多行外星人，留出飞船操作空间，不然上来就把飞船碰死了😅
-        while current_y < self.screen_rect.height - 3 * alien_height:
+        while current_y < self.screen_rect.height / 3 - 3 * alien_height:
             # while 循环创建一行外星人；
             while current_x < (
                 self.screen_rect.width - 2 * alien_width
@@ -161,17 +165,18 @@ class AlienInvasion:
             current_x = alien_width
             current_y += 2 * alien_height  # 间隔[一个外星人的高度]放置另一行外星人
 
+    def _draw_bullets(self):
+        """绘制每一颗子弹"""
+        for bullet in self.bullets:
+            bullet.draw_bullet()
+
     def _update_screen(self):
         """更新屏幕上的图像，并且换到新屏幕"""
         self.screen.fill(self.settings.bg_color)  # 每次循环时都重绘屏幕
-        for bullet in self.bullets:
-            bullet.draw_bullet()
+        self._draw_bullets()
         self.ship.blitme()
-        # draw all sprites onto the surface
-        self.aliens.draw(self.screen)
-
-        # 根据用户操作不断地更新屏幕显示
-        pygame.display.flip()
+        self.aliens.draw(self.screen) # draw all sprites onto the surface
+        pygame.display.flip() # 根据用户操作不断地更新屏幕显示
 
     def run_game(self):
         """开始游戏的主循环"""
@@ -179,6 +184,7 @@ class AlienInvasion:
             self._check_events()  # 类中定义的属性和方法都可以通过 self 来访问和调用
             self.ship.update()  # 起点在左上角(0,0)
             self._update_bullets()
+            self._update_aliens()
             self._update_screen()
             self.clock.tick(self.settings.frame_rate)
 

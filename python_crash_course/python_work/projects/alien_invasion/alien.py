@@ -22,6 +22,7 @@ class Alien(Sprite):
         super().__init__()
         self.screen = ai_game.screen
         self.screen_rect = ai_game.screen_rect
+        self.settings = ai_game.settings
         # 加载外星人并设置其 rect 属性
         self.image = pygame.image.load("images/alien.bmp")
         self.rect = self.image.get_rect()
@@ -32,3 +33,21 @@ class Alien(Sprite):
         # 存储外星人的精确水平位置
         self.x = float(self.rect.x)
         self.y = float(self.rect.y)
+
+    def update(self):
+        """外星舰队左右移动，向飞船逼近"""
+        is_reach_right_border = self.rect.x == (self.screen_rect.width - self.rect.width)
+        # 向右移动，直到[最右边的外星人]快要超出右边界
+        if not is_reach_right_border:
+            self.x += self.settings.alien_speed
+            self.rect.x = self.x
+
+        # 向下移动，逼近飞船
+        self.y += self.settings.alien_speed
+        self.rect.y = self.y
+
+        # 向左移动，直到[最左边的外星人]快要抵达左边界
+        if is_reach_right_border:
+            self.x = self.rect.x - self.settings.alien_speed
+            self.rect.x = self.x
+
