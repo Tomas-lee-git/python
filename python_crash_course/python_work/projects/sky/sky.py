@@ -37,8 +37,8 @@ class Sky:
         star_height = star.rect.height # 获取一个星星的高度
         current_x  = 0.3 * star_width 
         current_y  = 0.5 * star_height 
-        # 不断地重复[生成一整行星星], 直到生成整个屏幕的星星
-        while current_y < self.screen_rect.height - star_height:
+        # 不断地重复[生成一整行星星], 直到生成 1/3 屏幕的星星
+        while current_y < (self.screen_rect.height / 3 - star_height):
             # 不断地生成星星，直到铺满一行
             while current_x < (self.screen_rect.width - star_width): # 留出两个✨边距
                 self._create_star(current_x, current_y) # 不断地生成星星
