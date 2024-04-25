@@ -80,8 +80,22 @@ class AlienInvasion:
         self.bullets.update()
         self._remove_bullet()
 
+    def _check_fleet_edges(self):
+        """在有外星人到达边缘时采取相应的措施"""
+        for alien in self.aliens.sprites():
+            if alien.check_edge():
+                self._change_fleet_direction()
+                break # 只需要有一个外星人到达边缘，就可以改变运动方向，不需要继续遍历了
+        
+    def _change_fleet_direction(self):
+        """外星舰队到达屏幕边缘后向下移动, 并调转左右方向"""
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.fleet_drop_speed # 向下移动
+        self.settings.fleet_direction *= -1 # 改变方向
+
     def _update_aliens(self):
-        """更新每一艘飞船的位置"""
+        """检查是否有外星人位于屏幕边缘，并更新整个外星舰队的位置"""
+        self._check_fleet_edges()
         self.aliens.update() # 对编组调用方法，会调用每一个飞船的 update 方法
     
     def _check_down(self, event):
@@ -154,7 +168,7 @@ class AlienInvasion:
         # 动态存储每一个外星人 x, 每一行外星人 y 轴的位置
         current_x, current_y = alien_width, alien_height
         # while 循环创建多行外星人，留出飞船操作空间，不然上来就把飞船碰死了😅
-        while current_y < self.screen_rect.height / 3 - 3 * alien_height:
+        while current_y < self.screen_rect.height - 3 * alien_height:
             # while 循环创建一行外星人；
             while current_x < (
                 self.screen_rect.width - 2 * alien_width
