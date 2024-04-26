@@ -73,21 +73,29 @@ class AlienInvasion:
                 self.bullets.remove(bullet)
         # print(f"bullets length is {len(self.bullets)}")
 
+    def _check_bullet_alien_collisions(self):
+        """响应子弹和外星人的碰撞"""
+        # 子弹击中了星人, 就删除相应的子弹和外星人
+        collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
+        # if collisions:
+        #     # collisions is {<Bullet Sprite(in 0 groups)>: [<Alien Sprite(in 0 groups)>]}
+        #     print(f"collisions is {collisions}")
+        
+    def _check_aliens_is_over(self):
+        """在一个舰队被击落之后现实另一个外星舰队"""
+        if not self.aliens: # 检测外星人编组为空，则当前外星人舰队已经全部被击毁
+            self.bullets.empty() # 打扫战场，清除残留子弹
+            self._create_fleet() # 投入新外星人舰队
+            
     def _update_bullets(self):
         """更新子弹位置并删除已消失的子弹"""
         # 在对编组调用 update()时，编组会自动对其中的每个 sprite 调用 update()
         # 也就是更新子弹编组中的每一颗子弹的位置
         self.bullets.update()
         self._remove_bullet()
-        
-        # 检查是否有子弹击中了外星人
-        # 如果是，就删除相应的子弹和外星人
-        collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
-
-        # if collisions:
-        #     # collisions is {<Bullet Sprite(in 0 groups)>: [<Alien Sprite(in 0 groups)>]}
-        #     print(f"collisions is {collisions}")
-
+        self._check_bullet_alien_collisions()
+        self._check_aliens_is_over()
+       
     def _check_fleet_edges(self):
         """在有外星人到达边缘时采取相应的措施"""
         for alien in self.aliens.sprites():

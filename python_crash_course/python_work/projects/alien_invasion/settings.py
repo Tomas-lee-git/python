@@ -16,7 +16,7 @@ class Settings:
         self.ship_speed = 1.5  # 控制飞船移动速度
 
         # 子弹设置
-        self.bullet_speed = 2.0  # 子弹速度比飞船稍快
+        self.bullet_speed = 2.5  # 子弹速度比飞船稍快
         self.bullet_width = 3
         self.bullet_height = 15
         self.bullet_color = (60, 60, 60)  # 深灰色
