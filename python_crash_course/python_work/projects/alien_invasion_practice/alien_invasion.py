@@ -8,6 +8,7 @@ import sched, time
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
+from alien import Alien
 
 
 class HorizontalAlienInvasion:
@@ -24,10 +25,12 @@ class HorizontalAlienInvasion:
         )
 
         pygame.display.set_caption(self.settings.display_caption)
+        self.screen_rect = self.screen.get_rect()
         self.ship = Ship(self)
         # 创建存储子弹的编组（类似列表，但提供了有助于开发游戏的额外功能）
         self.bullets = pygame.sprite.Group()
-        self.screen_rect = self.screen.get_rect()
+        self.aliens = pygame.sprite.Group()
+        self.create_alien_fleet()
 
     def _into_full_screen(self, event):
         """进入全屏模式"""
@@ -80,6 +83,27 @@ class HorizontalAlienInvasion:
         self.bullets.update()
         self._remove_bullet()
 
+    def create_alien(self, y_position, x_position):
+        """生成一个外星人"""
+        alien = Alien(self)
+        alien.rect.y = y_position
+        alien.rect.x = x_position
+        self.aliens.add(alien)
+        
+    def create_alien_fleet(self):
+        """生成外星人舰队"""
+        alien = Alien(self)
+        current_x = self.screen_rect.right - 2 * alien.rect.width
+        current_y = alien.rect.y
+        # 创建多排外星人
+        while current_x >= self.screen_rect.width / 2:
+            # 创建一排外星人
+            while current_y <= self.screen_rect.bottom - 2 * alien.rect.height:
+                self.create_alien(current_y, current_x)
+                current_y += 2 * alien.rect.height
+            current_y = alien.rect.y
+            current_x = current_x - 2 * alien.rect.x
+    
     def _check_down(self, event):
         """响应按下"""
         if event.key == pygame.K_DOWN:  # 按下箭头，激活向下移动标识
@@ -122,6 +146,7 @@ class HorizontalAlienInvasion:
         self.screen.fill(self.settings.bg_color)  # 每次循环时都重绘屏幕
         for bullet in self.bullets:
             bullet.draw_bullet()
+        self.aliens.draw(self.screen)
         self.ship.blitme()
 
         # 根据用户操作不断地更新屏幕显示
