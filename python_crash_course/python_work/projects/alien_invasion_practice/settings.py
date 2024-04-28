@@ -20,3 +20,7 @@ class Settings:
         self.bullet_color = (60, 60, 60)  # 深灰色
         # TODO: 持续开火功能
         # self.is_firing = False # 开火状态
+        # 外星人设置
+        self.alien_speed = 1
+        self.alien_horizontal_speed = 5
+        self.alien_direction = 1 # 1 向下，2向上

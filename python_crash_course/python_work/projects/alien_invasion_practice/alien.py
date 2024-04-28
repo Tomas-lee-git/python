@@ -12,3 +12,11 @@ class Alien(Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = self.rect.width
         self.rect.y = self.rect.height
+        
+    def check_edge(self):
+        """检测外星人是否超出屏幕上、下边缘"""
+        return (self.rect.top <= 0) or (self.rect.bottom >= self.screen_rect.bottom)
+    
+    def update(self):
+        """外星人移动上、下移动"""
+        self.rect.y += self.settings.alien_speed * self.settings.alien_direction

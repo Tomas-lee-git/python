@@ -102,7 +102,7 @@ class HorizontalAlienInvasion:
                 self.create_alien(current_y, current_x)
                 current_y += 2 * alien.rect.height
             current_y = alien.rect.y
-            current_x = current_x - 2 * alien.rect.x
+            current_x = current_x - 1.5 * alien.rect.x
     
     def _check_down(self, event):
         """响应按下"""
@@ -141,11 +141,31 @@ class HorizontalAlienInvasion:
             elif event.type == pygame.KEYUP:  # 侦听“键盘按键释放”事件
                 self._check_up(event)
 
+    def _check_fleet_edges(self):
+        """在外星人到达边缘时采取相应的措施"""
+        for alien in self.aliens.sprites():
+            if alien.check_edge():
+                self._change_fleet_direction()
+                break
+            
+    def _change_fleet_direction(self):
+        """触碰上/下边缘之后，向飞船前进（向左）"""
+        for alien in self.aliens.sprites():
+            alien.rect.x = alien.rect.x - alien.settings.alien_horizontal_speed
+            print(f"alien.rect.x {alien.rect.x}")
+        self.settings.alien_direction *= -1  # 控制外星人舰队上/下移动
+
+    def alien_updates(self):
+        """控制外星人行动轨迹"""
+        self._check_fleet_edges()
+        self.aliens.update()
+        
     def _update_screen(self):
         """更新屏幕上的图像，并且换到新屏幕"""
         self.screen.fill(self.settings.bg_color)  # 每次循环时都重绘屏幕
         for bullet in self.bullets:
             bullet.draw_bullet()
+        self.alien_updates()
         self.aliens.draw(self.screen)
         self.ship.blitme()
 
