@@ -89,7 +89,7 @@ class HorizontalAlienInvasion:
         alien.rect.y = y_position
         alien.rect.x = x_position
         self.aliens.add(alien)
-        
+
     def create_alien_fleet(self):
         """生成外星人舰队"""
         alien = Alien(self)
@@ -103,7 +103,7 @@ class HorizontalAlienInvasion:
                 current_y += 2 * alien.rect.height
             current_y = alien.rect.y
             current_x = current_x - 1.5 * alien.rect.x
-    
+
     def _check_down(self, event):
         """响应按下"""
         if event.key == pygame.K_DOWN:  # 按下箭头，激活向下移动标识
@@ -147,7 +147,7 @@ class HorizontalAlienInvasion:
             if alien.check_edge():
                 self._change_fleet_direction()
                 break
-            
+
     def _change_fleet_direction(self):
         """触碰上/下边缘之后，向飞船前进（向左）"""
         for alien in self.aliens.sprites():
@@ -163,9 +163,9 @@ class HorizontalAlienInvasion:
     def _check_aliens_is_over(self):
         """外星人舰队全部被消灭之后，重新生成一队"""
         if not self.aliens:
-            self.bullets.empty() # 清理残余子弹
+            self.bullets.empty()  # 清理残余子弹
             self.create_alien_fleet()
-    
+
     def alien_updates(self):
         """控制外星人行动轨迹"""
         self._check_fleet_edges()

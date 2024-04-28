@@ -23,4 +23,4 @@ class Settings:
         # 外星人设置
         self.alien_speed = 1
         self.alien_horizontal_speed = 50
-        self.alien_direction = 1 # 1 向下，2向上
+        self.alien_direction = 1  # 1 向下，2向上

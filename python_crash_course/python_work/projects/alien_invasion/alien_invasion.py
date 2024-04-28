@@ -80,13 +80,13 @@ class AlienInvasion:
         # if collisions:
         #     # collisions is {<Bullet Sprite(in 0 groups)>: [<Alien Sprite(in 0 groups)>]}
         #     print(f"collisions is {collisions}")
-        
+
     def _check_aliens_is_over(self):
         """在一个舰队被击落之后现实另一个外星舰队"""
-        if not self.aliens: # 检测外星人编组为空，则当前外星人舰队已经全部被击毁
-            self.bullets.empty() # 打扫战场，清除残留子弹
-            self._create_fleet() # 投入新外星人舰队
-            
+        if not self.aliens:  # 检测外星人编组为空，则当前外星人舰队已经全部被击毁
+            self.bullets.empty()  # 打扫战场，清除残留子弹
+            self._create_fleet()  # 投入新外星人舰队
+
     def _update_bullets(self):
         """更新子弹位置并删除已消失的子弹"""
         # 在对编组调用 update()时，编组会自动对其中的每个 sprite 调用 update()
@@ -95,25 +95,25 @@ class AlienInvasion:
         self._remove_bullet()
         self._check_bullet_alien_collisions()
         self._check_aliens_is_over()
-       
+
     def _check_fleet_edges(self):
         """在有外星人到达边缘时采取相应的措施"""
         for alien in self.aliens.sprites():
             if alien.check_edge():
                 self._change_fleet_direction()
-                break # 只需要有一个外星人到达边缘，就可以改变运动方向，不需要继续遍历了
-        
+                break  # 只需要有一个外星人到达边缘，就可以改变运动方向，不需要继续遍历了
+
     def _change_fleet_direction(self):
         """外星舰队到达屏幕边缘后向下移动, 并调转左右方向"""
         for alien in self.aliens.sprites():
-            alien.rect.y += self.settings.fleet_drop_speed # 向下移动
-        self.settings.fleet_direction *= -1 # 改变方向
+            alien.rect.y += self.settings.fleet_drop_speed  # 向下移动
+        self.settings.fleet_direction *= -1  # 改变方向
 
     def _update_aliens(self):
         """检查是否有外星人位于屏幕边缘，并更新整个外星舰队的位置"""
         self._check_fleet_edges()
-        self.aliens.update() # 对编组调用方法，会调用每一个飞船的 update 方法
-    
+        self.aliens.update()  # 对编组调用方法，会调用每一个飞船的 update 方法
+
     def _check_down(self, event):
         """响应按下"""
         if event.key == pygame.K_RIGHT:  # 按右箭头，激活向右移动标识
@@ -205,8 +205,8 @@ class AlienInvasion:
         self.screen.fill(self.settings.bg_color)  # 每次循环时都重绘屏幕
         self._draw_bullets()
         self.ship.blitme()
-        self.aliens.draw(self.screen) # draw all sprites onto the surface
-        pygame.display.flip() # 根据用户操作不断地更新屏幕显示
+        self.aliens.draw(self.screen)  # draw all sprites onto the surface
+        pygame.display.flip()  # 根据用户操作不断地更新屏幕显示
 
     def run_game(self):
         """开始游戏的主循环"""

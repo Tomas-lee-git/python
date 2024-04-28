@@ -24,6 +24,6 @@ class Settings:
         # self.is_firing = False # 开火状态
 
         # 外星人设置
-        self.alien_speed = 1 # 外星人向左、右移动的速度
-        self.fleet_drop_speed = 10 # 外星舰队到达屏幕边缘后，向下移动的速度
-        self.fleet_direction = 1 # 1 表示向右移动， -1 表示向左移动
+        self.alien_speed = 1  # 外星人向左、右移动的速度
+        self.fleet_drop_speed = 10  # 外星舰队到达屏幕边缘后，向下移动的速度
+        self.fleet_direction = 1  # 1 表示向右移动， -1 表示向左移动

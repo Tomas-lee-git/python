@@ -42,4 +42,3 @@ class Alien(Sprite):
         """外星舰队左右移动，向飞船逼近"""
         self.x += self.settings.alien_speed * self.settings.fleet_direction
         self.rect.x = self.x
-
