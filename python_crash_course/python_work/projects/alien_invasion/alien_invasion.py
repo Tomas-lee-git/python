@@ -104,7 +104,7 @@ class AlienInvasion:
     def _check_fleet_edges(self):
         """在有外星人到达边缘时采取相应的措施"""
         for alien in self.aliens.sprites():
-            if alien.check_edge():
+            if alien.check_left_or_right_edge():
                 self._change_fleet_direction()
                 break  # 只需要有一个外星人到达边缘，就可以改变运动方向，不需要继续遍历了
 
@@ -114,29 +114,42 @@ class AlienInvasion:
             alien.rect.y += self.settings.fleet_drop_speed  # 向下移动
         self.settings.fleet_direction *= -1  # 改变方向
 
+    def restart_game(self):
+        """触发条件后，重置游戏"""
+        # 1. 飞船和外星人发生碰撞；2. 外星舰队抵达屏幕底部；
+
+        # 减去一条可用飞船
+        self.stats.minus_ship_left()
+        # print(f"ship number is {self.stats.ship_left}")
+        
+        # 碰撞之后，清空剩余的外星人舰队和子弹
+        self.aliens.empty()
+        self.bullets.empty()
+        
+        # 重置飞船位置
+        self.ship.center_ship()
+        
+        # 暂停游戏
+        sleep(0.5)
+    
     def _ship_hit(self):
         """检测飞船和外星人的碰撞"""
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
-            # 碰撞之后，减去一条可用飞船
-            self.stats.minus_ship_left()
-            # print(f"ship number is {self.stats.ship_left}")
+            self.restart_game()
             
-            # 碰撞之后，清空剩余的外星人舰队和子弹
-            self.aliens.empty()
-            self.bullets.empty()
-            
-            # 重置飞船位置
-            self.ship.center_ship()
-            
-            # 暂停游戏
-            sleep(0.5)
-            
-            
+    def _check_aliens_bottom(self):
+        """检测外星舰队是否突破了飞船的防守抵达了屏幕底部"""
+        for alien in self.aliens.sprites():
+            if alien.check_bottom_edge():
+                self.restart_game()
+                break
+        
     def _update_aliens(self):
         """检查是否有外星人位于屏幕边缘，并更新整个外星舰队的位置"""
         self._check_fleet_edges()
         self.aliens.update()  # 对编组调用方法，会调用每一个飞船的 update 方法
         self._ship_hit()
+        self._check_aliens_bottom()
 
     def _check_down(self, event):
         """响应按下"""
