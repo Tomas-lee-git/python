@@ -152,14 +152,27 @@ class HorizontalAlienInvasion:
         """触碰上/下边缘之后，向飞船前进（向左）"""
         for alien in self.aliens.sprites():
             alien.rect.x = alien.rect.x - alien.settings.alien_horizontal_speed
-            print(f"alien.rect.x {alien.rect.x}")
         self.settings.alien_direction *= -1  # 控制外星人舰队上/下移动
 
+    def check_collision(self):
+        """检测飞船和外星人舰队的碰撞"""
+        collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
+        # if collisions:
+        #     print(f"collisions is {collisions}")
+
+    def _check_aliens_is_over(self):
+        """外星人舰队全部被消灭之后，重新生成一队"""
+        if not self.aliens:
+            self.bullets.empty() # 清理残余子弹
+            self.create_alien_fleet()
+    
     def alien_updates(self):
         """控制外星人行动轨迹"""
         self._check_fleet_edges()
+        self.check_collision()
+        self._check_aliens_is_over()
         self.aliens.update()
-        
+
     def _update_screen(self):
         """更新屏幕上的图像，并且换到新屏幕"""
         self.screen.fill(self.settings.bg_color)  # 每次循环时都重绘屏幕
