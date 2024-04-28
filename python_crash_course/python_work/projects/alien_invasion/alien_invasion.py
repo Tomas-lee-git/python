@@ -3,12 +3,13 @@
 import pygame  # 包含游戏开发所需的功能
 
 import sys  # 使用 sys 模块的工具来退出游戏
-import sched, time
+from time import sleep # 使用 sleep 来暂停游戏
 
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
+from game_stats import GameStats
 
 
 class AlienInvasion:
@@ -25,6 +26,10 @@ class AlienInvasion:
         )
         self.screen_rect = self.screen.get_rect()
         pygame.display.set_caption(self.settings.display_caption)
+        
+        # 创建一个用于存储游戏统计信息的实例（需要放在创建游戏窗口之后，创建其它游戏元素之前）
+        self.stats = GameStats(self)
+        
         self.ship = Ship(self)
         # 创建存储子弹的编组（类似列表，但提供了有助于开发游戏的额外功能）
         self.bullets = pygame.sprite.Group()
@@ -109,10 +114,29 @@ class AlienInvasion:
             alien.rect.y += self.settings.fleet_drop_speed  # 向下移动
         self.settings.fleet_direction *= -1  # 改变方向
 
+    def _ship_hit(self):
+        """检测飞船和外星人的碰撞"""
+        if pygame.sprite.spritecollideany(self.ship, self.aliens):
+            # 碰撞之后，减去一条可用飞船
+            self.stats.minus_ship_left()
+            # print(f"ship number is {self.stats.ship_left}")
+            
+            # 碰撞之后，清空剩余的外星人舰队和子弹
+            self.aliens.empty()
+            self.bullets.empty()
+            
+            # 重置飞船位置
+            self.ship.center_ship()
+            
+            # 暂停游戏
+            sleep(0.5)
+            
+            
     def _update_aliens(self):
         """检查是否有外星人位于屏幕边缘，并更新整个外星舰队的位置"""
         self._check_fleet_edges()
         self.aliens.update()  # 对编组调用方法，会调用每一个飞船的 update 方法
+        self._ship_hit()
 
     def _check_down(self, event):
         """响应按下"""

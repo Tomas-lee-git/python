@@ -13,11 +13,7 @@ class Ship:
         # 加载飞船图像并获取其外形矩形
         self.image = pygame.image.load("images/ship.bmp")
         self.rect = self.image.get_rect()
-        # 每艘新飞船都放在屏幕底部的中央
-        self.rect.midbottom = self.screen_rect.midbottom
-        # 在飞船的位置属性 x,y 中存储一个浮点数
-        self.x = float(self.rect.x)
-        self.y = float(self.rect.y)
+        self.center_ship()
         # 飞船移动的标志
         self.moving_right = False
         self.moving_left = False
@@ -71,3 +67,10 @@ class Ship:
         """在指定位置绘制飞船"""
         # Surface.blit, draw one image onto another
         self.screen.blit(self.image, self.rect)
+        
+    def center_ship(self):
+        """讲飞船放在屏幕底部的中央"""
+        self.rect.midbottom = self.screen_rect.midbottom
+        # 在飞船的位置属性 x,y 中存储一个浮点数
+        self.x = float(self.rect.x)
+        self.y = float(self.rect.y)

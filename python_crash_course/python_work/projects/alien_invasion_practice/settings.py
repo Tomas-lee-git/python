@@ -21,6 +21,6 @@ class Settings:
         # TODO: 持续开火功能
         # self.is_firing = False # 开火状态
         # 外星人设置
-        self.alien_speed = 1
-        self.alien_horizontal_speed = 50
+        self.alien_speed = 1 # 上下移动速度
+        self.alien_horizontal_speed = 50 # 向左移动速度
         self.alien_direction = 1  # 1 向下，2向上
