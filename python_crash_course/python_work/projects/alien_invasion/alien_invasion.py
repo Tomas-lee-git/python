@@ -27,6 +27,9 @@ class AlienInvasion:
         self.screen_rect = self.screen.get_rect()
         pygame.display.set_caption(self.settings.display_caption)
         
+        # 游戏启动后，是否处于活动状态
+        self.game_active = True
+        
         # 创建一个用于存储游戏统计信息的实例（需要放在创建游戏窗口之后，创建其它游戏元素之前）
         self.stats = GameStats(self)
         
@@ -117,20 +120,23 @@ class AlienInvasion:
     def restart_game(self):
         """触发条件后，重置游戏"""
         # 1. 飞船和外星人发生碰撞；2. 外星舰队抵达屏幕底部；
-
-        # 减去一条可用飞船
-        self.stats.minus_ship_left()
-        # print(f"ship number is {self.stats.ship_left}")
         
-        # 碰撞之后，清空剩余的外星人舰队和子弹
-        self.aliens.empty()
-        self.bullets.empty()
-        
-        # 重置飞船位置
-        self.ship.center_ship()
-        
-        # 暂停游戏
-        sleep(0.5)
+        if self.stats.ship_left > 1: # 还有剩余飞船
+            # 减去一条可用飞船
+            self.stats.minus_ship_left()
+            print(f"ship number is {self.stats.ship_left}")
+            
+            # 碰撞之后，清空剩余的外星人舰队和子弹
+            self.aliens.empty()
+            self.bullets.empty()
+            
+            # 重置飞船位置
+            self.ship.center_ship()
+            
+            # 暂停游戏
+            sleep(0.5)
+        else:  # 飞船耗尽后，停止游戏
+            self.game_active = False
     
     def _ship_hit(self):
         """检测飞船和外星人的碰撞"""
@@ -249,9 +255,12 @@ class AlienInvasion:
         """开始游戏的主循环"""
         while True:  # 持续不断地侦听，直到退出游戏
             self._check_events()  # 类中定义的属性和方法都可以通过 self 来访问和调用
-            self.ship.update()  # 起点在左上角(0,0)
-            self._update_bullets()
-            self._update_aliens()
+            
+            if self.game_active: # 只有游戏进行中，才需要不断地更新游戏“活动的元素”
+                self.ship.update()  # 起点在左上角(0,0)
+                self._update_bullets()
+                self._update_aliens()
+            
             self._update_screen()
             self.clock.tick(self.settings.frame_rate)
 
