@@ -3,12 +3,13 @@
 import pygame  # 包含游戏开发所需的功能
 
 import sys  # 使用 sys 模块的工具来退出游戏
-import sched, time
+from time import sleep # 暂停游戏
 
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
+from game_stats import GameStats
 
 
 class HorizontalAlienInvasion:
@@ -26,6 +27,13 @@ class HorizontalAlienInvasion:
 
         pygame.display.set_caption(self.settings.display_caption)
         self.screen_rect = self.screen.get_rect()
+        
+        # 游戏统计信息
+        self.stats = GameStats(self)
+        
+        # 游戏是否正常进行
+        self.game_active = True
+        
         self.ship = Ship(self)
         # 创建存储子弹的编组（类似列表，但提供了有助于开发游戏的额外功能）
         self.bullets = pygame.sprite.Group()
@@ -59,6 +67,7 @@ class HorizontalAlienInvasion:
         """创建一颗子弹，并将其加入编组 bullets"""
         new_bullet = Bullet(self)
         self.bullets.add(new_bullet)
+        self.stats.count_fired_bullets_num()
 
         # TODO: 持续开火功能
         # if self.settings.is_firing:
@@ -84,20 +93,20 @@ class HorizontalAlienInvasion:
         self._remove_bullet()
 
     def create_alien(self, y_position, x_position):
-        """生成一个外星人"""
+        """生成一个外星飞船"""
         alien = Alien(self)
         alien.rect.y = y_position
         alien.rect.x = x_position
         self.aliens.add(alien)
 
     def create_alien_fleet(self):
-        """生成外星人舰队"""
+        """生成外星飞船舰队"""
         alien = Alien(self)
         current_x = self.screen_rect.right - 2 * alien.rect.width
         current_y = alien.rect.y
-        # 创建多排外星人
+        # 创建多排外星飞船
         while current_x >= self.screen_rect.width / 2:
-            # 创建一排外星人
+            # 创建一排外星飞船
             while current_y <= self.screen_rect.bottom - 2 * alien.rect.height:
                 self.create_alien(current_y, current_x)
                 current_y += 2 * alien.rect.height
@@ -142,7 +151,7 @@ class HorizontalAlienInvasion:
                 self._check_up(event)
 
     def _check_fleet_edges(self):
-        """在外星人到达边缘时采取相应的措施"""
+        """在外星飞船到达边缘时采取相应的措施"""
         for alien in self.aliens.sprites():
             if alien.check_edge():
                 self._change_fleet_direction()
@@ -152,35 +161,69 @@ class HorizontalAlienInvasion:
         """触碰上/下边缘之后，向飞船前进（向左）"""
         for alien in self.aliens.sprites():
             alien.rect.x = alien.rect.x - alien.settings.alien_horizontal_speed
-        self.settings.alien_direction *= -1  # 控制外星人舰队上/下移动
+        self.settings.alien_direction *= -1  # 控制外星飞船舰队上/下移动
 
     def check_collision(self):
-        """检测飞船和外星人舰队的碰撞"""
+        """检测子弹是否击中外星飞船"""
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
-        # if collisions:
-        #     print(f"collisions is {collisions}")
+        if collisions: # 被击中后，更新统计
+            self.stats.count_destroyed_aliens_num()
 
     def _check_aliens_is_over(self):
-        """外星人舰队全部被消灭之后，重新生成一队"""
+        """外星飞船舰队全部被消灭之后，重新生成一队"""
         if not self.aliens:
             self.bullets.empty()  # 清理残余子弹
             self.create_alien_fleet()
 
-    def alien_updates(self):
-        """控制外星人行动轨迹"""
+    def _check_aliens_success(self):
+        """检测外星舰队是否获得一次胜利"""
+        for alien in self.aliens.sprites():
+            if alien.rect.left <= 0:
+                # print("aliens is success!")
+                self._restart_or_over_game()
+                break
+            
+    def _check_ship_destroyed(self):
+        """判断飞船是否被外星舰队撞毁"""
+        if pygame.sprite.spritecollideany(self.ship, self.aliens):
+            self.stats.count_ship_collided_num()
+            self._restart_or_over_game()
+            
+    def _restart_or_over_game(self):
+        """重新开始一轮游戏，或者游戏结束"""
+        if self.stats.ship_left > 1: # 还有剩余飞船，重开游戏
+            self.stats.minus_ship_num()
+            self.bullets.empty()
+            self.aliens.empty()
+            sleep(0.5)
+        else: # 没有剩余飞船，游戏结束
+            self.game_active = False
+        
+        if not self.game_active:
+            print(f"fired bullets are {self.settings.fired_bullets_num}")
+            print(f"destroyed aliens are {self.settings.alien_destroyed_num}")
+            print(f"collided ship are {self.settings.ship_collided_num}")
+    
+    def aliens_update(self):
+        """控制外星飞船行动轨迹"""
         self._check_fleet_edges()
         self.check_collision()
         self._check_aliens_is_over()
         self.aliens.update()
+        self._check_aliens_success()
+        self._check_ship_destroyed()
 
+    def _draw_bullets(self):
+        """绘制每一颗子弹"""
+        for bullet in self.bullets:
+            bullet.draw_bullet()
+    
     def _update_screen(self):
         """更新屏幕上的图像，并且换到新屏幕"""
         self.screen.fill(self.settings.bg_color)  # 每次循环时都重绘屏幕
-        for bullet in self.bullets:
-            bullet.draw_bullet()
-        self.alien_updates()
-        self.aliens.draw(self.screen)
         self.ship.blitme()
+        self._draw_bullets()
+        self.aliens.draw(self.screen)
 
         # 根据用户操作不断地更新屏幕显示
         pygame.display.flip()
@@ -189,8 +232,12 @@ class HorizontalAlienInvasion:
         """开始游戏的主循环"""
         while True:  # 持续不断地侦听，直到退出游戏
             self._check_events()  # 类中定义的属性和方法都可以通过 self 来访问和调用
-            self.ship.update()  # 起点在左上角(0,0)
-            self._update_bullets()
+            
+            if self.game_active: # 游戏结束之后，就不需要更新游戏活动的素材元素了
+                self.ship.update()  # 起点在左上角(0,0)
+                self._update_bullets()
+                self.aliens_update()
+            
             self._update_screen()
             self.clock.tick(self.settings.frame_rate)
 

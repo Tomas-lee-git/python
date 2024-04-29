@@ -1,5 +1,5 @@
 class Settings:
-    """集中存储游戏《外星人入侵》中所有设置的类"""
+    """集中存储游戏《外星飞船入侵》中所有设置的类"""
 
     def __init__(self):
         """初始化游戏的设置"""
@@ -28,7 +28,7 @@ class Settings:
         # TODO: 持续开火功能
         # self.is_firing = False # 开火状态
 
-        # 外星人设置
-        self.alien_speed = 1  # 外星人向左、右移动的速度
+        # 外星飞船设置
+        self.alien_speed = 1  # 外星飞船向左、右移动的速度
         self.fleet_drop_speed = 50  # 外星舰队到达屏幕边缘后，向下移动的速度
         self.fleet_direction = 1  # 1 表示向右移动， -1 表示向左移动
