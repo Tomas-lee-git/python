@@ -12,12 +12,12 @@ class Settings:
         self.screen_height = 900
         # 设置游戏屏幕背景色，RGB，red, green, blue, 0~255
         self.bg_color = (230, 230, 230)  # 浅灰色
-        
+
         # 飞船设置
         self.ship_speed = 1.5  # 控制飞船移动速度
-        self.ship_limit = 3 # 可用飞船数量
-        self.ship_collided_num = 0 # 飞船被撞毁的次数
-        
+        self.ship_limit = 3  # 可用飞船数量
+        self.ship_collided_num = 0  # 飞船被撞毁的次数
+
         # 子弹设置
         self.bullet_speed = 2.0  # 子弹速度比飞船稍快
         self.bullet_width = 15
@@ -25,10 +25,10 @@ class Settings:
         self.bullet_color = (60, 60, 60)  # 深灰色
         # TODO: 持续开火功能
         # self.is_firing = False # 开火状态
-        self.fired_bullets_num = 0 # 发射子弹数量统计
-        
+        self.fired_bullets_num = 0  # 发射子弹数量统计
+
         # 外星飞船设置
-        self.alien_speed = 1 # 上下移动速度
-        self.alien_horizontal_speed = 100 # 向左移动速度
+        self.alien_speed = 1  # 上下移动速度
+        self.alien_horizontal_speed = 100  # 向左移动速度
         self.alien_direction = 1  # 1 向下，2向上
-        self.alien_destroyed_num = 0 # 统计被击毁的外星飞船的数量
+        self.alien_destroyed_num = 0  # 统计被击毁的外星飞船的数量

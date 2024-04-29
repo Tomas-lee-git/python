@@ -6,20 +6,20 @@ class Settings:
         # 游戏基础设置
         self.frame_rate = 60  # Pygame 尽可能的确保这个循环每秒恰好运行60秒
         self.display_caption = "👾 Alien Invasion 👾"  # 设置游戏标题
-        
+
         # 指定游戏窗口的尺寸(宽、高)
         self.default_screen_width = 1200
         self.default_screen_height = 800
         self.screen_width = 1200
         self.screen_height = 800
-        
+
         # 设置游戏屏幕背景色，RGB，red, green, blue, 0~255
         self.bg_color = (230, 230, 230)  # 浅灰色
-        
+
         # 飞船设置
         self.ship_speed = 1.5  # 控制飞船移动速度
-        self.ship_limit = 3 # 可用飞船数量
-        
+        self.ship_limit = 3  # 可用飞船数量
+
         # 子弹设置
         self.bullet_speed = 2.5  # 子弹速度比飞船稍快
         self.bullet_width = 3

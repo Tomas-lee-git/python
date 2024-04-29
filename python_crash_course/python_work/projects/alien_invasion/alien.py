@@ -41,7 +41,7 @@ class Alien(Sprite):
     def check_bottom_edge(self):
         """检测外星飞船是否抵达屏幕底部"""
         return self.rect.bottom >= self.screen_rect.bottom
-    
+
     def update(self):
         """外星舰队左右移动，向飞船逼近"""
         self.x += self.settings.alien_speed * self.settings.fleet_direction

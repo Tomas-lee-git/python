@@ -67,7 +67,7 @@ class Ship:
         """在指定位置绘制飞船"""
         # Surface.blit, draw one image onto another
         self.screen.blit(self.image, self.rect)
-        
+
     def center_ship(self):
         """讲飞船放在屏幕底部的中央"""
         self.rect.midbottom = self.screen_rect.midbottom

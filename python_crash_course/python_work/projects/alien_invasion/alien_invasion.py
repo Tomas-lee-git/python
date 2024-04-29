@@ -3,7 +3,7 @@
 import pygame  # 包含游戏开发所需的功能
 
 import sys  # 使用 sys 模块的工具来退出游戏
-from time import sleep # 使用 sleep 来暂停游戏
+from time import sleep  # 使用 sleep 来暂停游戏
 
 from settings import Settings
 from ship import Ship
@@ -26,13 +26,13 @@ class AlienInvasion:
         )
         self.screen_rect = self.screen.get_rect()
         pygame.display.set_caption(self.settings.display_caption)
-        
+
         # 游戏启动后，是否处于活动状态
         self.game_active = True
-        
+
         # 创建一个用于存储游戏统计信息的实例（需要放在创建游戏窗口之后，创建其它游戏元素之前）
         self.stats = GameStats(self)
-        
+
         self.ship = Ship(self)
         # 创建存储子弹的编组（类似列表，但提供了有助于开发游戏的额外功能）
         self.bullets = pygame.sprite.Group()
@@ -120,36 +120,36 @@ class AlienInvasion:
     def restart_game(self):
         """触发条件后，重置游戏"""
         # 1. 飞船和外星飞船发生碰撞；2. 外星舰队抵达屏幕底部；
-        
-        if self.stats.ship_left > 1: # 还有剩余飞船
+
+        if self.stats.ship_left > 1:  # 还有剩余飞船
             # 减去一条可用飞船
             self.stats.minus_ship_left()
             print(f"ship number is {self.stats.ship_left}")
-            
+
             # 碰撞之后，清空剩余的外星飞船舰队和子弹
             self.aliens.empty()
             self.bullets.empty()
-            
+
             # 重置飞船位置
             self.ship.center_ship()
-            
+
             # 暂停游戏
             sleep(0.5)
         else:  # 飞船耗尽后，停止游戏
             self.game_active = False
-    
+
     def _ship_hit(self):
         """检测飞船和外星飞船的碰撞"""
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
             self.restart_game()
-            
+
     def _check_aliens_bottom(self):
         """检测外星舰队是否突破了飞船的防守抵达了屏幕底部"""
         for alien in self.aliens.sprites():
             if alien.check_bottom_edge():
                 self.restart_game()
                 break
-        
+
     def _update_aliens(self):
         """检查是否有外星飞船位于屏幕边缘，并更新整个外星舰队的位置"""
         self._check_fleet_edges()
@@ -233,7 +233,9 @@ class AlienInvasion:
                 self.screen_rect.width - 2 * alien_width
             ):  # 留出两边间距的位置
                 self._create_alien(current_x, current_y)
-                current_x += 2 * alien_width  # 间隔[一个外星飞船的宽度]放置另一个外星飞船
+                current_x += (
+                    2 * alien_width
+                )  # 间隔[一个外星飞船的宽度]放置另一个外星飞船
             # ❕ 重置 current_x，否则current_x停留在最大值，无法在下一行开启内部 while 循环
             current_x = alien_width
             current_y += 2 * alien_height  # 间隔[一个外星飞船的高度]放置另一行外星飞船
@@ -255,12 +257,12 @@ class AlienInvasion:
         """开始游戏的主循环"""
         while True:  # 持续不断地侦听，直到退出游戏
             self._check_events()  # 类中定义的属性和方法都可以通过 self 来访问和调用
-            
-            if self.game_active: # 只有游戏进行中，才需要不断地更新游戏“活动的元素”
+
+            if self.game_active:  # 只有游戏进行中，才需要不断地更新游戏“活动的元素”
                 self.ship.update()  # 起点在左上角(0,0)
                 self._update_bullets()
                 self._update_aliens()
-            
+
             self._update_screen()
             self.clock.tick(self.settings.frame_rate)
 
