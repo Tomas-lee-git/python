@@ -10,6 +10,7 @@ from ship import Ship
 from bullet import Bullet
 from alien import Alien
 from game_stats import GameStats
+from button import Button
 
 
 class AlienInvasion:
@@ -28,7 +29,10 @@ class AlienInvasion:
         pygame.display.set_caption(self.settings.display_caption)
 
         # 游戏启动后，是否处于活动状态
-        self.game_active = True
+        self.game_active = False # 开始时，处于非活动状态，需要用户点击"Play"启动游戏
+        
+        # 创建 play 按钮
+        self.play_button  = Button(self, "Play")
 
         # 创建一个用于存储游戏统计信息的实例（需要放在创建游戏窗口之后，创建其它游戏元素之前）
         self.stats = GameStats(self)
@@ -117,37 +121,54 @@ class AlienInvasion:
             alien.rect.y += self.settings.fleet_drop_speed  # 向下移动
         self.settings.fleet_direction *= -1  # 改变方向
 
-    def restart_game(self):
-        """触发条件后，重置游戏"""
+    def _clear_screen(self):
+        """重置游戏元素"""
+        # 碰撞之后，清空剩余的外星飞船舰队和子弹
+        self.aliens.empty()
+        self.bullets.empty()
+
+        # 新建外星飞船舰队，重置飞船位置
+        self._create_fleet()
+        self.ship.center_ship()
+        
+        # 暂停游戏
+        sleep(0.5)
+
+    def _continue_or_over_game(self):
+        """根据条件，新开一轮或结束游戏"""
         # 1. 飞船和外星飞船发生碰撞；2. 外星舰队抵达屏幕底部；
 
         if self.stats.ship_left > 1:  # 还有剩余飞船
             # 减去一条可用飞船
             self.stats.minus_ship_left()
-            print(f"ship number is {self.stats.ship_left}")
 
-            # 碰撞之后，清空剩余的外星飞船舰队和子弹
-            self.aliens.empty()
-            self.bullets.empty()
+            self._clear_screen()
 
-            # 重置飞船位置
-            self.ship.center_ship()
-
-            # 暂停游戏
-            sleep(0.5)
         else:  # 飞船耗尽后，停止游戏
+            self._clear_screen()
             self.game_active = False
+            # 根据游戏活跃状态，设置鼠标箭头，游戏结束后显示鼠标
+            pygame.mouse.set_visible(True)
 
+    def _start_game(self):
+        """重新开始游戏"""
+        # 开始游戏前，需要重置游戏的统计信息
+        self.stats.reset_stats()
+        self.game_active = True
+        self._clear_screen()
+        # 根据游戏活跃状态，设置鼠标箭头，玩游戏的时候隐藏鼠标
+        pygame.mouse.set_visible(False)
+    
     def _ship_hit(self):
         """检测飞船和外星飞船的碰撞"""
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
-            self.restart_game()
+            self._continue_or_over_game()
 
     def _check_aliens_bottom(self):
         """检测外星舰队是否突破了飞船的防守抵达了屏幕底部"""
         for alien in self.aliens.sprites():
             if alien.check_bottom_edge():
-                self.restart_game()
+                self._continue_or_over_game()
                 break
 
     def _update_aliens(self):
@@ -157,8 +178,8 @@ class AlienInvasion:
         self._ship_hit()
         self._check_aliens_bottom()
 
-    def _check_down(self, event):
-        """响应按下"""
+    def _check_keyboard_down(self, event):
+        """响应键盘按键"""
         if event.key == pygame.K_RIGHT:  # 按右箭头，激活向右移动标识
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:  # 按左箭头，激活向左移动标识
@@ -175,9 +196,11 @@ class AlienInvasion:
             self._exit_full_screen(event)
         elif event.key == pygame.K_SPACE:  # 空格键开火
             self._fire_bullet()
-
-    def _check_up(self, event):
-        """响应释放"""
+        elif event.key == pygame.K_p and not self.game_active: # P 键开启游戏
+            self._start_game()
+        
+    def _check_keyboard_up(self, event):
+        """响应键盘按键结束"""
         if event.key == pygame.K_RIGHT:  # 按右箭头，关闭向右移动标识
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:  # 按下箭头，关闭向下移动标识
@@ -188,6 +211,24 @@ class AlienInvasion:
             self.ship.moving_up = False  # 按左箭头，关闭向左移动标识
         # elif event.key == pygame.K_SPACE:  # 松开空格键停火
         #     self.settings.is_firing = False
+        
+    def _check_mouse_down(self, event):
+        """监听鼠标点击事件"""
+        mouse_pos = pygame.mouse.get_pos() # 鼠标点击的位置
+        self._check_play_button(mouse_pos)
+    
+    def _check_play_button(self, mouse_pos):
+        """在玩家单击 Play 按钮时开始游戏"""
+        # 对比位置，检测用户是否用鼠标点击了 Play 按钮
+        play_button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+        """
+            问题：即便点击了 Play 之后， Play button不可见了，但是，如果用户点击了原 button 所在的位置，
+                仍然会这里的逻辑被响应。
+                
+            方案：除了检测鼠标点击位置，添加一个条件：当游戏处于“非活动状态”时；
+        """
+        if play_button_clicked and not self.game_active:
+            self._start_game()
 
     # 拆分为辅助方法：1. 以_开头；2. 只会在类的内部使用；
     def _check_events(self):
@@ -198,10 +239,12 @@ class AlienInvasion:
             if event.type == pygame.QUIT:
                 sys.exit()  # while True 的退出条件，退出游戏程序
             elif event.type == pygame.KEYDOWN:  # 侦听“键盘按键按下”事件
-                self._check_down(event)
+                self._check_keyboard_down(event)
             elif event.type == pygame.KEYUP:  # 侦听“键盘按键释放”事件
-                self._check_up(event)
-
+                self._check_keyboard_up(event)
+            elif event.type == pygame.MOUSEBUTTONDOWN: # 侦听鼠标点击事件
+                self._check_mouse_down(event)
+            
     def _create_alien(self, x_position, y_position):
         """根据 x, y 位置，实例化创建一个外星飞船"""
         # 做两件事：1. 创建外星飞船实例；2. 计算并赋值外星飞船位置
@@ -251,6 +294,11 @@ class AlienInvasion:
         self._draw_bullets()
         self.ship.blitme()
         self.aliens.draw(self.screen)  # draw all sprites onto the surface
+        
+        # 为了让这个按钮显示在屏幕最上面，需要把它的绘制放在其它元素之后
+        if not self.game_active: # 游戏出于非活动状态时，绘制 Play 按钮(刚开始、结束后)
+            self.play_button._draw_button()
+
         pygame.display.flip()  # 根据用户操作不断地更新屏幕显示
 
     def run_game(self):
