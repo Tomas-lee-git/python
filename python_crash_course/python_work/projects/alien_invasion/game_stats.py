@@ -14,4 +14,3 @@ class GameStats:
         """飞船可用数量减去一艘"""
         self.ship_left -= 1
         # print(f"ship number is {self.ship_left}")
-        

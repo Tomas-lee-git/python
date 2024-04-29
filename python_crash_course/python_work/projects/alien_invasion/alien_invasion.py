@@ -29,10 +29,10 @@ class AlienInvasion:
         pygame.display.set_caption(self.settings.display_caption)
 
         # 游戏启动后，是否处于活动状态
-        self.game_active = False # 开始时，处于非活动状态，需要用户点击"Play"启动游戏
-        
+        self.game_active = False  # 开始时，处于非活动状态，需要用户点击"Play"启动游戏
+
         # 创建 play 按钮
-        self.play_button  = Button(self, "Play")
+        self.play_button = Button(self, "Play")
 
         # 创建一个用于存储游戏统计信息的实例（需要放在创建游戏窗口之后，创建其它游戏元素之前）
         self.stats = GameStats(self)
@@ -130,7 +130,7 @@ class AlienInvasion:
         # 新建外星飞船舰队，重置飞船位置
         self._create_fleet()
         self.ship.center_ship()
-        
+
         # 暂停游戏
         sleep(0.5)
 
@@ -158,7 +158,7 @@ class AlienInvasion:
         self._clear_screen()
         # 根据游戏活跃状态，设置鼠标箭头，玩游戏的时候隐藏鼠标
         pygame.mouse.set_visible(False)
-    
+
     def _ship_hit(self):
         """检测飞船和外星飞船的碰撞"""
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
@@ -196,9 +196,9 @@ class AlienInvasion:
             self._exit_full_screen(event)
         elif event.key == pygame.K_SPACE:  # 空格键开火
             self._fire_bullet()
-        elif event.key == pygame.K_p and not self.game_active: # P 键开启游戏
+        elif event.key == pygame.K_p and not self.game_active:  # P 键开启游戏
             self._start_game()
-        
+
     def _check_keyboard_up(self, event):
         """响应键盘按键结束"""
         if event.key == pygame.K_RIGHT:  # 按右箭头，关闭向右移动标识
@@ -211,12 +211,12 @@ class AlienInvasion:
             self.ship.moving_up = False  # 按左箭头，关闭向左移动标识
         # elif event.key == pygame.K_SPACE:  # 松开空格键停火
         #     self.settings.is_firing = False
-        
+
     def _check_mouse_down(self, event):
         """监听鼠标点击事件"""
-        mouse_pos = pygame.mouse.get_pos() # 鼠标点击的位置
+        mouse_pos = pygame.mouse.get_pos()  # 鼠标点击的位置
         self._check_play_button(mouse_pos)
-    
+
     def _check_play_button(self, mouse_pos):
         """在玩家单击 Play 按钮时开始游戏"""
         # 对比位置，检测用户是否用鼠标点击了 Play 按钮
@@ -242,9 +242,9 @@ class AlienInvasion:
                 self._check_keyboard_down(event)
             elif event.type == pygame.KEYUP:  # 侦听“键盘按键释放”事件
                 self._check_keyboard_up(event)
-            elif event.type == pygame.MOUSEBUTTONDOWN: # 侦听鼠标点击事件
+            elif event.type == pygame.MOUSEBUTTONDOWN:  # 侦听鼠标点击事件
                 self._check_mouse_down(event)
-            
+
     def _create_alien(self, x_position, y_position):
         """根据 x, y 位置，实例化创建一个外星飞船"""
         # 做两件事：1. 创建外星飞船实例；2. 计算并赋值外星飞船位置
@@ -294,9 +294,9 @@ class AlienInvasion:
         self._draw_bullets()
         self.ship.blitme()
         self.aliens.draw(self.screen)  # draw all sprites onto the surface
-        
+
         # 为了让这个按钮显示在屏幕最上面，需要把它的绘制放在其它元素之后
-        if not self.game_active: # 游戏出于非活动状态时，绘制 Play 按钮(刚开始、结束后)
+        if not self.game_active:  # 游戏出于非活动状态时，绘制 Play 按钮(刚开始、结束后)
             self.play_button._draw_button()
 
         pygame.display.flip()  # 根据用户操作不断地更新屏幕显示
