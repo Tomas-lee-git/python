@@ -288,8 +288,8 @@ class AlienInvasion:
         for bullet in self.bullets:
             bullet.draw_bullet()
 
-    def _update_screen(self):
-        """更新屏幕上的图像，并且换到新屏幕"""
+    def _draw_screen(self):
+        """绘制屏幕上的图像，并且换到新屏幕"""
         self.screen.fill(self.settings.bg_color)  # 每次循环时都重绘屏幕
         self._draw_bullets()
         self.ship.blitme()
@@ -311,7 +311,7 @@ class AlienInvasion:
                 self._update_bullets()
                 self._update_aliens()
 
-            self._update_screen()
+            self._draw_screen()
             self.clock.tick(self.settings.frame_rate)
 
 

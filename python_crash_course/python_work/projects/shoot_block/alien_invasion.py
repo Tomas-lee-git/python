@@ -8,8 +8,9 @@ from time import sleep  # 暂停游戏
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
-from alien import Alien
 from game_stats import GameStats
+from block import Block
+from button import Button
 
 
 class HorizontalAlienInvasion:
@@ -30,15 +31,16 @@ class HorizontalAlienInvasion:
 
         # 游戏统计信息
         self.stats = GameStats(self)
+        
+        self.play_button = Button(self, "Play")
 
         # 游戏是否正常进行
-        self.game_active = True
+        self.game_active = False
 
         self.ship = Ship(self)
         # 创建存储子弹的编组（类似列表，但提供了有助于开发游戏的额外功能）
         self.bullets = pygame.sprite.Group()
-        self.aliens = pygame.sprite.Group()
-        self.create_alien_fleet()
+        self.block = Block(self)
 
     def _into_full_screen(self, event):
         """进入全屏模式"""
@@ -65,9 +67,10 @@ class HorizontalAlienInvasion:
 
     def _fire_bullet(self):
         """创建一颗子弹，并将其加入编组 bullets"""
-        new_bullet = Bullet(self)
-        self.bullets.add(new_bullet)
-        self.stats.count_fired_bullets_num()
+        if self.game_active:
+            new_bullet = Bullet(self)
+            self.bullets.add(new_bullet)
+            self.stats.count_fired_bullets_num()
 
         # TODO: 持续开火功能
         # if self.settings.is_firing:
@@ -91,29 +94,10 @@ class HorizontalAlienInvasion:
         # 也就是更新子弹编组中的每一颗子弹的位置
         self.bullets.update()
         self._remove_bullet()
+        self._check_collision_bullet_block()
+        
 
-    def create_alien(self, y_position, x_position):
-        """生成一个外星飞船"""
-        alien = Alien(self)
-        alien.rect.y = y_position
-        alien.rect.x = x_position
-        self.aliens.add(alien)
-
-    def create_alien_fleet(self):
-        """生成外星飞船舰队"""
-        alien = Alien(self)
-        current_x = self.screen_rect.right - 2 * alien.rect.width
-        current_y = alien.rect.y
-        # 创建多排外星飞船
-        while current_x >= self.screen_rect.width / 2:
-            # 创建一排外星飞船
-            while current_y <= self.screen_rect.bottom - 2 * alien.rect.height:
-                self.create_alien(current_y, current_x)
-                current_y += 2 * alien.rect.height
-            current_y = alien.rect.y
-            current_x = current_x - 1.5 * alien.rect.x
-
-    def _check_down(self, event):
+    def _keyboard_down(self, event):
         """响应按下"""
         if event.key == pygame.K_DOWN:  # 按下箭头，激活向下移动标识
             self.ship.moving_down = True
@@ -128,7 +112,7 @@ class HorizontalAlienInvasion:
         elif event.key == pygame.K_SPACE:  # 空格键开火
             self._fire_bullet()
 
-    def _check_up(self, event):
+    def _keyboard_up(self, event):
         """响应释放"""
         if event.key == pygame.K_DOWN:
             self.ship.moving_down = False  # 按上箭头，关闭向上移动标识
@@ -137,6 +121,19 @@ class HorizontalAlienInvasion:
         # elif event.key == pygame.K_SPACE:  # 松开空格键停火
         #     self.settings.is_firing = False
 
+    def _check_click_play_button(self, mos_position):
+        """检查是否点击了 Play 按钮"""
+        if self.play_button.rect.collidepoint(mos_position):
+            print("play button has been clicked")
+            self.game_active = True
+            self.stats.rest_stats()
+
+    
+    def _mouse_down(self, event):
+        """检测鼠标点击事件"""
+        mos_position = pygame.mouse.get_pos() # 获取鼠标点击的位置
+        self._check_click_play_button(mos_position)
+    
     # 拆分为辅助方法：1. 以_开头；2. 只会在类的内部使用；
     def _check_events(self):
         """侦听键盘和鼠标事件"""
@@ -146,84 +143,54 @@ class HorizontalAlienInvasion:
             if event.type == pygame.QUIT:
                 sys.exit()  # while True 的退出条件，退出游戏程序
             elif event.type == pygame.KEYDOWN:  # 侦听“键盘按键按下”事件
-                self._check_down(event)
+                self._keyboard_down(event)
             elif event.type == pygame.KEYUP:  # 侦听“键盘按键释放”事件
-                self._check_up(event)
-
-    def _check_fleet_edges(self):
-        """在外星飞船到达边缘时采取相应的措施"""
-        for alien in self.aliens.sprites():
-            if alien.check_edge():
-                self._change_fleet_direction()
-                break
-
-    def _change_fleet_direction(self):
-        """触碰上/下边缘之后，向飞船前进（向左）"""
-        for alien in self.aliens.sprites():
-            alien.rect.x = alien.rect.x - alien.settings.alien_horizontal_speed
-        self.settings.alien_direction *= -1  # 控制外星飞船舰队上/下移动
-
-    def check_collision(self):
-        """检测子弹是否击中外星飞船"""
-        collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
-        if collisions:  # 被击中后，更新统计
-            self.stats.count_destroyed_aliens_num()
-
-    def _check_aliens_is_over(self):
-        """外星飞船舰队全部被消灭之后，重新生成一队"""
-        if not self.aliens:
-            self.bullets.empty()  # 清理残余子弹
-            self.create_alien_fleet()
-
-    def _check_aliens_success(self):
-        """检测外星舰队是否获得一次胜利"""
-        for alien in self.aliens.sprites():
-            if alien.rect.left <= 0:
-                # print("aliens is success!")
-                self._restart_or_over_game()
-                break
-
-    def _check_ship_destroyed(self):
-        """判断飞船是否被外星舰队撞毁"""
-        if pygame.sprite.spritecollideany(self.ship, self.aliens):
-            self.stats.count_ship_collided_num()
-            self._restart_or_over_game()
+                self._keyboard_up(event)
+            elif event.type == pygame.MOUSEBUTTONDOWN: # 侦听“鼠标点击”事件
+                self._mouse_down(event)
 
     def _restart_or_over_game(self):
         """重新开始一轮游戏，或者游戏结束"""
         if self.stats.ship_left > 1:  # 还有剩余飞船，重开游戏
             self.stats.minus_ship_num()
             self.bullets.empty()
-            self.aliens.empty()
             sleep(0.5)
         else:  # 没有剩余飞船，游戏结束
             self.game_active = False
 
         if not self.game_active:
             print(f"fired bullets are {self.settings.fired_bullets_num}")
-            print(f"destroyed aliens are {self.settings.alien_destroyed_num}")
             print(f"collided ship are {self.settings.ship_collided_num}")
-
-    def aliens_update(self):
-        """控制外星飞船行动轨迹"""
-        self._check_fleet_edges()
-        self.check_collision()
-        self._check_aliens_is_over()
-        self.aliens.update()
-        self._check_aliens_success()
-        self._check_ship_destroyed()
 
     def _draw_bullets(self):
         """绘制每一颗子弹"""
         for bullet in self.bullets:
             bullet.draw_bullet()
 
+    def _update_block(self):
+        """更新标靶的位置"""
+        if self.block._check_y_edge(): # 如果即将超出屏幕，就调转方向
+            self.settings.block_direction *= -1
+        self.block.update()
+
+    def _check_collision_bullet_block(self):
+        """检测子弹是否击中标靶"""
+        collision = pygame.sprite.spritecollide( self.block,self.bullets, True)
+        if collision: # 击中之后得一分
+            self.settings.block_destroyed_num += 1
+        
+        # 如果玩家三次未击中目标，游戏结束
+        if self.settings.fired_bullets_num == 3 and self.settings.block_destroyed_num == 0:
+            self.game_active = False
+            
     def _draw_screen(self):
         """绘制屏幕上的图像，并且换到新屏幕"""
         self.screen.fill(self.settings.bg_color)  # 每次循环时都重绘屏幕
         self.ship.blitme()
         self._draw_bullets()
-        self.aliens.draw(self.screen)
+        self.block.draw_block()
+        if not self.game_active: # 游戏非活跃时，显示 Play 按钮
+            self.play_button.draw_button()
 
         # 根据用户操作不断地更新屏幕显示
         pygame.display.flip()
@@ -236,7 +203,7 @@ class HorizontalAlienInvasion:
             if self.game_active:  # 游戏结束之后，就不需要更新游戏活动的素材元素了
                 self.ship.update()  # 起点在左上角(0,0)
                 self._update_bullets()
-                self.aliens_update()
+                self._update_block()
 
             self._draw_screen()
             self.clock.tick(self.settings.frame_rate)
